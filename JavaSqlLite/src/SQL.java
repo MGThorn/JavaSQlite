@@ -12,7 +12,7 @@ public class SQL {
 	}
 	public void createDatabases() {
 
-		Dbmanipulation.create("create table Pfleger (PNummer integer PRIMARY KEY, TName string, Name string, Geburtsdatum integer, Anschrift string, Tel integer, Eintrittsdatum integer, Gehalt integer)");
+		Dbmanipulation.create("create table Pfleger (PNummer integer PRIMARY KEY, Nachname string, Vorname string, Geburtsdatum integer, PLZ integer, Ort string, StraﬂeNr string, Tel integer, Eintrittsdatum integer, Gehalt integer)");
 		Dbmanipulation.create("create table Gehege (GName string PRIMARY KEY, Fl‰che integer, Baujahr integer,PNummer integer, FOREIGN KEY(PNummer) REFERENCES Pfleger(PNummer))");
 		Dbmanipulation.create("create table Art (Bezeichnung string PRIMARY KEY, LatBezeichnung string, Lebensraum string)");
 		Dbmanipulation.create("create table Tier (TName string PRIMARY KEY, GebDatum integer, Geschlecht char, Zugangsdatum integer, Abgangsdatum integer,GName string, Bezeichnung string, FOREIGN KEY(Bezeichnung) REFERENCES Art(Bezeichnung), FOREIGN KEY(GName) REFERENCES Gehege(GName))");
