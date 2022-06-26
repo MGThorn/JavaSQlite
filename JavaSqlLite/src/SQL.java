@@ -34,7 +34,7 @@ public class SQL {
 	//This is an example
 	public void select/*name*/() {
 
-		ResultSet rs = Dbquery.select("select * from Pfleger");
+		ResultSet rs = Dbquery.select("select * from "/*TableName*/);
 		    try {
 				while(rs.next()){
 				 		int maxColumns = rs.getMetaData().getColumnCount();
@@ -46,11 +46,12 @@ public class SQL {
 				 	}
 				  }
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	}
+
 	
+	//insert for all Tables
 	public void insertTier(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
 		
 		int GDatum = Integer.parseInt(GebDatum);
@@ -62,6 +63,52 @@ public class SQL {
 		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
 		
 	}
+	public void insertPfleger(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
+		//TODO auf Pfleger anpassen 
+		int GDatum = Integer.parseInt(GebDatum);
+		int ZDatum = Integer.parseInt(Zugangsdatum);
+		int ADatum = Integer.parseInt(Abgangsdatum);
+		
+		char g = Geschlecht.charAt(0);
+		
+		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		
+	}
+	public void insertGehege(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
+		//TODO auf Gehege anpasssen
+		int GDatum = Integer.parseInt(GebDatum);
+		int ZDatum = Integer.parseInt(Zugangsdatum);
+		int ADatum = Integer.parseInt(Abgangsdatum);
+		
+		char g = Geschlecht.charAt(0);
+		
+		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		
+	}
+	public void insertArt(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
+		//TODO auf Art anpassen
+		int GDatum = Integer.parseInt(GebDatum);
+		int ZDatum = Integer.parseInt(Zugangsdatum);
+		int ADatum = Integer.parseInt(Abgangsdatum);
+		
+		char g = Geschlecht.charAt(0);
+		
+		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		
+	}
+	public void insertFutter(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
+		//TODO auf Futter anpassen
+		int GDatum = Integer.parseInt(GebDatum);
+		int ZDatum = Integer.parseInt(Zugangsdatum);
+		int ADatum = Integer.parseInt(Abgangsdatum);
+		
+		char g = Geschlecht.charAt(0);
+		
+		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		
+	}
+	
+	//select for all Tables
 	public String selectTiere() {
 
 		ResultSet rs = null;
@@ -69,15 +116,44 @@ public class SQL {
 		    try {
 		    	rs =Dbquery.select("select * from Tier");
 		    	int maxColumns = rs.getMetaData().getColumnCount();
-		    	for(int i = 1;i<maxColumns;i++) {
+		    	/*for(int i = 1;i<maxColumns;i++) {
 		 			ret += rs.getMetaData().getColumnName(i);
 		 			ret += " ";
 		    	}
+		    	*/
 				while(rs.next()){
 					ret += " \n ";
 				 		for(int i = 1;i<maxColumns;i++) {
 				 			ret += rs.getString(i);
-				 			ret +=" ";
+				 			ret +=", ";
+				 			//System.out.print(rs.getMetaData().getColumnName(i));
+				 			//System.out.println(" : "+rs.getString(i));
+				 		}
+				 		
+				  }
+				return ret;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return "";
+			}
+	}
+	public String selectPfleger() {
+
+		ResultSet rs = null;
+		String ret = "";
+		    try {
+		    	rs =Dbquery.select("select * from Tier");
+		    	int maxColumns = rs.getMetaData().getColumnCount();
+		    	/*for(int i = 1;i<maxColumns;i++) {
+		 			ret += rs.getMetaData().getColumnName(i);
+		 			ret += " ";
+		    	}
+		    	*/
+				while(rs.next()){
+					ret += " \n ";
+				 		for(int i = 1;i<maxColumns;i++) {
+				 			ret += rs.getString(i);
+				 			ret +=", ";
 				 			System.out.print(rs.getMetaData().getColumnName(i));
 				 			System.out.println(" : "+rs.getString(i));
 				 		}
@@ -85,10 +161,113 @@ public class SQL {
 				  }
 				return ret;
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "";
+			}
+	}
+	public String selectGehege() {
+
+		ResultSet rs = null;
+		String ret = "";
+		    try {
+		    	rs =Dbquery.select("select * from Tier");
+		    	int maxColumns = rs.getMetaData().getColumnCount();
+		    	/*for(int i = 1;i<maxColumns;i++) {
+		 			ret += rs.getMetaData().getColumnName(i);
+		 			ret += " ";
+		    	}
+		    	*/
+				while(rs.next()){
+					ret += " \n ";
+				 		for(int i = 1;i<maxColumns;i++) {
+				 			ret += rs.getString(i);
+				 			ret +=", ";
+				 			System.out.print(rs.getMetaData().getColumnName(i));
+				 			System.out.println(" : "+rs.getString(i));
+				 		}
+				 		
+				  }
+				return ret;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return "";
+			}
+	}
+	public String selectArt() {
+
+		ResultSet rs = null;
+		String ret = "";
+		    try {
+		    	rs =Dbquery.select("select * from Tier");
+		    	int maxColumns = rs.getMetaData().getColumnCount();
+		    	/*for(int i = 1;i<maxColumns;i++) {
+		 			ret += rs.getMetaData().getColumnName(i);
+		 			ret += " ";
+		    	}
+		    	*/
+				while(rs.next()){
+					ret += " \n ";
+				 		for(int i = 1;i<maxColumns;i++) {
+				 			ret += rs.getString(i);
+				 			ret +=", ";
+				 			System.out.print(rs.getMetaData().getColumnName(i));
+				 			System.out.println(" : "+rs.getString(i));
+				 		}
+				 		
+				  }
+				return ret;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return "";
+			}
+	}
+	public String selectFutter() {
+
+		ResultSet rs = null;
+		String ret = "";
+		    try {
+		    	rs =Dbquery.select("select * from Tier");
+		    	int maxColumns = rs.getMetaData().getColumnCount();
+		    	/*for(int i = 1;i<maxColumns;i++) {
+		 			ret += rs.getMetaData().getColumnName(i);
+		 			ret += " ";
+		    	}
+		    	*/
+				while(rs.next()){
+					ret += " \n ";
+				 		for(int i = 1;i<maxColumns;i++) {
+				 			ret += rs.getString(i);
+				 			ret +=", ";
+				 			System.out.print(rs.getMetaData().getColumnName(i));
+				 			System.out.println(" : "+rs.getString(i));
+				 		}
+				 		
+				  }
+				return ret;
+			} catch (SQLException e) {
 				e.printStackTrace();
 				return "";
 			}
 	}
 
+	public boolean deletTier(String NTier) {
+		
+		Dbmanipulation.delete(""/*TODO SQL befühl für löschen einfügen*/);
+		return false;
+	}
+	public boolean deletPfleger(String NTier) {
+		
+		Dbmanipulation.delete(""/*TODO SQL befühl für löschen einfügen*/);
+		return false;
+	}
+	public boolean deletGehege(String NTier) {
+		
+		Dbmanipulation.delete(""/*TODO SQL befühl für löschen einfügen*/);
+		return false;
+	}	
+	public boolean deletArt(String NTier) {
+		
+		Dbmanipulation.delete(""/*TODO SQL befühl für löschen einfügen*/);
+		return false;
+	}
 }

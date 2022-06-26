@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.JTextPane;
 
 public class GUI_FrankfurterZoo {
 	
@@ -33,7 +34,6 @@ public class GUI_FrankfurterZoo {
 	private JTextField textField_tiere_abgang;
 	private JTextField textField_tiere_zugang;
 	private JTextField textField_tiere_tname;
-	private JTextField textField_tiere_listausgabe;
 	private JTextField textField_gehege_gehegename;
 	private JTextField textField_gehege_baujahr;
 	private JTextField textField_gehege_flaeche;
@@ -47,6 +47,8 @@ public class GUI_FrankfurterZoo {
 	private JTextField textField_futterdetails_menge;
 	private JTextField textField_futterdetails_uhrzeit;
 	private JTextField textField_futterdetails_listenausgabe;
+	
+	private JTextPane textPane_tiere_listausgabe;
 
 	/**
 	 * Launch the application.
@@ -79,7 +81,6 @@ public class GUI_FrankfurterZoo {
 		
 			// Hauptmenü-------------------------------------------------------------------------------------------------------------
 		
-		s.createDatabases();
 		
 		frmDatenbankDesFrankfurter = new JFrame();
 		frmDatenbankDesFrankfurter.setTitle("Datenbank des Frankfurter Zoos");
@@ -142,6 +143,21 @@ public class GUI_FrankfurterZoo {
 		label_hauptmenue_hilfe_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label_hauptmenue_hilfe_4.setBounds(128, 355, 612, 29);
 		panel_haupt.add(label_hauptmenue_hilfe_4);
+		
+		JButton btnNewButton = new JButton("RESET ");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				s.deletDatabases();
+				s.createDatabases();
+			}
+		});
+		btnNewButton.setBounds(360, 395, 297, 39);
+		panel_haupt.add(btnNewButton);
+		
+		JLabel lblResetAllData = new JLabel("RESET FULL DATA BASE:");
+		lblResetAllData.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblResetAllData.setBounds(128, 395, 222, 39);
+		panel_haupt.add(lblResetAllData);
 		
 			
 			//*Hauptmenü------------------------------------------------------------------------------------------------------------------------
@@ -361,10 +377,11 @@ public class GUI_FrankfurterZoo {
 		textField_tiere_tname.setBounds(194, 87, 138, 20);
 		panel_tier.add(textField_tiere_tname);
 		
-		textField_tiere_listausgabe = new JTextField();
-		textField_tiere_listausgabe.setBounds(491, 39, 283, 337);
-		panel_tier.add(textField_tiere_listausgabe);
-		textField_tiere_listausgabe.setColumns(10);
+		
+		textPane_tiere_listausgabe = new JTextPane();
+		textPane_tiere_listausgabe.setBounds(491, 39, 283, 337);
+		panel_tier.add(textPane_tiere_listausgabe);
+		
 		
 		
 				//Buttons-------------------------------------------------
@@ -378,7 +395,7 @@ public class GUI_FrankfurterZoo {
 				textField_tiere_abgang.setText(null);
 				textField_tiere_zugang.setText(null);
 				textField_tiere_tname.setText(null);
-				textField_tiere_listausgabe.setText(null);
+				textPane_tiere_listausgabe.setText(null);
 				
 			}
 		});
@@ -397,20 +414,27 @@ public class GUI_FrankfurterZoo {
 		JButton button_tiere_anlegen = new JButton("Anlegen");
 		button_tiere_anlegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(correctFormatTiere()) {
-
-					String temp1 =textField_tiere_gbdatum.getText();
-					String temp2 =textField_tiere_geschlecht.getText();
-					String temp3 =textField_tiere_abgang.getText();
-					String temp4 =textField_tiere_zugang.getText();
-					String temp5 =textField_tiere_tname.getText();
-					String temp6 ="";
-					String temp7 =""; 
+				 try {
+					 String temp1 =textField_tiere_tname.getText();
+					 String temp2 =textField_tiere_gbdatum.getText();
+					 String temp3 =textField_tiere_geschlecht.getText();
+					 String temp4 =textField_tiere_zugang.getText();
+					 String temp5 =textField_tiere_abgang.getText();
+					 String temp6 ="";
+					 String temp7 =""; 	
+					 
+					 s.insertTier(temp1,temp2,temp3,temp4,temp5,temp6,temp7);
 					
-					s.insertTier(temp1,temp2,temp3,temp4,temp5,temp6,temp7);
-				}else {
-					textField_tiere_listausgabe.setText("pls fill every Text Field");
-				}
+					} catch (NumberFormatException expt) {
+						textPane_tiere_listausgabe.setText("wrong format");
+						expt.printStackTrace();
+					}	
+				
+					
+					
+				
+					
+				
 			}
 		});
 		button_tiere_anlegen.setBounds(370, 122, 89, 23);
@@ -419,6 +443,19 @@ public class GUI_FrankfurterZoo {
 		JButton button_tiere_loeschen = new JButton("L\u00F6schen");
 		button_tiere_loeschen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					 String temp1 =textField_tiere_tname.getText();
+					 
+					 if(s.deletTier(temp1)) {
+						 textPane_tiere_listausgabe.setText("Tier erfolgreich gelöscht"); 
+					 }else {
+						 textPane_tiere_listausgabe.setText("es ist ein Fehler aufgetreten"); 
+					 }
+					
+					} catch (NumberFormatException expt) {
+						textPane_tiere_listausgabe.setText("wrong format");
+						expt.printStackTrace();
+					}	
 			}
 		});
 		button_tiere_loeschen.setBounds(370, 194, 89, 23);
@@ -432,7 +469,7 @@ public class GUI_FrankfurterZoo {
 		JButton button_tiere_listenausgabe = new JButton("Tierliste ausgeben");
 		button_tiere_listenausgabe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textField_tiere_listausgabe.setText(s.selectTiere());
+				textPane_tiere_listausgabe.setText(s.selectTiere());
 			}
 		});
 		button_tiere_listenausgabe.setBounds(491, 387, 146, 23);
@@ -733,21 +770,6 @@ public class GUI_FrankfurterZoo {
 		panel_futterdetails.add(button_futterdetails_listenausgabe);
 		
 		//*Futterdetails------------------------------------------------------------------------------------------------------
-		
-		
-	}
-	
-	private boolean correctFormatTiere() {
-		
-		if(textField_tiere_gbdatum.getText()!=null&&textField_tiere_geschlecht.getText()!=null&&textField_tiere_abgang.getText()!=null&&textField_tiere_zugang.getText()!=null&&textField_tiere_tname.getText()!=null) {
-			return true;
-		}else {
-			return false;
-		}
-		
-		
-		
-		
 		
 		
 	}
