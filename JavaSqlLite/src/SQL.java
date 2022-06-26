@@ -25,11 +25,13 @@ public class SQL {
 		// need to implement PRIMARY and FOREIGN keys 
 		
 	}
+	//This is an example
 	public void insert/*name*/() {
 		Dbmanipulation.insert("insert into Pfleger values(1, 'leo der Löw', 'luis der Pfleger',205025,'Anschriftjiwqjd',74565464564,11042000,4500)");
 		Dbmanipulation.insert("insert into Pfleger values(2, 'peper der Pinguin', 'Paul der Pfleger',205025,'Anschriftjiwqjd',74565464564,11042000,4500)");
 		
 	}
+	//This is an example
 	public void select/*name*/() {
 
 		ResultSet rs = Dbquery.select("select * from Pfleger");
@@ -49,5 +51,44 @@ public class SQL {
 			}
 	}
 	
+	public void insertTier(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
+		
+		int GDatum = Integer.parseInt(GebDatum);
+		int ZDatum = Integer.parseInt(Zugangsdatum);
+		int ADatum = Integer.parseInt(Abgangsdatum);
+		
+		char g = Geschlecht.charAt(0);
+		
+		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		
+	}
+	public String selectTiere() {
+
+		ResultSet rs = null;
+		String ret = "";
+		    try {
+		    	rs =Dbquery.select("select * from Tier");
+		    	int maxColumns = rs.getMetaData().getColumnCount();
+		    	for(int i = 1;i<maxColumns;i++) {
+		 			ret += rs.getMetaData().getColumnName(i);
+		 			ret += " ";
+		    	}
+				while(rs.next()){
+					ret += " \n ";
+				 		for(int i = 1;i<maxColumns;i++) {
+				 			ret += rs.getString(i);
+				 			ret +=" ";
+				 			System.out.print(rs.getMetaData().getColumnName(i));
+				 			System.out.println(" : "+rs.getString(i));
+				 		}
+				 		
+				  }
+				return ret;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "";
+			}
+	}
 
 }
