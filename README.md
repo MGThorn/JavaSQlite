@@ -22,6 +22,7 @@ TODO GUI.java
         - textFelder anpasen  
     -  actionPerformed button listenausgabe kopieren aus Tier
         - textFeld anpasen 
+
 TODO SQL.java
   - die einzigen vollständigen implimentierungen von insert() und select() liegen bei Tier vor
       - die anderen insert???() sowie select???() müssen jweiliger in variblenZahl angepasst werden und der sql befhel abgeändert
