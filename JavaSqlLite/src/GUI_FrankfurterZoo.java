@@ -478,6 +478,11 @@ public class GUI_FrankfurterZoo {
 		
 		
 		JButton button_tiere_beenden = new JButton("Beenden");
+		button_tiere_beenden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmDatenbankDesFrankfurter.dispose();
+			}
+		});
 		button_tiere_beenden.setBounds(685, 387, 89, 23);
 		panel_tier.add(button_tiere_beenden);
 		
