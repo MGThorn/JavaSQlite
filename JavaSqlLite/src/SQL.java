@@ -266,8 +266,65 @@ public class SQL {
 		return false;
 	}	
 	public boolean deletArt(String NTier) {
+
 		
 		Dbmanipulation.delete(""/*TODO SQL befühl für löschen einfügen*/);
 		return false;
+	}
+	
+	public void changeTier(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
+		
+		int GDatum = Integer.parseInt(GebDatum);
+		int ZDatum = Integer.parseInt(Zugangsdatum);
+		int ADatum = Integer.parseInt(Abgangsdatum);
+		
+		char g = Geschlecht.charAt(0);
+		//TODO sql befehl ändern
+		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		
+	}
+	public void changePfleger(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
+		//TODO auf Pfleger anpassen 
+		int GDatum = Integer.parseInt(GebDatum);
+		int ZDatum = Integer.parseInt(Zugangsdatum);
+		int ADatum = Integer.parseInt(Abgangsdatum);
+		
+		char g = Geschlecht.charAt(0);
+		
+		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		
+	}
+	public void changeGehege(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
+		//TODO auf Gehege anpasssen
+		int GDatum = Integer.parseInt(GebDatum);
+		int ZDatum = Integer.parseInt(Zugangsdatum);
+		int ADatum = Integer.parseInt(Abgangsdatum);
+		
+		char g = Geschlecht.charAt(0);
+		
+		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		
+	}
+	public void changeArt(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
+		//TODO auf Art anpassen
+		int GDatum = Integer.parseInt(GebDatum);
+		int ZDatum = Integer.parseInt(Zugangsdatum);
+		int ADatum = Integer.parseInt(Abgangsdatum);
+		
+		char g = Geschlecht.charAt(0);
+		
+		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		
+	}
+	public void changeFutter(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
+		//TODO auf Futter anpassen
+		int GDatum = Integer.parseInt(GebDatum);
+		int ZDatum = Integer.parseInt(Zugangsdatum);
+		int ADatum = Integer.parseInt(Abgangsdatum);
+		
+		char g = Geschlecht.charAt(0);
+		
+		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		
 	}
 }

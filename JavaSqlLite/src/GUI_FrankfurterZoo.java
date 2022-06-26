@@ -405,6 +405,21 @@ public class GUI_FrankfurterZoo {
 		JButton button_tiere_aendern = new JButton("\u00C4ndern");
 		button_tiere_aendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				 try {
+					 String temp1 =textField_tiere_tname.getText();
+					 String temp2 =textField_tiere_gbdatum.getText();
+					 String temp3 =textField_tiere_geschlecht.getText();
+					 String temp4 =textField_tiere_zugang.getText();
+					 String temp5 =textField_tiere_abgang.getText();
+					 String temp6 ="";
+					 String temp7 =""; 	
+					 
+					 s.changeTier(temp1,temp2,temp3,temp4,temp5,temp6,temp7);
+					
+					} catch (NumberFormatException expt) {
+						textPane_tiere_listausgabe.setText("wrong format");
+						expt.printStackTrace();
+					}	
 				
 			}
 		});
@@ -469,7 +484,12 @@ public class GUI_FrankfurterZoo {
 		JButton button_tiere_listenausgabe = new JButton("Tierliste ausgeben");
 		button_tiere_listenausgabe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textPane_tiere_listausgabe.setText(s.selectTiere());
+				try{
+					textPane_tiere_listausgabe.setText(s.selectTiere());
+				}catch(Exception exp){
+					textPane_tiere_listausgabe.setText("Fehler bei der Ausgabe");
+					System.err.println(exp);
+				}
 			}
 		});
 		button_tiere_listenausgabe.setBounds(491, 387, 146, 23);
