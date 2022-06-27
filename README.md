@@ -2,7 +2,7 @@
 implement of SQlite in java
 
 TODO general
- Done: - Fehlende TextFelder für jeweilige fremdschlüssel in der GUI (siehe Tier, button_tiere_aendern, temp6 und temp 7) 
+  - Fehlende TextFelder für jeweilige fremdschlüssel in der GUI (siehe Tier, button_tiere_aendern, temp6 und temp 7)
   - komplette tabllen für pflegt und wird_gefüttert_mit ( siehe SQL.java createDAtabases)
   - implementierung von TabellenVerbindungen
   - //optionale Veränderung von select Ausgaben
