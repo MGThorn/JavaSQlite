@@ -118,6 +118,7 @@ public class SQL {
 				 		}
 				 		
 				  }
+				rs.close();
 				return ret;
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -242,10 +243,18 @@ public class SQL {
 		ResultSet rs = null;
 		String ret [];
 		    try {
-		    	rs =Dbquery.select("select Bezeichnung from Art");
+		    	rs =Dbquery.select("select ABezeichnung from Art");
 		    	
 		    	ResultSet length = Dbquery.select("select COUNT(*) from Art");
-		    	ret = new String[length.getInt(1)];
+		    	try{
+		    		ret = new String[length.getInt(1)];
+		    	}catch(NullPointerException exp) {
+		    		ret = new String[1];
+		    		ret[0] = "keine Art";
+		    		System.out.println("keine Art");
+		    		return ret;
+		    		
+		    	}
 		    	int i =0;
 				while(rs.next()){
 					ret[i] = rs.getString(1);
@@ -257,7 +266,9 @@ public class SQL {
 				return ret;
 			} catch (SQLException e) {
 				e.printStackTrace();
-				return null;
+				String [] ret2 = new String[1];
+	    		ret2[0] = "keine Art";
+	    		return ret2;
 			}
 	}
 	

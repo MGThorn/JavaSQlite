@@ -110,7 +110,12 @@ public class GUI_FrankfurterZoo {
 			public void mousePressed(MouseEvent e) {
 				int index = comboBox_Tier_ArtAuswahl.getSelectedIndex();
 				//System.out.println("clicked");
-				Art_Bezeichnung = s.selectArt_Bezeichnung();
+				try {
+					Art_Bezeichnung = s.selectArt_Bezeichnung();	
+				}catch(NullPointerException exp){
+					System.out.println("keine Art");
+				}
+				
 				//System.out.println(comboBox_Tier_Futterauswahl.getSelectedItem());
 				comboBox_Tier_ArtAuswahl.setModel(new DefaultComboBoxModel(Art_Bezeichnung));
 				comboBox_Tier_ArtAuswahl.setSelectedIndex(index);
