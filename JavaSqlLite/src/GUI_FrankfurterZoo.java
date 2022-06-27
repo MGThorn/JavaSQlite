@@ -35,10 +35,10 @@ public class GUI_FrankfurterZoo {
 	private JTextField textField_pfleger_plz;
 	private JTextField textField_pfleger_strasse;
 	
-	private JTextField textField_tiere_gbdatum;
-	private JTextField textField_tiere_geschlecht;
 	private JTextField textField_tiere_abgang;
 	private JTextField textField_tiere_zugang;
+	private JTextField textField_tiere_geschlecht;
+	private JTextField textField_tiere_gbdatum;
 	private JTextField textField_tiere_tname;
 	private JTextField textField_gehege_gehegename;
 	private JTextField textField_gehege_baujahr;
@@ -366,45 +366,45 @@ public class GUI_FrankfurterZoo {
 		
 		JLabel label_tiere_zugang = new JLabel("Zugang:");
 		label_tiere_zugang.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_tiere_zugang.setBounds(67, 120, 138, 25);
+		label_tiere_zugang.setBounds(67, 192, 138, 25);
 		panel_tier.add(label_tiere_zugang);
 		
 		JLabel label_tiere_abgang = new JLabel("Abgang:");
 		label_tiere_abgang.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_tiere_abgang.setBounds(67, 156, 138, 25);
+		label_tiere_abgang.setBounds(67, 228, 138, 25);
 		panel_tier.add(label_tiere_abgang);
 		
 		JLabel label_tiere_geschlecht = new JLabel("Geschlecht:");
 		label_tiere_geschlecht.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_tiere_geschlecht.setBounds(67, 192, 138, 25);
+		label_tiere_geschlecht.setBounds(67, 156, 138, 25);
 		panel_tier.add(label_tiere_geschlecht);
 		
 		JLabel label_tiere_gbdatum = new JLabel("Geburtsdatum:");
 		label_tiere_gbdatum.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_tiere_gbdatum.setBounds(67, 228, 138, 25);
+		label_tiere_gbdatum.setBounds(67, 120, 138, 25);
 		panel_tier.add(label_tiere_gbdatum);
 		
 				//TextFields----------------------------------------------------
 		
-		textField_tiere_gbdatum = new JTextField();
-		textField_tiere_gbdatum.setBounds(194, 231, 138, 20);
-		panel_tier.add(textField_tiere_gbdatum);
-		textField_tiere_gbdatum.setColumns(10);
-		
-		textField_tiere_geschlecht = new JTextField();
-		textField_tiere_geschlecht.setColumns(10);
-		textField_tiere_geschlecht.setBounds(194, 192, 138, 20);
-		panel_tier.add(textField_tiere_geschlecht);
-		
 		textField_tiere_abgang = new JTextField();
-		textField_tiere_abgang.setColumns(10);
-		textField_tiere_abgang.setBounds(194, 156, 138, 20);
+		textField_tiere_abgang.setBounds(194, 231, 138, 20);
 		panel_tier.add(textField_tiere_abgang);
+		textField_tiere_abgang.setColumns(10);
 		
 		textField_tiere_zugang = new JTextField();
 		textField_tiere_zugang.setColumns(10);
-		textField_tiere_zugang.setBounds(194, 120, 138, 20);
+		textField_tiere_zugang.setBounds(194, 192, 138, 20);
 		panel_tier.add(textField_tiere_zugang);
+		
+		textField_tiere_geschlecht = new JTextField();
+		textField_tiere_geschlecht.setColumns(10);
+		textField_tiere_geschlecht.setBounds(194, 156, 138, 20);
+		panel_tier.add(textField_tiere_geschlecht);
+		
+		textField_tiere_gbdatum = new JTextField();
+		textField_tiere_gbdatum.setColumns(10);
+		textField_tiere_gbdatum.setBounds(194, 120, 138, 20);
+		panel_tier.add(textField_tiere_gbdatum);
 		
 		textField_tiere_tname = new JTextField();
 		textField_tiere_tname.setColumns(10);
@@ -424,10 +424,10 @@ public class GUI_FrankfurterZoo {
 		button_tiere_clear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				textField_tiere_gbdatum.setText(null);
-				textField_tiere_geschlecht.setText(null);
 				textField_tiere_abgang.setText(null);
 				textField_tiere_zugang.setText(null);
+				textField_tiere_geschlecht.setText(null);
+				textField_tiere_gbdatum.setText(null);
 				textField_tiere_tname.setText(null);
 				textPane_tiere_listausgabe.setText(null);
 				
@@ -447,11 +447,15 @@ public class GUI_FrankfurterZoo {
 					 String temp5 =textField_tiere_abgang.getText();
 					 String temp6 ="";
 					 
-					 String temp7 =(String) comboBox_Tier_ArtAuswahl.getSelectedItem(); 	
-					 System.out.println(temp7); // is null but why
+					
 				
 					 
-					 s.changeTier(temp1,temp2,temp3,temp4,temp5,temp6,temp7);
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&!temp4.isBlank()&&!temp5.isBlank()&&temp_Tier_ArtAuswahl!=null) {
+						 s.changeTier(temp1,temp2,temp3,temp4,temp5,temp6,temp_Tier_ArtAuswahl);
+						 textPane_tiere_listausgabe.setText("successfully merged DATA");
+					 }else {
+						 textPane_tiere_listausgabe.setText("wrong format -pls fill every textField");
+					 }
 					
 					} catch (NumberFormatException expt) {
 						textPane_tiere_listausgabe.setText("wrong format");
@@ -473,6 +477,7 @@ public class GUI_FrankfurterZoo {
 					 String temp3 =textField_tiere_geschlecht.getText();
 					 String temp4 =textField_tiere_zugang.getText();
 					 String temp5 =textField_tiere_abgang.getText();
+					 
 					 String temp6 ="";
 					 	
 					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&!temp4.isBlank()&&!temp5.isBlank()&&temp_Tier_ArtAuswahl!=null) {
@@ -503,17 +508,20 @@ public class GUI_FrankfurterZoo {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					 String temp1 =textField_tiere_tname.getText();
-					 
-					 if(s.deletTier(temp1)) {
-						 textPane_tiere_listausgabe.setText("Tier erfolgreich gel�scht"); 
+					 if(temp1.isBlank()) {
+						 textPane_tiere_listausgabe.setText("Bitte Gebe einen Tier Namen ein");
 					 }else {
-						 textPane_tiere_listausgabe.setText("es ist ein Fehler aufgetreten"); 
+						 if(s.deletTier(temp1)) {
+							 textPane_tiere_listausgabe.setText("Tier erfolgreich gel�scht"); 
+						 }else {
+							 textPane_tiere_listausgabe.setText("es ist ein Fehler aufgetreten"); 
+						 }
 					 }
-					
 					} catch (NumberFormatException expt) {
 						textPane_tiere_listausgabe.setText("wrong format");
 						expt.printStackTrace();
-					}	
+					}
+					
 			}
 		});
 		button_tiere_loeschen.setBounds(370, 194, 89, 23);

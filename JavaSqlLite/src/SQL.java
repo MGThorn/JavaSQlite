@@ -263,10 +263,16 @@ public class SQL {
 			}
 	}
 	
-	public boolean deletTier(String NTier) {
+	public boolean deletTier(String TName) {
 		
-		Dbmanipulation.delete(""/*TODO SQL befühl für löschen einfügen*/);
-		return false;
+		try{
+			Dbmanipulation.delete("DELETE FROM Tier WHERE TName ='"+TName+"'");
+			return true;
+		}catch(Exception ex) {
+			System.err.println(ex);
+			return false;
+		}
+		
 	}
 	public boolean deletPfleger(String NTier) {
 		
@@ -287,13 +293,13 @@ public class SQL {
 	
 	public void changeTier(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
 		
+		
 		int GDatum = Integer.parseInt(GebDatum);
 		int ZDatum = Integer.parseInt(Zugangsdatum);
 		int ADatum = Integer.parseInt(Abgangsdatum);
 		
 		char g = Geschlecht.charAt(0);
-		//TODO sql befehl ändern
-		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		Dbmanipulation.insert("UPDATE Tier SET GebDatum = "+GDatum+", Geschlecht = '"+g+"', Zugangsdatum = "+ZDatum+", Abgangsdatum = "+ADatum+", GName = '"+GName+"', ABezeichnung = '"+ABezeichnung+"' WHERE TName = '"+TName+"'" );
 		
 	}
 	public void changePfleger(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
