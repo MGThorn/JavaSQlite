@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
@@ -20,6 +22,7 @@ public class GUI_FrankfurterZoo {
 	static SQL s = new SQL();
 
 	private JFrame frmDatenbankDesFrankfurter;
+	
 	private JTextField textField_pfleger_pnummer;
 	private JTextField textField_pfleger_vorname;
 	private JTextField textField_pfleger_nachname;
@@ -45,7 +48,6 @@ public class GUI_FrankfurterZoo {
 	private JTextField textField_arten_latbezeichnung;
 
 	private JTextField textField_futter_bezeichnung;
-
 	private JTextField textField_futterdetails_menge;
 	private JTextField textField_futterdetails_uhrzeit;
 
@@ -56,6 +58,9 @@ public class GUI_FrankfurterZoo {
 	private JTextPane textPane_arten_listenausgabe;
 	private JTextPane textPane_futter_listenausgabe;
 	private JTextPane textPane_futterdetails_listenausgabe;
+	
+	private String[] Futter;
+	private JComboBox comboBox_Tier_Futterauswahl;
 	/**
 	 * Launch the application.
 	 */
@@ -97,6 +102,27 @@ public class GUI_FrankfurterZoo {
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setFont(new Font("Arial", Font.BOLD, 15));
 		frmDatenbankDesFrankfurter.getContentPane().add(tabbedPane, BorderLayout.CENTER);
+		tabbedPane.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Futter = s.selectFutter();
+				System.out.println("clicked");
+				comboBox_Tier_Futterauswahl.setModel(new DefaultComboBoxModel(Futter));
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			
+		});
 		
 		JPanel panel_haupt = new JPanel();
 		tabbedPane.addTab("Hauptmen�", null, panel_haupt, null);
@@ -320,7 +346,7 @@ public class GUI_FrankfurterZoo {
 			//Tiere-----------------------------------------------------------------------------------------------------------------------
 		
 		JPanel panel_tier = new JPanel();
-		tabbedPane.addTab("Tierverwaltung", null, panel_tier, null);
+		tabbedPane.addTab("Tierverwaltung", null, panel_tier, "");
 		panel_tier.setLayout(null);
 		
 					//Labels-------------------------------------------------
@@ -510,11 +536,12 @@ public class GUI_FrankfurterZoo {
 		label_tiere_FutterBezeichnung.setBounds(67, 260, 138, 25);
 		panel_tier.add(label_tiere_FutterBezeichnung);
 		
-		JComboBox comboBox = new JComboBox();
-		String[] Futter = s.selectFutter();
-		comboBox.setModel(new DefaultComboBoxModel(Futter));
-		comboBox.setBounds(194, 260, 138, 20);
-		panel_tier.add(comboBox);
+		comboBox_Tier_Futterauswahl = new JComboBox();
+		Futter = s.selectFutter();
+		comboBox_Tier_Futterauswahl.setModel(new DefaultComboBoxModel(Futter));
+		comboBox_Tier_Futterauswahl.setBounds(194, 260, 138, 20);
+		panel_tier.add(comboBox_Tier_Futterauswahl);
+		
 	
 			//*Tiere-----------------------------------------------------------------------------------------------------------------
 		

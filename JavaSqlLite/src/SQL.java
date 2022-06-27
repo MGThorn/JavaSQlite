@@ -231,6 +231,8 @@ public class SQL {
 					i++;
 				 		
 				  }
+				rs.close();
+				length.close();
 				return ret;
 			} catch (SQLException e) {
 				e.printStackTrace();

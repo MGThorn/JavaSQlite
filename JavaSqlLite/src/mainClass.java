@@ -11,15 +11,15 @@ public class mainClass {
 		//(s.insertTier("lon","1982","mänlich", "1984", "1988", "", "");
 		//s.insertTier("luis","1982","mänlich", "1984", "1988", "", "");
 		//System.out.println(s.selectTiere());
-		s.insertFutter("Banane");
-		s.insertFutter("Banan");
-		s.insertFutter("Bnane");
-		s.selectFutter();
-		String [] arr = new String[2];
-		arr=s.selectFutter();
-		for (String Element : arr){
-		System.out.println(Element);
-		}
+		//s.insertFutter("Banane");
+		//s.insertFutter("Banan");
+		//s.insertFutter("Bnane");
+		//s.selectFutter();
+		//String [] arr = new String[2];
+		//arr=s.selectFutter();
+		//for (String Element : arr){
+		//System.out.println(Element);
+		//}
 		//System.out.println("blablabla   \n     blabla");
 		
 	}
