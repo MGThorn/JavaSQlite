@@ -27,7 +27,7 @@ public class GUI_FrankfurterZoo {
 	private JTextField textField_pfleger_tnummer;
 	private JTextField textField_pfleger_ort;
 	private JTextField textField_pfleger_plz;
-	private JTextField textField_pfleger_stra�e;
+	private JTextField textField_pfleger_strasse;
 	
 	private JTextField textField_tiere_gbdatum;
 	private JTextField textField_tiere_geschlecht;
@@ -41,17 +41,19 @@ public class GUI_FrankfurterZoo {
 	private JTextField textField_arten_bezeichnung;
 	private JTextField textField_arten_lebensraum;
 	private JTextField textField_arten_latbezeichnung;
-	private JTextField textField_arten_listenausgabe;
+
 	private JTextField textField_futter_bezeichnung;
-	private JTextField textField_futter_listenausgabe;
+
 	private JTextField textField_futterdetails_menge;
 	private JTextField textField_futterdetails_uhrzeit;
-	private JTextField textField_futterdetails_listenausgabe;
+
 	
 	private JTextPane textPane_tiere_listausgabe;
 	private JTextPane textPane_pfleger_listenausgabe;
 	private JTextPane textPane_gehege_listenausgabe;
-
+	private JTextPane textPane_arten_listenausgabe;
+	private JTextPane textPane_futter_listenausgabe;
+	private JTextPane textPane_futterdetails_listenausgabe;
 	/**
 	 * Launch the application.
 	 */
@@ -228,10 +230,10 @@ public class GUI_FrankfurterZoo {
 		label_pfleger_plz.setBounds(64, 353, 134, 24);
 		panel_pfleger.add(label_pfleger_plz);
 		
-		JLabel label_pfleger_stra�e = new JLabel("Stra\u00DFe:");
-		label_pfleger_stra�e.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_pfleger_stra�e.setBounds(64, 388, 134, 24);
-		panel_pfleger.add(label_pfleger_stra�e);
+		JLabel label_pfleger_strasse = new JLabel("Stra\u00DFe:");
+		label_pfleger_strasse.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_pfleger_strasse.setBounds(64, 388, 134, 24);
+		panel_pfleger.add(label_pfleger_strasse);
 		
 				//TextFields---------------------------------------
 		
@@ -280,10 +282,10 @@ public class GUI_FrankfurterZoo {
 		textField_pfleger_plz.setBounds(208, 356, 134, 20);
 		panel_pfleger.add(textField_pfleger_plz);
 		
-		textField_pfleger_stra�e = new JTextField();
-		textField_pfleger_stra�e.setColumns(10);
-		textField_pfleger_stra�e.setBounds(208, 391, 134, 20);
-		panel_pfleger.add(textField_pfleger_stra�e);
+		textField_pfleger_strasse = new JTextField();
+		textField_pfleger_strasse.setColumns(10);
+		textField_pfleger_strasse.setBounds(208, 391, 134, 20);
+		panel_pfleger.add(textField_pfleger_strasse);
 		
 		textField_pfleger_listenausgabe = new JTextField();
 		textField_pfleger_listenausgabe.setBounds(484, 31, 293, 334);
