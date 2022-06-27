@@ -1,6 +1,29 @@
 # JavaSQlite
 implement of SQlite in java
 
+Dbconnection:
+  - stellt eine Verbindung zur DB her die returned wird
+
+Dbmanipulate.java & Dbquery.java
+  - nutzen DB connect um mit ihren jweiligen Funktionen einen übergebenen sql Befehl als String auszuführen
+
+SQL
+  - in SQL sind alle Funktionen die spezifische sql Befehle durchführen können
+
+GUI_FrankfurterZoo
+  - eine Vollständige implimentierung der Funktionen liegt nur im reiter Tierverwaltung vor
+  - hier werdem mit Buttons die funktionen aus SQL mit parametern aufgerufen
+
+Zoo.db
+  - in dieser DB sind die Daten gespeichert
+
+
+
+
+
+
+
+
 TODO general
   - Fehlende TextFelder für jeweilige fremdschlüssel in der GUI (siehe Tier, button_tiere_aendern, temp6 und temp 7)
   - komplette tabllen für pflegt und wird_gefüttert_mit ( siehe SQL.java createDAtabases)
