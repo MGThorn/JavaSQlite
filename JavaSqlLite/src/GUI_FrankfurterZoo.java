@@ -287,10 +287,9 @@ public class GUI_FrankfurterZoo {
 		textField_pfleger_strasse.setBounds(208, 391, 134, 20);
 		panel_pfleger.add(textField_pfleger_strasse);
 		
-		textField_pfleger_listenausgabe = new JTextField();
-		textField_pfleger_listenausgabe.setBounds(484, 31, 293, 334);
-		panel_pfleger.add(textField_pfleger_listenausgabe);
-		textField_pfleger_listenausgabe.setColumns(10);
+		textPane_pfleger_listenausgabe = new JTextPane();
+		textPane_pfleger_listenausgabe.setBounds(484, 31, 293, 334);
+		panel_pfleger.add(textPane_pfleger_listenausgabe);
 		
 				//Buttons--------------------------------------
 		
@@ -551,10 +550,9 @@ public class GUI_FrankfurterZoo {
 		textField_gehege_flaeche.setBounds(191, 164, 127, 20);
 		panel_gehege.add(textField_gehege_flaeche);
 		
-		textField_gehege_listenausgabe = new JTextField();
-		textField_gehege_listenausgabe.setBounds(469, 44, 309, 341);
-		panel_gehege.add(textField_gehege_listenausgabe);
-		textField_gehege_listenausgabe.setColumns(10);
+		textPane_gehege_listenausgabe = new JTextPane();
+		textPane_gehege_listenausgabe.setBounds(469, 44, 309, 341);
+		panel_gehege.add(textPane_gehege_listenausgabe);
 		
 				//Buttons-----------------------------------
 		
@@ -638,10 +636,9 @@ public class GUI_FrankfurterZoo {
 		textField_arten_latbezeichnung.setBounds(200, 178, 125, 20);
 		panel_art.add(textField_arten_latbezeichnung);
 		
-		textField_arten_listenausgabe = new JTextField();
-		textField_arten_listenausgabe.setBounds(466, 50, 307, 329);
-		panel_art.add(textField_arten_listenausgabe);
-		textField_arten_listenausgabe.setColumns(10);
+		textPane_arten_listenausgabe = new JTextPane();
+		textPane_arten_listenausgabe.setBounds(466, 50, 307, 329);
+		panel_art.add(textPane_arten_listenausgabe);
 		
 				//Buttons---------------------------------------------------
 		
@@ -696,10 +693,9 @@ public class GUI_FrankfurterZoo {
 		panel_futter.add(textField_futter_bezeichnung);
 		textField_futter_bezeichnung.setColumns(10);
 		
-		textField_futter_listenausgabe = new JTextField();
-		textField_futter_listenausgabe.setBounds(485, 60, 290, 318);
-		panel_futter.add(textField_futter_listenausgabe);
-		textField_futter_listenausgabe.setColumns(10);
+		textPane_futter_listenausgabe = new JTextPane();
+		textPane_futter_listenausgabe.setBounds(485, 60, 290, 318);
+		panel_futter.add(textPane_futter_listenausgabe);
 		
 				//Buttons-----------------------------------------
 		
@@ -766,10 +762,9 @@ public class GUI_FrankfurterZoo {
 		panel_futterdetails.add(textField_futterdetails_uhrzeit);
 		textField_futterdetails_uhrzeit.setColumns(10);
 		
-		textField_futterdetails_listenausgabe = new JTextField();
-		textField_futterdetails_listenausgabe.setBounds(446, 62, 316, 316);
-		panel_futterdetails.add(textField_futterdetails_listenausgabe);
-		textField_futterdetails_listenausgabe.setColumns(10);
+		textPane_futterdetails_listenausgabe = new JTextPane();
+		textPane_futterdetails_listenausgabe.setBounds(446, 62, 316, 316);
+		panel_futterdetails.add(textPane_futterdetails_listenausgabe);
 		
 				//Buttons-----------------------------------------------
 		
@@ -781,9 +776,9 @@ public class GUI_FrankfurterZoo {
 		button_futterdetails_anlegen.setBounds(321, 149, 89, 23);
 		panel_futterdetails.add(button_futterdetails_anlegen);
 		
-		JButton button_futterdetails_�ndern = new JButton("\u00C4ndern");
-		button_futterdetails_�ndern.setBounds(321, 183, 89, 23);
-		panel_futterdetails.add(button_futterdetails_�ndern);
+		JButton button_futterdetails_aendern = new JButton("\u00C4ndern");
+		button_futterdetails_aendern.setBounds(321, 183, 89, 23);
+		panel_futterdetails.add(button_futterdetails_aendern);
 		
 		JButton button_futterdetails_loeschen = new JButton("L\u00F6schen");
 		button_futterdetails_loeschen.setBounds(321, 217, 89, 23);
