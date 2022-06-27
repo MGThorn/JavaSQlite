@@ -17,6 +17,7 @@ import javax.swing.JTextPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
+
 public class GUI_FrankfurterZoo {
 	
 	static SQL s = new SQL();
@@ -61,6 +62,7 @@ public class GUI_FrankfurterZoo {
 	
 	private String[] Art_Bezeichnung;
 	private JComboBox comboBox_Tier_ArtAuswahl;
+	private String tempTest;
 	/**
 	 * Launch the application.
 	 */
@@ -105,21 +107,12 @@ public class GUI_FrankfurterZoo {
 		tabbedPane.addMouseListener(new MouseListener() {
 
 			@Override
-			public void mouseClicked(MouseEvent e) {}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				int index = comboBox_Tier_ArtAuswahl.getSelectedIndex();
-				//System.out.println("clicked");
-				try {
-					Art_Bezeichnung = s.selectArt_Bezeichnung();	
-				}catch(NullPointerException exp){
-					System.out.println("keine Art");
-				}
-				
-				//System.out.println(comboBox_Tier_Futterauswahl.getSelectedItem());
-				comboBox_Tier_ArtAuswahl.setModel(new DefaultComboBoxModel(Art_Bezeichnung));
-				comboBox_Tier_ArtAuswahl.setSelectedIndex(index);
+			public void mouseClicked(MouseEvent e) {
+				//System.out.println(comboBox_Tier_ArtAuswahl.getSelectedItem());
+				//System.out.println("test");
 			}
+			@Override
+			public void mousePressed(MouseEvent e) {}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {}
@@ -453,13 +446,15 @@ public class GUI_FrankfurterZoo {
 					 String temp6 ="";
 					 
 					 String temp7 =(String) comboBox_Tier_ArtAuswahl.getSelectedItem(); 	
-					 System.out.println(Art_Bezeichnung[comboBox_Tier_ArtAuswahl.getSelectedIndex()]);
+					 System.out.println(temp7); // is null but why
+				
 					 
 					 s.changeTier(temp1,temp2,temp3,temp4,temp5,temp6,temp7);
 					
 					} catch (NumberFormatException expt) {
 						textPane_tiere_listausgabe.setText("wrong format");
 						expt.printStackTrace();
+						
 					}	
 				
 			}
@@ -479,7 +474,7 @@ public class GUI_FrankfurterZoo {
 					 String temp6 ="";
 					 String temp7 =""; 	
 					 
-					 s.insertTier(temp1,temp2,temp3,temp4,temp5,temp6,temp7);
+					 s.insertTier(temp1,temp2,temp3,temp4,temp5,temp6,tempTest);
 					
 					} catch (NumberFormatException expt) {
 						textPane_tiere_listausgabe.setText("wrong format");
@@ -548,6 +543,12 @@ public class GUI_FrankfurterZoo {
 		
 		comboBox_Tier_ArtAuswahl = new JComboBox();
 		comboBox_Tier_ArtAuswahl.setBounds(194, 260, 138, 20);
+		comboBox_Tier_ArtAuswahl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(comboBox_Tier_ArtAuswahl.getSelectedItem());
+				tempTest=(String) comboBox_Tier_ArtAuswahl.getSelectedItem();
+			}
+		});
 		panel_tier.add(comboBox_Tier_ArtAuswahl);
 		
 	
@@ -703,6 +704,10 @@ public class GUI_FrankfurterZoo {
 					 String temp3 =textField_arten_lebensraum.getText();
 					 
 					 s.insertArt(temp1,temp2,temp3);
+					 Art_Bezeichnung = s.selectArt_Bezeichnung();	
+					 comboBox_Tier_ArtAuswahl.setModel(new DefaultComboBoxModel(Art_Bezeichnung));					
+					 comboBox_Tier_ArtAuswahl.setSelectedIndex(0);
+					
 					
 					} catch (NumberFormatException expt) {
 						textPane_futter_listenausgabe.setText("wrong format");

@@ -15,7 +15,7 @@ public class SQL {
 		Dbmanipulation.create("create table Pfleger (PNummer integer PRIMARY KEY, Nachname string, Vorname string, Geburtsdatum integer, PLZ integer, Ort string, StraﬂeNr string, Tel integer, Eintrittsdatum integer, Gehalt integer)");
 		Dbmanipulation.create("create table Gehege (GName string PRIMARY KEY, Fl‰che integer, Baujahr integer,PNummer integer, FOREIGN KEY(PNummer) REFERENCES Pfleger(PNummer))");
 		Dbmanipulation.create("create table Art (ABezeichnung string PRIMARY KEY, LatBezeichnung string, Lebensraum string)");
-		Dbmanipulation.create("create table Tier (TName string PRIMARY KEY, GebDatum integer, Geschlecht char, Zugangsdatum integer, Abgangsdatum integer,GName string, ABezeichnung string, FOREIGN KEY(ABezeichnung) REFERENCES Art(Bezeichnung), FOREIGN KEY(GName) REFERENCES Gehege(GName))");
+		Dbmanipulation.create("create table Tier (TName string PRIMARY KEY, GebDatum integer, Geschlecht char, Zugangsdatum integer, Abgangsdatum integer,GName string, ABezeichnung string, FOREIGN KEY(ABezeichnung) REFERENCES Art(ABezeichnung), FOREIGN KEY(GName) REFERENCES Gehege(GName))");
 		Dbmanipulation.create("create table Futter (Bezeichnung string PRIMARY KEY)");
 		
 		//TODO 
@@ -57,9 +57,8 @@ public class SQL {
 		int GDatum = Integer.parseInt(GebDatum);
 		int ZDatum = Integer.parseInt(Zugangsdatum);
 		int ADatum = Integer.parseInt(Abgangsdatum);
-		
+		System.out.println(ABezeichnung); // prints nothing varible is empty
 		char g = Geschlecht.charAt(0);
-		
 		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
 		
 	}
@@ -113,8 +112,8 @@ public class SQL {
 				 		for(int i = 1;i<=maxColumns;i++) {
 				 			ret += rs.getString(i);
 				 			ret +=", ";
-				 			System.out.print(rs.getMetaData().getColumnName(i));
-				 			System.out.println(" : "+rs.getString(i));
+				 			//System.out.print(rs.getMetaData().getColumnName(i));
+				 			//System.out.println(" : "+rs.getString(i));
 				 		}
 				 		
 				  }
@@ -246,15 +245,9 @@ public class SQL {
 		    	rs =Dbquery.select("select ABezeichnung from Art");
 		    	
 		    	ResultSet length = Dbquery.select("select COUNT(*) from Art");
-		    	try{
-		    		ret = new String[length.getInt(1)];
-		    	}catch(NullPointerException exp) {
-		    		ret = new String[1];
-		    		ret[0] = "keine Art";
-		    		System.out.println("keine Art");
-		    		return ret;
-		    		
-		    	}
+		    	
+		    	ret = new String[length.getInt(1)];
+		    	
 		    	int i =0;
 				while(rs.next()){
 					ret[i] = rs.getString(1);
@@ -266,9 +259,7 @@ public class SQL {
 				return ret;
 			} catch (SQLException e) {
 				e.printStackTrace();
-				String [] ret2 = new String[1];
-	    		ret2[0] = "keine Art";
-	    		return ret2;
+	    		return null;
 			}
 	}
 	

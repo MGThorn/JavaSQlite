@@ -7,9 +7,9 @@ public class mainClass {
 		s.deletDatabases();
 		s.createDatabases();
 		
-		s.insertArt("Vogel", "dort", "sirus");
-		s.insertTier("lon","1982","mänlich", "1984", "1988", "ars", "Vogel");
-		s.selectTiere();
+		//s.insertArt("Vogel", "dort", "sirus");
+		//s.insertTier("lon","1982","mänlich", "1984", "1988", "ars", "Vogel");
+		//s.selectTiere();
 		//s.insert();
 		//(s.insertTier("lon","1982","mänlich", "1984", "1988", "", "");
 		//s.insertTier("luis","1982","mänlich", "1984", "1988", "", "");
@@ -24,6 +24,7 @@ public class mainClass {
 		//System.out.println(Element);
 		//}
 		//System.out.println("blablabla   \n     blabla");
+		//s.selectTiere();
 		
 	}
 	
