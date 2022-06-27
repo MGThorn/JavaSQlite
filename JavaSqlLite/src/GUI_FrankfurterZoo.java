@@ -59,8 +59,8 @@ public class GUI_FrankfurterZoo {
 	private JTextPane textPane_futter_listenausgabe;
 	private JTextPane textPane_futterdetails_listenausgabe;
 	
-	private String[] Futter;
-	private JComboBox comboBox_Tier_Futterauswahl;
+	private String[] Art_Bezeichnung;
+	private JComboBox comboBox_Tier_ArtAuswahl;
 	/**
 	 * Launch the application.
 	 */
@@ -108,10 +108,12 @@ public class GUI_FrankfurterZoo {
 			public void mouseClicked(MouseEvent e) {}
 			@Override
 			public void mousePressed(MouseEvent e) {
-				
+				int index = comboBox_Tier_ArtAuswahl.getSelectedIndex();
 				//System.out.println("clicked");
-				Futter = s.selectFutter();
-				comboBox_Tier_Futterauswahl.setModel(new DefaultComboBoxModel(Futter));
+				Art_Bezeichnung = s.selectArt_Bezeichnung();
+				//System.out.println(comboBox_Tier_Futterauswahl.getSelectedItem());
+				comboBox_Tier_ArtAuswahl.setModel(new DefaultComboBoxModel(Art_Bezeichnung));
+				comboBox_Tier_ArtAuswahl.setSelectedIndex(index);
 			}
 
 			@Override
@@ -444,7 +446,9 @@ public class GUI_FrankfurterZoo {
 					 String temp4 =textField_tiere_zugang.getText();
 					 String temp5 =textField_tiere_abgang.getText();
 					 String temp6 ="";
-					 String temp7 =""; 	
+					 
+					 String temp7 =(String) comboBox_Tier_ArtAuswahl.getSelectedItem(); 	
+					 System.out.println(Art_Bezeichnung[comboBox_Tier_ArtAuswahl.getSelectedIndex()]);
 					 
 					 s.changeTier(temp1,temp2,temp3,temp4,temp5,temp6,temp7);
 					
@@ -532,14 +536,14 @@ public class GUI_FrankfurterZoo {
 		button_tiere_listenausgabe.setBounds(491, 387, 146, 23);
 		panel_tier.add(button_tiere_listenausgabe);
 		
-		JLabel label_tiere_FutterBezeichnung = new JLabel("Futter:");
-		label_tiere_FutterBezeichnung.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_tiere_FutterBezeichnung.setBounds(67, 260, 138, 25);
-		panel_tier.add(label_tiere_FutterBezeichnung);
+		JLabel lblTierArt = new JLabel("Tier Art:");
+		lblTierArt.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblTierArt.setBounds(67, 260, 138, 25);
+		panel_tier.add(lblTierArt);
 		
-		comboBox_Tier_Futterauswahl = new JComboBox();
-		comboBox_Tier_Futterauswahl.setBounds(194, 260, 138, 20);
-		panel_tier.add(comboBox_Tier_Futterauswahl);
+		comboBox_Tier_ArtAuswahl = new JComboBox();
+		comboBox_Tier_ArtAuswahl.setBounds(194, 260, 138, 20);
+		panel_tier.add(comboBox_Tier_ArtAuswahl);
 		
 	
 			//*Tiere-----------------------------------------------------------------------------------------------------------------
@@ -686,6 +690,24 @@ public class GUI_FrankfurterZoo {
 		panel_art.add(button_arten_clear);
 		
 		JButton button_arten_anlegen = new JButton("Anlegen");
+		button_arten_anlegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 try {
+					 String temp1 =textField_arten_bezeichnung.getText();
+					 String temp2 =textField_arten_latbezeichnung.getText();
+					 String temp3 =textField_arten_lebensraum.getText();
+					 
+					 s.insertArt(temp1,temp2,temp3);
+					
+					} catch (NumberFormatException expt) {
+						textPane_futter_listenausgabe.setText("wrong format");
+						expt.printStackTrace();
+					}	
+				
+					
+					
+			}
+		});
 		button_arten_anlegen.setBounds(351, 141, 89, 23);
 		panel_art.add(button_arten_anlegen);
 		

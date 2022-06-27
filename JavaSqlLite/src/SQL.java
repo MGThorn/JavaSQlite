@@ -85,16 +85,8 @@ public class SQL {
 		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
 		
 	}
-	public void insertArt(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
-		//TODO auf Art anpassen
-		int GDatum = Integer.parseInt(GebDatum);
-		int ZDatum = Integer.parseInt(Zugangsdatum);
-		int ADatum = Integer.parseInt(Abgangsdatum);
-		
-		char g = Geschlecht.charAt(0);
-		
-		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
-		
+	public void insertArt(String Bezeichnung, String LatBezeichnung, String Lebensraum) {		
+		Dbmanipulation.insert("insert into Art values('"+Bezeichnung+"', '"+LatBezeichnung+"', '"+Lebensraum+"')");
 	}
 	public void insertFutter(String Bezeichnung) {
 		//TODO auf Futter anpassen
@@ -216,14 +208,43 @@ public class SQL {
 				return "";
 			}
 	}
-	public String[] selectFutter() {
+	public String selectFutter() {
+
+		ResultSet rs = null;
+		String ret = "";
+		    try {
+		    	rs =Dbquery.select("select * from Tier");
+		    	int maxColumns = rs.getMetaData().getColumnCount();
+		    	/*for(int i = 1;i<maxColumns;i++) {
+		 			ret += rs.getMetaData().getColumnName(i);
+		 			ret += " ";
+		    	}
+		    	*/
+				while(rs.next()){
+					ret += " \n ";
+				 		for(int i = 1;i<maxColumns;i++) {
+				 			ret += rs.getString(i);
+				 			ret +=", ";
+				 			System.out.print(rs.getMetaData().getColumnName(i));
+				 			System.out.println(" : "+rs.getString(i));
+				 		}
+				 		
+				  }
+				return ret;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return "";
+			}
+	}
+	//Selects for Primary keys
+	public String[] selectArt_Bezeichnung() {
 
 		ResultSet rs = null;
 		String ret [];
 		    try {
-		    	rs =Dbquery.select("select Bezeichnung from Futter");
+		    	rs =Dbquery.select("select Bezeichnung from Art");
 		    	
-		    	ResultSet length = Dbquery.select("select COUNT(*) from Futter");
+		    	ResultSet length = Dbquery.select("select COUNT(*) from Art");
 		    	ret = new String[length.getInt(1)];
 		    	int i =0;
 				while(rs.next()){
@@ -239,7 +260,7 @@ public class SQL {
 				return null;
 			}
 	}
-
+	
 	public boolean deletTier(String NTier) {
 		
 		Dbmanipulation.delete(""/*TODO SQL befühl für löschen einfügen*/);
