@@ -27,8 +27,8 @@ public class GUI_FrankfurterZoo {
 	private JTextField textField_pfleger_tnummer;
 	private JTextField textField_pfleger_ort;
 	private JTextField textField_pfleger_plz;
-	private JTextField textField_pfleger_straße;
-	private JTextField textField_pfleger_listenausgabe;
+	private JTextField textField_pfleger_straï¿½e;
+	
 	private JTextField textField_tiere_gbdatum;
 	private JTextField textField_tiere_geschlecht;
 	private JTextField textField_tiere_abgang;
@@ -37,7 +37,7 @@ public class GUI_FrankfurterZoo {
 	private JTextField textField_gehege_gehegename;
 	private JTextField textField_gehege_baujahr;
 	private JTextField textField_gehege_flaeche;
-	private JTextField textField_gehege_listenausgabe;
+	
 	private JTextField textField_arten_bezeichnung;
 	private JTextField textField_arten_lebensraum;
 	private JTextField textField_arten_latbezeichnung;
@@ -49,6 +49,8 @@ public class GUI_FrankfurterZoo {
 	private JTextField textField_futterdetails_listenausgabe;
 	
 	private JTextPane textPane_tiere_listausgabe;
+	private JTextPane textPane_pfleger_listenausgabe;
+	private JTextPane textPane_gehege_listenausgabe;
 
 	/**
 	 * Launch the application.
@@ -79,7 +81,7 @@ public class GUI_FrankfurterZoo {
 	private void initialize() {
 	
 		
-			// Hauptmenü-------------------------------------------------------------------------------------------------------------
+			// Hauptmenï¿½-------------------------------------------------------------------------------------------------------------
 		
 		//test comment
 		frmDatenbankDesFrankfurter = new JFrame();
@@ -93,7 +95,7 @@ public class GUI_FrankfurterZoo {
 		frmDatenbankDesFrankfurter.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 		
 		JPanel panel_haupt = new JPanel();
-		tabbedPane.addTab("Hauptmenü", null, panel_haupt, null);
+		tabbedPane.addTab("Hauptmenï¿½", null, panel_haupt, null);
 		panel_haupt.setLayout(null);
 		
 		JLabel label_hauptmenue_ueberschrift_1 = new JLabel("Datenbank des Frankfurter Zoos\r\n");
@@ -160,7 +162,7 @@ public class GUI_FrankfurterZoo {
 		panel_haupt.add(lblResetAllData);
 		
 			
-			//*Hauptmenü------------------------------------------------------------------------------------------------------------------------
+			//*Hauptmenï¿½------------------------------------------------------------------------------------------------------------------------
 		
 			// Pfleger--------------------------------------------------------------------------------------------------------------------------
 		
@@ -226,10 +228,10 @@ public class GUI_FrankfurterZoo {
 		label_pfleger_plz.setBounds(64, 353, 134, 24);
 		panel_pfleger.add(label_pfleger_plz);
 		
-		JLabel label_pfleger_straße = new JLabel("Stra\u00DFe:");
-		label_pfleger_straße.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_pfleger_straße.setBounds(64, 388, 134, 24);
-		panel_pfleger.add(label_pfleger_straße);
+		JLabel label_pfleger_straï¿½e = new JLabel("Stra\u00DFe:");
+		label_pfleger_straï¿½e.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_pfleger_straï¿½e.setBounds(64, 388, 134, 24);
+		panel_pfleger.add(label_pfleger_straï¿½e);
 		
 				//TextFields---------------------------------------
 		
@@ -278,10 +280,10 @@ public class GUI_FrankfurterZoo {
 		textField_pfleger_plz.setBounds(208, 356, 134, 20);
 		panel_pfleger.add(textField_pfleger_plz);
 		
-		textField_pfleger_straße = new JTextField();
-		textField_pfleger_straße.setColumns(10);
-		textField_pfleger_straße.setBounds(208, 391, 134, 20);
-		panel_pfleger.add(textField_pfleger_straße);
+		textField_pfleger_straï¿½e = new JTextField();
+		textField_pfleger_straï¿½e.setColumns(10);
+		textField_pfleger_straï¿½e.setBounds(208, 391, 134, 20);
+		panel_pfleger.add(textField_pfleger_straï¿½e);
 		
 		textField_pfleger_listenausgabe = new JTextField();
 		textField_pfleger_listenausgabe.setBounds(484, 31, 293, 334);
@@ -462,7 +464,7 @@ public class GUI_FrankfurterZoo {
 					 String temp1 =textField_tiere_tname.getText();
 					 
 					 if(s.deletTier(temp1)) {
-						 textPane_tiere_listausgabe.setText("Tier erfolgreich gelöscht"); 
+						 textPane_tiere_listausgabe.setText("Tier erfolgreich gelï¿½scht"); 
 					 }else {
 						 textPane_tiere_listausgabe.setText("es ist ein Fehler aufgetreten"); 
 					 }
@@ -777,9 +779,9 @@ public class GUI_FrankfurterZoo {
 		button_futterdetails_anlegen.setBounds(321, 149, 89, 23);
 		panel_futterdetails.add(button_futterdetails_anlegen);
 		
-		JButton button_futterdetails_ändern = new JButton("\u00C4ndern");
-		button_futterdetails_ändern.setBounds(321, 183, 89, 23);
-		panel_futterdetails.add(button_futterdetails_ändern);
+		JButton button_futterdetails_ï¿½ndern = new JButton("\u00C4ndern");
+		button_futterdetails_ï¿½ndern.setBounds(321, 183, 89, 23);
+		panel_futterdetails.add(button_futterdetails_ï¿½ndern);
 		
 		JButton button_futterdetails_loeschen = new JButton("L\u00F6schen");
 		button_futterdetails_loeschen.setBounds(321, 217, 89, 23);
