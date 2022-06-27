@@ -29,7 +29,7 @@ public class Dbmanipulation {
 		  try {
 			st=con.createStatement();
 		    st.executeUpdate(sql);
-		    System.out.println("Date has been inserted");
+		    System.out.println("Data has been inserted");
 		  } catch(SQLException e) {
 			  System.err.println(e);
 		    // always remember to close database connections
@@ -49,7 +49,7 @@ public class Dbmanipulation {
 		  try {
 			st=con.createStatement();
 		    st.executeUpdate(sql);
-		    System.out.println("Date has been inserted");
+		    System.out.println("Data has been deleted");
 		  } catch(SQLException e) {
 			  System.err.println(e);
 		    // always remember to close database connections

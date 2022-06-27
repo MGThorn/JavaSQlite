@@ -62,7 +62,7 @@ public class GUI_FrankfurterZoo {
 	
 	private String[] Art_Bezeichnung;
 	private JComboBox comboBox_Tier_ArtAuswahl;
-	private String tempTest;
+	private String temp_Tier_ArtAuswahl;
 	/**
 	 * Launch the application.
 	 */
@@ -177,15 +177,17 @@ public class GUI_FrankfurterZoo {
 		label_hauptmenue_hilfe_4.setBounds(128, 355, 612, 29);
 		panel_haupt.add(label_hauptmenue_hilfe_4);
 		
-		JButton btnNewButton = new JButton("RESET ");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btn_Reset= new JButton("RESET ");
+		btn_Reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				s.deletDatabases();
 				s.createDatabases();
+				Art_Bezeichnung = s.selectArt_Bezeichnung();	
+				comboBox_Tier_ArtAuswahl.setModel(new DefaultComboBoxModel(Art_Bezeichnung));
 			}
 		});
-		btnNewButton.setBounds(360, 395, 297, 39);
-		panel_haupt.add(btnNewButton);
+		btn_Reset.setBounds(360, 395, 297, 39);
+		panel_haupt.add(btn_Reset);
 		
 		JLabel lblResetAllData = new JLabel("RESET FULL DATA BASE:");
 		lblResetAllData.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -472,9 +474,14 @@ public class GUI_FrankfurterZoo {
 					 String temp4 =textField_tiere_zugang.getText();
 					 String temp5 =textField_tiere_abgang.getText();
 					 String temp6 ="";
-					 String temp7 =""; 	
+					 	
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&!temp4.isBlank()&&!temp5.isBlank()&&temp_Tier_ArtAuswahl!=null) {
+						 s.insertTier(temp1,temp2,temp3,temp4,temp5,temp6,temp_Tier_ArtAuswahl);
+						 textPane_tiere_listausgabe.setText("successfully added DATA");
+					 }else {
+						 textPane_tiere_listausgabe.setText("wrong format -pls fill every textField");
+					 }
 					 
-					 s.insertTier(temp1,temp2,temp3,temp4,temp5,temp6,tempTest);
 					
 					} catch (NumberFormatException expt) {
 						textPane_tiere_listausgabe.setText("wrong format");
@@ -546,9 +553,11 @@ public class GUI_FrankfurterZoo {
 		comboBox_Tier_ArtAuswahl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(comboBox_Tier_ArtAuswahl.getSelectedItem());
-				tempTest=(String) comboBox_Tier_ArtAuswahl.getSelectedItem();
+				temp_Tier_ArtAuswahl=(String) comboBox_Tier_ArtAuswahl.getSelectedItem();
 			}
 		});
+		Art_Bezeichnung = s.selectArt_Bezeichnung();	
+		comboBox_Tier_ArtAuswahl.setModel(new DefaultComboBoxModel(Art_Bezeichnung));
 		panel_tier.add(comboBox_Tier_ArtAuswahl);
 		
 	
