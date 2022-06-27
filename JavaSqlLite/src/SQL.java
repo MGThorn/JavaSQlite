@@ -15,7 +15,7 @@ public class SQL {
 		Dbmanipulation.create("create table Pfleger (PNummer integer PRIMARY KEY, Nachname string, Vorname string, Geburtsdatum integer, PLZ integer, Ort string, StraﬂeNr string, Tel integer, Eintrittsdatum integer, Gehalt integer)");
 		Dbmanipulation.create("create table Gehege (GName string PRIMARY KEY, Fl‰che integer, Baujahr integer,PNummer integer, FOREIGN KEY(PNummer) REFERENCES Pfleger(PNummer))");
 		Dbmanipulation.create("create table Art (Bezeichnung string PRIMARY KEY, LatBezeichnung string, Lebensraum string)");
-		Dbmanipulation.create("create table Tier (TName string PRIMARY KEY, GebDatum integer, Geschlecht char, Zugangsdatum integer, Abgangsdatum integer,GName string, Bezeichnung string, FOREIGN KEY(Bezeichnung) REFERENCES Art(Bezeichnung), FOREIGN KEY(GName) REFERENCES Gehege(GName))");
+		Dbmanipulation.create("create table Tier (TName string PRIMARY KEY, GebDatum integer, Geschlecht char, Zugangsdatum integer, Abgangsdatum integer,GName string, ABezeichnung string, FOREIGN KEY(ABezeichnung) REFERENCES Art(Bezeichnung), FOREIGN KEY(GName) REFERENCES Gehege(GName))");
 		Dbmanipulation.create("create table Futter (Bezeichnung string PRIMARY KEY)");
 		
 		//TODO 
@@ -113,8 +113,8 @@ public class SQL {
 				 		for(int i = 1;i<maxColumns;i++) {
 				 			ret += rs.getString(i);
 				 			ret +=", ";
-				 			//System.out.print(rs.getMetaData().getColumnName(i));
-				 			//System.out.println(" : "+rs.getString(i));
+				 			System.out.print(rs.getMetaData().getColumnName(i));
+				 			System.out.println(" : "+rs.getString(i));
 				 		}
 				 		
 				  }
