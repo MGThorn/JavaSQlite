@@ -8,7 +8,8 @@ TODO general
   - //optionale Veränderung von select Ausgaben
 
 TODO GUI.java
-  - ALle text Felder textField_???_listenausgabe in textPanes ändern siehe beispiel Tier
+  - !!! textFelder protection damit nur richtige Sysntax eingegben werden kann
+Done  - ALle text Felder textField_???_listenausgabe in textPanes ändern siehe beispiel Tier
   - actionPerformed methoden in alle Buttens hinzufügen siehe Tier
     -  actionPerformed button auslesen kopieren aus Tierr
         -  s.insertTier zu s.insert??? ändern  
