@@ -8,7 +8,7 @@ public class mainClass {
 		s.createDatabases();
 		
 		s.insertArt("Vogel", "dort", "sirus");
-		s.insertTier("lon","1982","mänlich", "1984", "1988", "", "Vogel");
+		s.insertTier("lon","1982","mänlich", "1984", "1988", "ars", "Vogel");
 		s.selectTiere();
 		//s.insert();
 		//(s.insertTier("lon","1982","mänlich", "1984", "1988", "", "");
