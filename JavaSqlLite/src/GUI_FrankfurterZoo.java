@@ -81,7 +81,7 @@ public class GUI_FrankfurterZoo {
 		
 			// Hauptmenü-------------------------------------------------------------------------------------------------------------
 		
-		
+		//test comment
 		frmDatenbankDesFrankfurter = new JFrame();
 		frmDatenbankDesFrankfurter.setTitle("Datenbank des Frankfurter Zoos");
 		frmDatenbankDesFrankfurter.setBounds(100, 100, 836, 536);
