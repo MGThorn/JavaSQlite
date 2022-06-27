@@ -10,6 +10,7 @@ public class Dbconnection {
 			Class.forName("org.sqlite.JDBC");
 			con = DriverManager.getConnection("jdbc:sqlite:Zoo.db");
 			//System.out.println("Connected Database");
+			//jonas test
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println(e+"");
 		}
