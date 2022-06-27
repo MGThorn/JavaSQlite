@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class GUI_FrankfurterZoo {
 	
@@ -502,6 +504,17 @@ public class GUI_FrankfurterZoo {
 		});
 		button_tiere_listenausgabe.setBounds(491, 387, 146, 23);
 		panel_tier.add(button_tiere_listenausgabe);
+		
+		JLabel label_tiere_FutterBezeichnung = new JLabel("Futter:");
+		label_tiere_FutterBezeichnung.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_tiere_FutterBezeichnung.setBounds(67, 260, 138, 25);
+		panel_tier.add(label_tiere_FutterBezeichnung);
+		
+		JComboBox comboBox = new JComboBox();
+		String[] Futter = s.selectFutter();
+		comboBox.setModel(new DefaultComboBoxModel(Futter));
+		comboBox.setBounds(194, 260, 138, 20);
+		panel_tier.add(comboBox);
 	
 			//*Tiere-----------------------------------------------------------------------------------------------------------------
 		
@@ -704,6 +717,22 @@ public class GUI_FrankfurterZoo {
 		panel_futter.add(button_futter_clear);
 		
 		JButton button_futter_anlegen = new JButton("Anlegen");
+		button_futter_anlegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 try {
+					 String temp1 =textField_futter_bezeichnung.getText();
+					 
+					 s.insertFutter(temp1);
+					
+					} catch (NumberFormatException expt) {
+						textPane_futter_listenausgabe.setText("wrong format");
+						expt.printStackTrace();
+					}	
+				
+					
+					
+			}
+		});
 		button_futter_anlegen.setBounds(354, 114, 89, 23);
 		panel_futter.add(button_futter_anlegen);
 		
