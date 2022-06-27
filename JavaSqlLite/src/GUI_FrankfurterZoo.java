@@ -108,8 +108,9 @@ public class GUI_FrankfurterZoo {
 			public void mouseClicked(MouseEvent e) {}
 			@Override
 			public void mousePressed(MouseEvent e) {
+				
+				//System.out.println("clicked");
 				Futter = s.selectFutter();
-				System.out.println("clicked");
 				comboBox_Tier_Futterauswahl.setModel(new DefaultComboBoxModel(Futter));
 			}
 
@@ -537,8 +538,6 @@ public class GUI_FrankfurterZoo {
 		panel_tier.add(label_tiere_FutterBezeichnung);
 		
 		comboBox_Tier_Futterauswahl = new JComboBox();
-		Futter = s.selectFutter();
-		comboBox_Tier_Futterauswahl.setModel(new DefaultComboBoxModel(Futter));
 		comboBox_Tier_Futterauswahl.setBounds(194, 260, 138, 20);
 		panel_tier.add(comboBox_Tier_Futterauswahl);
 		
