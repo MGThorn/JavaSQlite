@@ -62,33 +62,30 @@ public class SQL {
 		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
 		
 	}
-	public void insertPfleger(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
-		//TODO auf Pfleger anpassen 
-		int GDatum = Integer.parseInt(GebDatum);
-		int ZDatum = Integer.parseInt(Zugangsdatum);
-		int ADatum = Integer.parseInt(Abgangsdatum);
+	public void insertPfleger(String PNummer, String Nachname, String Vorname, String Geburtsdatum, String PLZ, String Ort, String StraﬂeNr, String Tel, String Eintrittsdatum, String Gehalt) {
+		int GDatum = Integer.parseInt(Geburtsdatum);
+		int plz = Integer.parseInt(PLZ);
+		int tel = Integer.parseInt(Tel);
+		int EDatum = Integer.parseInt(Eintrittsdatum);
+		int gehalt = Integer.parseInt(Gehalt);
 		
-		char g = Geschlecht.charAt(0);
 		
-		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		
+		Dbmanipulation.insert("insert into Pfleger values('"+PNummer+"', '"+Nachname+"', '"+Vorname+"',"+GDatum+","+plz+",'"+Ort+"','"+StraﬂeNr+"',"+tel+","+EDatum+","+gehalt+")");
 		
 	}
-	public void insertGehege(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
-		//TODO auf Gehege anpasssen
-		int GDatum = Integer.parseInt(GebDatum);
-		int ZDatum = Integer.parseInt(Zugangsdatum);
-		int ADatum = Integer.parseInt(Abgangsdatum);
-		
-		char g = Geschlecht.charAt(0);
-		
-		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+	public void insertGehege(String GName, String Fl‰che, String Baujahr, String PNummer) {
+
+		int fl‰che = Integer.parseInt(Fl‰che);
+		int baujahr = Integer.parseInt(Baujahr);
+
+		Dbmanipulation.insert("insert into Gehege values('"+GName+"', "+fl‰che+", '"+baujahr+"', '"+PNummer+"')");
 		
 	}
 	public void insertArt(String Bezeichnung, String LatBezeichnung, String Lebensraum) {		
 		Dbmanipulation.insert("insert into Art values('"+Bezeichnung+"', '"+LatBezeichnung+"', '"+Lebensraum+"')");
 	}
 	public void insertFutter(String Bezeichnung) {
-		//TODO auf Futter anpassen
 		
 		Dbmanipulation.insert("insert into Futter values('"+Bezeichnung+"')");
 		
