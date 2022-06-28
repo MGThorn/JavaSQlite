@@ -1125,7 +1125,7 @@ public class GUI_FrankfurterZoo {
 		panel_futterdetails.add(button_futterdetails_listenausgabe);
 		
 		//*Futterdetails------------------------------------------------------------------------------------------------------
-		
+		refreshComboBoxes();
 		
 	}
 	public void refreshComboBoxes(){
