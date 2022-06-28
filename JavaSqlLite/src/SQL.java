@@ -131,7 +131,7 @@ public class SQL {
 		    	int maxColumns = rs.getMetaData().getColumnCount();
 				while(rs.next()){
 					ret += " \n ";
-				 		for(int i = 1;i<maxColumns;i++) {
+				 		for(int i = 1;i<=maxColumns;i++) {
 				 			ret += rs.getString(i);
 				 			ret +=", ";
 				 			

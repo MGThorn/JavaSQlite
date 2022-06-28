@@ -361,16 +361,16 @@ public class GUI_FrankfurterZoo {
 					 String temp9 =textField_pfleger_etdatum.getText();
 					 String temp10 =textField_pfleger_gehalt.getText();
 
-					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&!temp4.isBlank()&&!temp5.isBlank()&&!temp6.isBlank()&&!temp7.isBlank()&&!temp8.isBlank()&&!temp9.isBlank()&&!temp10.isBlank()&&temp_Tier_ArtAuswahl!=null) {
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&!temp4.isBlank()&&!temp5.isBlank()&&!temp6.isBlank()&&!temp7.isBlank()&&!temp8.isBlank()&&!temp9.isBlank()&&!temp10.isBlank()) {
 						 s.changePfleger(temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10);
-						 textPane_tiere_listausgabe.setText("successfully merged DATA");
+						 textPane_pfleger_listenausgabe.setText("successfully merged DATA");
 						 refreshComboBoxes();
 					 }else {
-						 textPane_tiere_listausgabe.setText("wrong format -pls fill every textField");
+						 textPane_pfleger_listenausgabe.setText("wrong format -pls fill every textField");
 					 }
 					
 					} catch (NumberFormatException expt) {
-						textPane_tiere_listausgabe.setText("wrong format");
+						textPane_pfleger_listenausgabe.setText("wrong format");
 						expt.printStackTrace();
 						
 					}	
@@ -382,20 +382,21 @@ public class GUI_FrankfurterZoo {
 		JButton button_pfleger_loeschen = new JButton("L\u00F6schen");
 		button_pfleger_loeschen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//TODO not working ?
 				try {
 					 String temp1 =textField_pfleger_pnummer.getText();
 					 if(temp1.isBlank()) {
-						 textPane_tiere_listausgabe.setText("Bitte Gebe eine PflegerID ein");
+						 textPane_pfleger_listenausgabe.setText("Bitte Gebe eine PflegerID ein");
 					 }else {
-						 if(s.deletTier(temp1)) {
-							 textPane_tiere_listausgabe.setText("Pfleger erfolgreich gel�scht"); 
+						 if(s.deletPfleger(temp1)) {
+							 textPane_pfleger_listenausgabe.setText("Pfleger erfolgreich gel�scht"); 
 							 refreshComboBoxes();
 						 }else {
-							 textPane_tiere_listausgabe.setText("es ist ein Fehler aufgetreten"); 
+							 textPane_pfleger_listenausgabe.setText("es ist ein Fehler aufgetreten"); 
 						 }
 					 }
 					} catch (NumberFormatException expt) {
-						textPane_tiere_listausgabe.setText("wrong format");
+						textPane_pfleger_listenausgabe.setText("wrong format");
 						expt.printStackTrace();
 					}
 					
@@ -419,16 +420,16 @@ public class GUI_FrankfurterZoo {
 					 String temp9 =textField_pfleger_etdatum.getText();
 					 String temp10 =textField_pfleger_gehalt.getText();
 
-					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&!temp4.isBlank()&&!temp5.isBlank()&&!temp6.isBlank()&&!temp7.isBlank()&&!temp8.isBlank()&&!temp9.isBlank()&&!temp10.isBlank()&&temp_Tier_ArtAuswahl!=null) {
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&!temp4.isBlank()&&!temp5.isBlank()&&!temp6.isBlank()&&!temp7.isBlank()&&!temp8.isBlank()&&!temp9.isBlank()&&!temp10.isBlank()) {
 						 s.insertPfleger(temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10);
-						 textPane_tiere_listausgabe.setText("successfully added DATA");
+						 textPane_pfleger_listenausgabe.setText("successfully added DATA");
 						 refreshComboBoxes();
 					 }else {
-						 textPane_tiere_listausgabe.setText("wrong format -pls fill every textField");
+						 textPane_pfleger_listenausgabe.setText("wrong format -pls fill every textField");
 					 }
 					
 					} catch (NumberFormatException expt) {
-						textPane_tiere_listausgabe.setText("wrong format");
+						textPane_pfleger_listenausgabe.setText("wrong format");
 						expt.printStackTrace();
 						
 					}	
@@ -452,7 +453,7 @@ public class GUI_FrankfurterZoo {
 				try{
 					textPane_pfleger_listenausgabe.setText(s.selectPfleger());
 				}catch(Exception exp){
-					textPane_tiere_listausgabe.setText("Fehler bei der Ausgabe");
+					textPane_pfleger_listenausgabe.setText("Fehler bei der Ausgabe");
 					System.err.println(exp);
 				}
 			}
