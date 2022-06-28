@@ -270,21 +270,32 @@ public class SQL {
 		}
 		
 	}
-	public boolean deletPfleger(String NTier) {
-		
-		Dbmanipulation.delete(""/*TODO SQL befühl für löschen einfügen*/);
-		return false;
+	public boolean deletPfleger(String PNummer) {
+		try{
+			Dbmanipulation.delete("DELETE FROM Pfleger WHERE PNummer ='"+PNummer+"'");
+			return true;
+		}catch(Exception ex) {
+			System.err.println(ex);
+			return false;
+		}
 	}
-	public boolean deletGehege(String NTier) {
-		
-		Dbmanipulation.delete(""/*TODO SQL befühl für löschen einfügen*/);
-		return false;
+	public boolean deletGehege(String GName) {
+		try{
+			Dbmanipulation.delete("DELETE FROM Gehege WHERE GName ='"+GName+"'");
+			return true;
+		}catch(Exception ex) {
+			System.err.println(ex);
+			return false;
+		}
 	}	
-	public boolean deletArt(String NTier) {
-
-		
-		Dbmanipulation.delete(""/*TODO SQL befühl für löschen einfügen*/);
-		return false;
+	public boolean deletArt(String ABezeichnung) {
+		try{
+			Dbmanipulation.delete("DELETE FROM Art WHERE ABezeichnung ='"+ABezeichnung+"'");
+			return true;
+		}catch(Exception ex) {
+			System.err.println(ex);
+			return false;
+		}
 	}
 	
 	public void changeTier(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
@@ -308,18 +319,14 @@ public class SQL {
 		
 		
 		
-		Dbmanipulation.insert("UPDATE Pfleger SET PNummer ='"+pNummer+"', Nachname ='"+Nachname+"', Vorname='"+Vorname+"',Geburtsdatum="+GDatum+",PLZ="+plz+",Ort='"+Ort+"',StraßeNr='"+StraßeNr+"',Tel="+tel+",Eintrittsdatum="+EDatum+",Gehalt="+gehalt+")");
+		Dbmanipulation.insert("UPDATE Pfleger SET PNummer ='"+pNummer+"', Nachname ='"+Nachname+"', Vorname='"+Vorname+"',Geburtsdatum="+GDatum+",PLZ="+plz+",Ort='"+Ort+"',StraßeNr='"+StraßeNr+"',Tel="+tel+",Eintrittsdatum="+EDatum+",Gehalt="+gehalt);
 		
 	}
-	public void changeGehege(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
-		//TODO auf Gehege anpasssen
-		int GDatum = Integer.parseInt(GebDatum);
-		int ZDatum = Integer.parseInt(Zugangsdatum);
-		int ADatum = Integer.parseInt(Abgangsdatum);
+	public void changeGehege(String GName, String Fläche, String Baujahr, String Lebensraum) {
+		int fläche = Integer.parseInt(Fläche);
+		int baujahr = Integer.parseInt(Baujahr);
 		
-		char g = Geschlecht.charAt(0);
-		
-		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		Dbmanipulation.insert("UPDATE Gehege SET GName='"+GName+"', Fläche="+fläche+", Baujahr="+baujahr+",Lebensraum='"+Lebensraum+"'");
 		
 	}
 	public void changeArt(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
