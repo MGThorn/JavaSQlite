@@ -65,6 +65,7 @@ public class GUI_FrankfurterZoo {
 	
 	private String[] Art_Bezeichnung;
 	private String[] Gehege_Name;
+	private String[] Personal_PNummer;
 	
 	private JComboBox comboBox_Tier_ArtAuswahl;
 	private JComboBox comboBox_Tier_GehegeAuswahl;
@@ -382,7 +383,7 @@ public class GUI_FrankfurterZoo {
 		JButton button_pfleger_loeschen = new JButton("L\u00F6schen");
 		button_pfleger_loeschen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO not working ?
+
 				try {
 					 String temp1 =textField_pfleger_pnummer.getText();
 					 if(temp1.isBlank()) {
@@ -776,7 +777,7 @@ public class GUI_FrankfurterZoo {
 				textField_gehege_gehegename.setText("");
 				textField_gehege_baujahr.setText("");
 				textField_gehege_flaeche.setText("");
-				textPane_pfleger_listenausgabe.setText("");
+				textPane_gehege_listenausgabe.setText("");
 			}
 		});
 		button_gehege_clear.setBounds(354, 43, 89, 23);
@@ -791,17 +792,17 @@ public class GUI_FrankfurterZoo {
 					 String temp3 =textField_gehege_flaeche.getText();
 					 
 
-					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&temp_Tier_ArtAuswahl!=null) {
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&temp_gehege_PNummerAuswhal!=null) {
 						 s.insertGehege(temp1,temp2,temp3,temp_gehege_PNummerAuswhal);
-						 textPane_pfleger_listenausgabe.setText("successfully added DATA");
+						 textPane_gehege_listenausgabe.setText("successfully added DATA");
 						 refreshComboBoxes();
 					 }else {
-						 textPane_pfleger_listenausgabe.setText("wrong format -pls fill every textField");
+						 textPane_gehege_listenausgabe.setText("wrong format -pls fill every textField");
 					 }
 					 
 					
 					} catch (NumberFormatException expt) {
-						textPane_pfleger_listenausgabe.setText("wrong format");
+						textPane_gehege_listenausgabe.setText("wrong format");
 						expt.printStackTrace();
 					}
 			}
@@ -818,17 +819,17 @@ public class GUI_FrankfurterZoo {
 					 String temp3 =textField_gehege_flaeche.getText();
 					 
 
-					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&temp_Tier_ArtAuswahl!=null) {
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&temp_gehege_PNummerAuswhal!=null) {
 						 s.changeGehege(temp1,temp2,temp3,temp_gehege_PNummerAuswhal);
-						 textPane_pfleger_listenausgabe.setText("successfully merged DATA");
+						 textPane_gehege_listenausgabe.setText("successfully merged DATA");
 						 refreshComboBoxes();
 					 }else {
-						 textPane_pfleger_listenausgabe.setText("wrong format -pls fill every textField");
+						 textPane_gehege_listenausgabe.setText("wrong format -pls fill every textField");
 					 }
 					 
 					
 					} catch (NumberFormatException expt) {
-						textPane_pfleger_listenausgabe.setText("wrong format");
+						textPane_gehege_listenausgabe.setText("wrong format");
 						expt.printStackTrace();
 					}
 			}
@@ -842,17 +843,17 @@ public class GUI_FrankfurterZoo {
 				try {
 					 String temp1 =textField_gehege_gehegename.getText();
 					 if(temp1.isBlank()) {
-						 textPane_pfleger_listenausgabe.setText("Bitte Gebe einen Tier Namen ein");
+						 textPane_gehege_listenausgabe.setText("Bitte Gebe einen Tier Namen ein");
 					 }else {
 						 if(s.deletGehege(temp1)) {
-							 textPane_pfleger_listenausgabe.setText("Tier erfolgreich gel�scht"); 
+							 textPane_gehege_listenausgabe.setText("Tier erfolgreich gel�scht"); 
 							 refreshComboBoxes();
 						 }else {
-							 textPane_pfleger_listenausgabe.setText("es ist ein Fehler aufgetreten"); 
+							 textPane_gehege_listenausgabe.setText("es ist ein Fehler aufgetreten"); 
 						 }
 					 }
 					} catch (NumberFormatException expt) {
-						textPane_pfleger_listenausgabe.setText("wrong format");
+						textPane_gehege_listenausgabe.setText("wrong format");
 						expt.printStackTrace();
 					}
 			}
@@ -875,9 +876,9 @@ public class GUI_FrankfurterZoo {
 			public void actionPerformed(ActionEvent e) {
 
 				try{
-					textPane_pfleger_listenausgabe.setText(s.selectGehege());
+					textPane_gehege_listenausgabe.setText(s.selectGehege());
 				}catch(Exception exp){
-					textPane_pfleger_listenausgabe.setText("Fehler bei der Ausgabe");
+					textPane_gehege_listenausgabe.setText("Fehler bei der Ausgabe");
 					System.err.println(exp);
 				}
 			}
@@ -1136,6 +1137,11 @@ public class GUI_FrankfurterZoo {
 			Gehege_Name = s.selectGehege_Name();	
 			comboBox_Tier_GehegeAuswahl.setModel(new DefaultComboBoxModel(Gehege_Name));					
 			comboBox_Tier_GehegeAuswahl.setSelectedIndex(0);	
+			
+			
+			Personal_PNummer = s.selectPersonal_PNummer();	
+			comboBox_gehege_PNummerAuswahl.setModel(new DefaultComboBoxModel(Personal_PNummer));					
+			comboBox_gehege_PNummerAuswahl.setSelectedIndex(0);
 		}catch(Exception ex) {
 			System.err.println("ERROR OCCURRED [GUI_FrankfurterZOO](line 921) \n as refreshComboBoxes() tried to pull Date for Comboxes \n Tables where empty");
 		}
