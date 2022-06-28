@@ -61,8 +61,12 @@ public class GUI_FrankfurterZoo {
 	private JTextPane textPane_futterdetails_listenausgabe;
 	
 	private String[] Art_Bezeichnung;
+	private String[] Gehege_Name;
 	private JComboBox comboBox_Tier_ArtAuswahl;
+	private JComboBox comboBox_Tier_GehegeAuswahl;
+	
 	private String temp_Tier_ArtAuswahl;
+	private String temp_Tier_GehegeAuswahl;
 	/**
 	 * Launch the application.
 	 */
@@ -92,9 +96,9 @@ public class GUI_FrankfurterZoo {
 	private void initialize() {
 	
 		
-			// Hauptmenï¿½-------------------------------------------------------------------------------------------------------------
+//Hauptmenü-------------------------------------------------------------------------------------------------------------
 		
-		//test comment
+		
 		frmDatenbankDesFrankfurter = new JFrame();
 		frmDatenbankDesFrankfurter.setTitle("Datenbank des Frankfurter Zoos");
 		frmDatenbankDesFrankfurter.setBounds(100, 100, 836, 536);
@@ -182,8 +186,7 @@ public class GUI_FrankfurterZoo {
 			public void actionPerformed(ActionEvent e) {
 				s.deletDatabases();
 				s.createDatabases();
-				Art_Bezeichnung = s.selectArt_Bezeichnung();	
-				comboBox_Tier_ArtAuswahl.setModel(new DefaultComboBoxModel(Art_Bezeichnung));
+				refreshComboBoxes();
 			}
 		});
 		btn_Reset.setBounds(360, 395, 297, 39);
@@ -195,16 +198,16 @@ public class GUI_FrankfurterZoo {
 		panel_haupt.add(lblResetAllData);
 		
 			
-			//*Hauptmenï¿½------------------------------------------------------------------------------------------------------------------------
+//*Hauptmenï¿½------------------------------------------------------------------------------------------------------------------------
 		
-			// Pfleger--------------------------------------------------------------------------------------------------------------------------
+// Pfleger--------------------------------------------------------------------------------------------------------------------------
 		
 		JPanel panel_pfleger = new JPanel();
 		tabbedPane.addTab("Pflegerverwaltung", null, panel_pfleger, null);
 		panel_pfleger.setLayout(null);
 		
 	
-					//Labels------------------------------------------------
+	//Labels------------------------------------------------
 		
 		JLabel label_pfleger_ueberschrift = new JLabel("Pfleger/in");
 		label_pfleger_ueberschrift.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -266,7 +269,7 @@ public class GUI_FrankfurterZoo {
 		label_pfleger_strasse.setBounds(64, 388, 134, 24);
 		panel_pfleger.add(label_pfleger_strasse);
 		
-				//TextFields---------------------------------------
+	//TextFields---------------------------------------
 		
 		textField_pfleger_pnummer = new JTextField();
 		textField_pfleger_pnummer.setBounds(208, 76, 134, 20);
@@ -322,7 +325,7 @@ public class GUI_FrankfurterZoo {
 		textPane_pfleger_listenausgabe.setBounds(484, 31, 293, 334);
 		panel_pfleger.add(textPane_pfleger_listenausgabe);
 		
-				//Buttons--------------------------------------
+	//Buttons--------------------------------------
 		
 		JButton button_pfleger_aendern = new JButton("\u00C4ndern");
 		button_pfleger_aendern.setBounds(366, 215, 89, 23);
@@ -344,15 +347,15 @@ public class GUI_FrankfurterZoo {
 		button_pfleger_listenausgabe.setBounds(484, 390, 146, 23);
 		panel_pfleger.add(button_pfleger_listenausgabe);
 		
-			//*Pfleger--------------------------------------------------------------------------------------------------------------------
+//*Pfleger--------------------------------------------------------------------------------------------------------------------
 		
-			//Tiere-----------------------------------------------------------------------------------------------------------------------
+//Tiere-----------------------------------------------------------------------------------------------------------------------
 		
 		JPanel panel_tier = new JPanel();
 		tabbedPane.addTab("Tierverwaltung", null, panel_tier, "");
 		panel_tier.setLayout(null);
 		
-					//Labels-------------------------------------------------
+	//Labels-------------------------------------------------
 		
 		JLabel label_tiere_ueberschrift = new JLabel("Tiere");
 		label_tiere_ueberschrift.setFont(new Font("Tahoma", Font.BOLD, 20));
@@ -384,7 +387,7 @@ public class GUI_FrankfurterZoo {
 		label_tiere_gbdatum.setBounds(67, 120, 138, 25);
 		panel_tier.add(label_tiere_gbdatum);
 		
-				//TextFields----------------------------------------------------
+	//TextFields----------------------------------------------------
 		
 		textField_tiere_abgang = new JTextField();
 		textField_tiere_abgang.setBounds(194, 231, 138, 20);
@@ -418,7 +421,7 @@ public class GUI_FrankfurterZoo {
 		
 		
 		
-				//Buttons-------------------------------------------------
+	//Buttons-------------------------------------------------
 		
 		JButton button_tiere_clear = new JButton("Clear");
 		button_tiere_clear.addActionListener(new ActionListener() {
@@ -445,14 +448,15 @@ public class GUI_FrankfurterZoo {
 					 String temp3 =textField_tiere_geschlecht.getText();
 					 String temp4 =textField_tiere_zugang.getText();
 					 String temp5 =textField_tiere_abgang.getText();
-					 String temp6 ="";
+
 					 
 					
 				
 					 
 					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&!temp4.isBlank()&&!temp5.isBlank()&&temp_Tier_ArtAuswahl!=null) {
-						 s.changeTier(temp1,temp2,temp3,temp4,temp5,temp6,temp_Tier_ArtAuswahl);
+						 s.changeTier(temp1,temp2,temp3,temp4,temp5,temp_Tier_GehegeAuswahl,temp_Tier_ArtAuswahl);
 						 textPane_tiere_listausgabe.setText("successfully merged DATA");
+						 refreshComboBoxes();
 					 }else {
 						 textPane_tiere_listausgabe.setText("wrong format -pls fill every textField");
 					 }
@@ -478,11 +482,12 @@ public class GUI_FrankfurterZoo {
 					 String temp4 =textField_tiere_zugang.getText();
 					 String temp5 =textField_tiere_abgang.getText();
 					 
-					 String temp6 ="";
+					 
 					 	
 					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&!temp4.isBlank()&&!temp5.isBlank()&&temp_Tier_ArtAuswahl!=null) {
-						 s.insertTier(temp1,temp2,temp3,temp4,temp5,temp6,temp_Tier_ArtAuswahl);
+						 s.insertTier(temp1,temp2,temp3,temp4,temp5,temp_Tier_GehegeAuswahl,temp_Tier_ArtAuswahl);
 						 textPane_tiere_listausgabe.setText("successfully added DATA");
+						 refreshComboBoxes();
 					 }else {
 						 textPane_tiere_listausgabe.setText("wrong format -pls fill every textField");
 					 }
@@ -513,6 +518,7 @@ public class GUI_FrankfurterZoo {
 					 }else {
 						 if(s.deletTier(temp1)) {
 							 textPane_tiere_listausgabe.setText("Tier erfolgreich gelï¿½scht"); 
+							 refreshComboBoxes();
 						 }else {
 							 textPane_tiere_listausgabe.setText("es ist ein Fehler aufgetreten"); 
 						 }
@@ -551,22 +557,35 @@ public class GUI_FrankfurterZoo {
 		button_tiere_listenausgabe.setBounds(491, 387, 146, 23);
 		panel_tier.add(button_tiere_listenausgabe);
 		
-		JLabel lblTierArt = new JLabel("Tier Art:");
-		lblTierArt.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblTierArt.setBounds(67, 260, 138, 25);
-		panel_tier.add(lblTierArt);
+		JLabel lblTierGehege = new JLabel("Gehege Name:");
+		lblTierGehege.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblTierGehege.setBounds(67, 260, 138, 25);
+		panel_tier.add(lblTierGehege);
 		
 		comboBox_Tier_ArtAuswahl = new JComboBox();
-		comboBox_Tier_ArtAuswahl.setBounds(194, 260, 138, 20);
+		comboBox_Tier_ArtAuswahl.setBounds(194, 290, 138, 20);
 		comboBox_Tier_ArtAuswahl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(comboBox_Tier_ArtAuswahl.getSelectedItem());
 				temp_Tier_ArtAuswahl=(String) comboBox_Tier_ArtAuswahl.getSelectedItem();
 			}
 		});
-		Art_Bezeichnung = s.selectArt_Bezeichnung();	
-		comboBox_Tier_ArtAuswahl.setModel(new DefaultComboBoxModel(Art_Bezeichnung));
 		panel_tier.add(comboBox_Tier_ArtAuswahl);
+		
+		comboBox_Tier_GehegeAuswahl = new JComboBox();
+		comboBox_Tier_GehegeAuswahl.setBounds(194, 260, 138, 20);
+		comboBox_Tier_GehegeAuswahl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(comboBox_Tier_GehegeAuswahl.getSelectedItem());
+				temp_Tier_GehegeAuswahl= (String) comboBox_Tier_GehegeAuswahl.getSelectedItem();
+			}
+		});
+		panel_tier.add(comboBox_Tier_GehegeAuswahl);
+		
+		JLabel lblTierArt = new JLabel("Tier Art:");
+		lblTierArt.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblTierArt.setBounds(67, 290, 138, 25);
+		panel_tier.add(lblTierArt);
 		
 	
 			//*Tiere-----------------------------------------------------------------------------------------------------------------
@@ -721,11 +740,7 @@ public class GUI_FrankfurterZoo {
 					 String temp3 =textField_arten_lebensraum.getText();
 					 
 					 s.insertArt(temp1,temp2,temp3);
-					 Art_Bezeichnung = s.selectArt_Bezeichnung();	
-					 comboBox_Tier_ArtAuswahl.setModel(new DefaultComboBoxModel(Art_Bezeichnung));					
-					 comboBox_Tier_ArtAuswahl.setSelectedIndex(0);
-					
-					
+					 refreshComboBoxes();
 					} catch (NumberFormatException expt) {
 						textPane_futter_listenausgabe.setText("wrong format");
 						expt.printStackTrace();
@@ -899,6 +914,20 @@ public class GUI_FrankfurterZoo {
 		
 		//*Futterdetails------------------------------------------------------------------------------------------------------
 		
+		
+	}
+	public void refreshComboBoxes(){
+		try{
+			Art_Bezeichnung = s.selectArt_Bezeichnung();	
+			comboBox_Tier_ArtAuswahl.setModel(new DefaultComboBoxModel(Art_Bezeichnung));					
+			comboBox_Tier_ArtAuswahl.setSelectedIndex(0);	
+			
+			Gehege_Name = s.selectGehege_Name();	
+			comboBox_Tier_GehegeAuswahl.setModel(new DefaultComboBoxModel(Gehege_Name));					
+			comboBox_Tier_GehegeAuswahl.setSelectedIndex(0);	
+		}catch(Exception ex) {
+			System.err.println("ERROR OCCURRED [GUI_FrankfurterZOO](line 921) \n as refreshComboBoxes() tried to pull Date for Comboxes \n Tables where empty");
+		}
 		
 	}
 }

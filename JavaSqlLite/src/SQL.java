@@ -9,7 +9,7 @@ public class SQL {
 		Dbmanipulation.create("drop table if exists Art");
 		Dbmanipulation.create("drop table if exists Futter");
 		Dbmanipulation.create("drop table if exists pflegt");
-		Dbmanipulation.create("drop table if wird_gefüttert_mit Futter");
+		Dbmanipulation.create("drop table if exists wird_gefuettert_mit");
 		
 	}
 	public void createDatabases() {
@@ -21,7 +21,7 @@ public class SQL {
 		Dbmanipulation.create("create table Futter (FBezeichnung string PRIMARY KEY)");
 		
 		Dbmanipulation.create("create table pflegt (PNummer string, TName string)");
-		Dbmanipulation.create("create table wird_gefüttert_mit (TName string, FBezeichnung string, Menge integer, Uhrzeit integer)");
+		Dbmanipulation.create("create table wird_gefuettert_mit (TName string, FBezeichnung string, Menge integer, Uhrzeit integer)");
 		// need to implement PRIMARY and FOREIGN keys 
 		
 	}
@@ -215,6 +215,31 @@ public class SQL {
 		    	rs =Dbquery.select("select ABezeichnung from Art");
 		    	
 		    	ResultSet length = Dbquery.select("select COUNT(*) from Art");
+		    	
+		    	ret = new String[length.getInt(1)];
+		    	
+		    	int i =0;
+				while(rs.next()){
+					ret[i] = rs.getString(1);
+					i++;
+				 		
+				  }
+				rs.close();
+				length.close();
+				return ret;
+			} catch (SQLException e) {
+				e.printStackTrace();
+	    		return null;
+			}
+	}
+	public String[] selectGehege_Name() {
+
+		ResultSet rs = null;
+		String ret [];
+		    try {
+		    	rs =Dbquery.select("select GName from Gehege");
+		    	
+		    	ResultSet length = Dbquery.select("select COUNT(*) from Gehege");
 		    	
 		    	ret = new String[length.getInt(1)];
 		    	
