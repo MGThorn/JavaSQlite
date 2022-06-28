@@ -126,20 +126,14 @@ public class SQL {
 		ResultSet rs = null;
 		String ret = "";
 		    try {
-		    	rs =Dbquery.select("select * from Tier");
+		    	rs =Dbquery.select("select * from Pfleger");
 		    	int maxColumns = rs.getMetaData().getColumnCount();
-		    	/*for(int i = 1;i<maxColumns;i++) {
-		 			ret += rs.getMetaData().getColumnName(i);
-		 			ret += " ";
-		    	}
-		    	*/
 				while(rs.next()){
 					ret += " \n ";
 				 		for(int i = 1;i<maxColumns;i++) {
 				 			ret += rs.getString(i);
 				 			ret +=", ";
-				 			System.out.print(rs.getMetaData().getColumnName(i));
-				 			System.out.println(" : "+rs.getString(i));
+				 			
 				 		}
 				 		
 				  }
@@ -154,20 +148,13 @@ public class SQL {
 		ResultSet rs = null;
 		String ret = "";
 		    try {
-		    	rs =Dbquery.select("select * from Tier");
+		    	rs =Dbquery.select("select * from Gehege");
 		    	int maxColumns = rs.getMetaData().getColumnCount();
-		    	/*for(int i = 1;i<maxColumns;i++) {
-		 			ret += rs.getMetaData().getColumnName(i);
-		 			ret += " ";
-		    	}
-		    	*/
 				while(rs.next()){
 					ret += " \n ";
 				 		for(int i = 1;i<maxColumns;i++) {
 				 			ret += rs.getString(i);
 				 			ret +=", ";
-				 			System.out.print(rs.getMetaData().getColumnName(i));
-				 			System.out.println(" : "+rs.getString(i));
 				 		}
 				 		
 				  }
@@ -182,20 +169,13 @@ public class SQL {
 		ResultSet rs = null;
 		String ret = "";
 		    try {
-		    	rs =Dbquery.select("select * from Tier");
+		    	rs =Dbquery.select("select * from Art");
 		    	int maxColumns = rs.getMetaData().getColumnCount();
-		    	/*for(int i = 1;i<maxColumns;i++) {
-		 			ret += rs.getMetaData().getColumnName(i);
-		 			ret += " ";
-		    	}
-		    	*/
 				while(rs.next()){
 					ret += " \n ";
 				 		for(int i = 1;i<maxColumns;i++) {
 				 			ret += rs.getString(i);
 				 			ret +=", ";
-				 			System.out.print(rs.getMetaData().getColumnName(i));
-				 			System.out.println(" : "+rs.getString(i));
 				 		}
 				 		
 				  }
@@ -210,20 +190,13 @@ public class SQL {
 		ResultSet rs = null;
 		String ret = "";
 		    try {
-		    	rs =Dbquery.select("select * from Tier");
+		    	rs =Dbquery.select("select * from Futter");
 		    	int maxColumns = rs.getMetaData().getColumnCount();
-		    	/*for(int i = 1;i<maxColumns;i++) {
-		 			ret += rs.getMetaData().getColumnName(i);
-		 			ret += " ";
-		    	}
-		    	*/
 				while(rs.next()){
 					ret += " \n ";
 				 		for(int i = 1;i<maxColumns;i++) {
 				 			ret += rs.getString(i);
 				 			ret +=", ";
-				 			System.out.print(rs.getMetaData().getColumnName(i));
-				 			System.out.println(" : "+rs.getString(i));
 				 		}
 				 		
 				  }
