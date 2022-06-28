@@ -63,6 +63,7 @@ public class SQL {
 		
 	}
 	public void insertPfleger(String PNummer, String Nachname, String Vorname, String Geburtsdatum, String PLZ, String Ort, String StraﬂeNr, String Tel, String Eintrittsdatum, String Gehalt) {
+		int pNummer = Integer.parseInt(PNummer);
 		int GDatum = Integer.parseInt(Geburtsdatum);
 		int plz = Integer.parseInt(PLZ);
 		int tel = Integer.parseInt(Tel);
@@ -71,7 +72,7 @@ public class SQL {
 		
 		
 		
-		Dbmanipulation.insert("insert into Pfleger values('"+PNummer+"', '"+Nachname+"', '"+Vorname+"',"+GDatum+","+plz+",'"+Ort+"','"+StraﬂeNr+"',"+tel+","+EDatum+","+gehalt+")");
+		Dbmanipulation.insert("insert into Pfleger values('"+pNummer+"', '"+Nachname+"', '"+Vorname+"',"+GDatum+","+plz+",'"+Ort+"','"+StraﬂeNr+"',"+tel+","+EDatum+","+gehalt+")");
 		
 	}
 	public void insertGehege(String GName, String Fl‰che, String Baujahr, String PNummer) {
@@ -297,15 +298,17 @@ public class SQL {
 		Dbmanipulation.insert("UPDATE Tier SET GebDatum = "+GDatum+", Geschlecht = '"+g+"', Zugangsdatum = "+ZDatum+", Abgangsdatum = "+ADatum+", GName = '"+GName+"', ABezeichnung = '"+ABezeichnung+"' WHERE TName = '"+TName+"'" );
 		
 	}
-	public void changePfleger(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
-		//TODO auf Pfleger anpassen 
-		int GDatum = Integer.parseInt(GebDatum);
-		int ZDatum = Integer.parseInt(Zugangsdatum);
-		int ADatum = Integer.parseInt(Abgangsdatum);
+	public void changePfleger(String PNummer, String Nachname, String Vorname, String Geburtsdatum, String PLZ, String Ort, String StraﬂeNr, String Tel, String Eintrittsdatum, String Gehalt) {
+		int pNummer = Integer.parseInt(PNummer);
+		int GDatum = Integer.parseInt(Geburtsdatum);
+		int plz = Integer.parseInt(PLZ);
+		int tel = Integer.parseInt(Tel);
+		int EDatum = Integer.parseInt(Eintrittsdatum);
+		int gehalt = Integer.parseInt(Gehalt);
 		
-		char g = Geschlecht.charAt(0);
 		
-		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		
+		Dbmanipulation.insert("UPDATE Pfleger SET PNummer ='"+pNummer+"', Nachname ='"+Nachname+"', Vorname='"+Vorname+"',Geburtsdatum="+GDatum+",PLZ="+plz+",Ort='"+Ort+"',StraﬂeNr='"+StraﬂeNr+"',Tel="+tel+",Eintrittsdatum="+EDatum+",Gehalt="+gehalt+")");
 		
 	}
 	public void changeGehege(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {

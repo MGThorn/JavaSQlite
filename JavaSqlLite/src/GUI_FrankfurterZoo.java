@@ -40,9 +40,12 @@ public class GUI_FrankfurterZoo {
 	private JTextField textField_tiere_geschlecht;
 	private JTextField textField_tiere_gbdatum;
 	private JTextField textField_tiere_tname;
+	
 	private JTextField textField_gehege_gehegename;
 	private JTextField textField_gehege_baujahr;
 	private JTextField textField_gehege_flaeche;
+	private JComboBox comboBox_gehege_PNummerAuswahl;
+	private String temp_gehege_PNummerAuswhal;
 	
 	private JTextField textField_arten_bezeichnung;
 	private JTextField textField_arten_lebensraum;
@@ -62,6 +65,7 @@ public class GUI_FrankfurterZoo {
 	
 	private String[] Art_Bezeichnung;
 	private String[] Gehege_Name;
+	
 	private JComboBox comboBox_Tier_ArtAuswahl;
 	private JComboBox comboBox_Tier_GehegeAuswahl;
 	
@@ -214,111 +218,106 @@ public class GUI_FrankfurterZoo {
 		label_pfleger_ueberschrift.setBounds(63, 30, 135, 24);
 		panel_pfleger.add(label_pfleger_ueberschrift);
 		
-		JButton button_pfleger_clear = new JButton("Clear");
-		button_pfleger_clear.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		button_pfleger_clear.setBounds(366, 35, 89, 23);
-		panel_pfleger.add(button_pfleger_clear);
-		
 		JLabel label_pfleger_pnummer = new JLabel("Personalnummer:");
 		label_pfleger_pnummer.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		label_pfleger_pnummer.setBounds(64, 73, 134, 24);
+		label_pfleger_pnummer.setBounds(64, 80, 134, 24);
 		panel_pfleger.add(label_pfleger_pnummer);
 		
 		JLabel label_pfleger_vorname = new JLabel("Vorname:");
 		label_pfleger_vorname.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_pfleger_vorname.setBounds(64, 108, 134, 24);
+		label_pfleger_vorname.setBounds(64, 140, 134, 24);
 		panel_pfleger.add(label_pfleger_vorname);
 		
 		JLabel label_pfleger_nachname = new JLabel("Nachname");
 		label_pfleger_nachname.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_pfleger_nachname.setBounds(64, 143, 134, 24);
+		label_pfleger_nachname.setBounds(64, 110, 134, 24);
 		panel_pfleger.add(label_pfleger_nachname);
 		
 		JLabel label_pfleger_gehalt = new JLabel("Gehalt:");
 		label_pfleger_gehalt.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_pfleger_gehalt.setBounds(64, 178, 134, 24);
+		label_pfleger_gehalt.setBounds(64, 350, 134, 24);
 		panel_pfleger.add(label_pfleger_gehalt);
 		
 		JLabel label_pfleger_gbdatum = new JLabel("Geburtsdatum:");
 		label_pfleger_gbdatum.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_pfleger_gbdatum.setBounds(64, 213, 134, 24);
+		label_pfleger_gbdatum.setBounds(64, 170, 134, 24);
 		panel_pfleger.add(label_pfleger_gbdatum);
 		
 		JLabel label_pfleger_etdatum = new JLabel("Eintrittsdatum:");
 		label_pfleger_etdatum.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_pfleger_etdatum.setBounds(64, 248, 134, 24);
+		label_pfleger_etdatum.setBounds(64, 320, 134, 24);
 		panel_pfleger.add(label_pfleger_etdatum);
 		
 		JLabel label_pfleger_tnummer = new JLabel("Tel.-Nummer");
 		label_pfleger_tnummer.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_pfleger_tnummer.setBounds(64, 283, 134, 24);
+		label_pfleger_tnummer.setBounds(64, 290, 134, 24);
 		panel_pfleger.add(label_pfleger_tnummer);
 		
 		JLabel label_pfleger_ort = new JLabel("Ort:");
 		label_pfleger_ort.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_pfleger_ort.setBounds(64, 318, 134, 24);
+		label_pfleger_ort.setBounds(64, 230, 134, 24);
 		panel_pfleger.add(label_pfleger_ort);
 		
 		JLabel label_pfleger_plz = new JLabel("PLZ:");
 		label_pfleger_plz.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_pfleger_plz.setBounds(64, 353, 134, 24);
+		label_pfleger_plz.setBounds(64, 200, 134, 24);
 		panel_pfleger.add(label_pfleger_plz);
 		
 		JLabel label_pfleger_strasse = new JLabel("Stra\u00DFe:");
 		label_pfleger_strasse.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_pfleger_strasse.setBounds(64, 388, 134, 24);
+		label_pfleger_strasse.setBounds(64, 260, 134, 24);
 		panel_pfleger.add(label_pfleger_strasse);
 		
 	//TextFields---------------------------------------
 		
 		textField_pfleger_pnummer = new JTextField();
-		textField_pfleger_pnummer.setBounds(208, 76, 134, 20);
+		textField_pfleger_pnummer.setBounds(208, 80, 134, 20);
 		panel_pfleger.add(textField_pfleger_pnummer);
 		textField_pfleger_pnummer.setColumns(10);
 		
 		textField_pfleger_vorname = new JTextField();
 		textField_pfleger_vorname.setColumns(10);
-		textField_pfleger_vorname.setBounds(208, 111, 134, 20);
+		textField_pfleger_vorname.setBounds(208, 140, 134, 20);
 		panel_pfleger.add(textField_pfleger_vorname);
 		
 		textField_pfleger_nachname = new JTextField();
 		textField_pfleger_nachname.setColumns(10);
-		textField_pfleger_nachname.setBounds(208, 146, 134, 20);
+		textField_pfleger_nachname.setBounds(208, 110, 134, 20);
 		panel_pfleger.add(textField_pfleger_nachname);
 		
 		textField_pfleger_gehalt = new JTextField();
 		textField_pfleger_gehalt.setColumns(10);
-		textField_pfleger_gehalt.setBounds(208, 181, 134, 20);
+		textField_pfleger_gehalt.setBounds(208, 350, 134, 20);
 		panel_pfleger.add(textField_pfleger_gehalt);
 		
 		textField_pfleger_gbdatum = new JTextField();
 		textField_pfleger_gbdatum.setColumns(10);
-		textField_pfleger_gbdatum.setBounds(208, 216, 134, 20);
+		textField_pfleger_gbdatum.setBounds(208, 170, 134, 20);
 		panel_pfleger.add(textField_pfleger_gbdatum);
 		
 		textField_pfleger_etdatum = new JTextField();
 		textField_pfleger_etdatum.setColumns(10);
-		textField_pfleger_etdatum.setBounds(208, 251, 134, 20);
+		textField_pfleger_etdatum.setBounds(208, 320, 134, 20);
 		panel_pfleger.add(textField_pfleger_etdatum);
 		
 		textField_pfleger_tnummer = new JTextField();
 		textField_pfleger_tnummer.setColumns(10);
-		textField_pfleger_tnummer.setBounds(208, 286, 134, 20);
+		textField_pfleger_tnummer.setBounds(208, 290, 134, 20);
 		panel_pfleger.add(textField_pfleger_tnummer);
 		
 		textField_pfleger_ort = new JTextField();
 		textField_pfleger_ort.setColumns(10);
-		textField_pfleger_ort.setBounds(208, 321, 134, 20);
+		textField_pfleger_ort.setBounds(208, 230, 134, 20);
 		panel_pfleger.add(textField_pfleger_ort);
 		
 		textField_pfleger_plz = new JTextField();
 		textField_pfleger_plz.setColumns(10);
-		textField_pfleger_plz.setBounds(208, 356, 134, 20);
+		textField_pfleger_plz.setBounds(208, 200, 134, 20);
 		panel_pfleger.add(textField_pfleger_plz);
 		
 		textField_pfleger_strasse = new JTextField();
 		textField_pfleger_strasse.setColumns(10);
-		textField_pfleger_strasse.setBounds(208, 391, 134, 20);
+		textField_pfleger_strasse.setBounds(208, 260, 134, 20);
 		panel_pfleger.add(textField_pfleger_strasse);
 		
 		textPane_pfleger_listenausgabe = new JTextPane();
@@ -326,24 +325,138 @@ public class GUI_FrankfurterZoo {
 		panel_pfleger.add(textPane_pfleger_listenausgabe);
 		
 	//Buttons--------------------------------------
+		JButton button_pfleger_clear = new JButton("Clear");
+		button_pfleger_clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 textField_pfleger_pnummer.setText("");
+				 textField_pfleger_vorname.setText("");
+				 textField_pfleger_nachname.setText("");
+				 textField_pfleger_gehalt.setText("");
+				 textField_pfleger_gbdatum.setText("");
+				 textField_pfleger_etdatum.setText("");
+				 textField_pfleger_tnummer.setText("");
+				 textField_pfleger_ort.setText("");
+				 textField_pfleger_plz.setText("");
+				 textField_pfleger_strasse.setText("");
+				 textPane_pfleger_listenausgabe.setText("");
+				
+			}
+		});
+		button_pfleger_clear.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		button_pfleger_clear.setBounds(366, 35, 89, 23);
+		panel_pfleger.add(button_pfleger_clear);
 		
 		JButton button_pfleger_aendern = new JButton("\u00C4ndern");
+		button_pfleger_aendern.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 try {
+					 String temp1 =textField_pfleger_pnummer.getText();
+					 String temp2 =textField_pfleger_nachname.getText();
+					 String temp3 =textField_pfleger_vorname.getText();
+					 String temp4 =textField_pfleger_gbdatum.getText();
+					 String temp5 =textField_pfleger_plz.getText();
+					 String temp6 =textField_pfleger_ort.getText();
+					 String temp7 =textField_pfleger_strasse.getText();
+					 String temp8 =textField_pfleger_tnummer.getText();
+					 String temp9 =textField_pfleger_etdatum.getText();
+					 String temp10 =textField_pfleger_gehalt.getText();
+
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&!temp4.isBlank()&&!temp5.isBlank()&&!temp6.isBlank()&&!temp7.isBlank()&&!temp8.isBlank()&&!temp9.isBlank()&&!temp10.isBlank()&&temp_Tier_ArtAuswahl!=null) {
+						 s.changePfleger(temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10);
+						 textPane_tiere_listausgabe.setText("successfully merged DATA");
+						 refreshComboBoxes();
+					 }else {
+						 textPane_tiere_listausgabe.setText("wrong format -pls fill every textField");
+					 }
+					
+					} catch (NumberFormatException expt) {
+						textPane_tiere_listausgabe.setText("wrong format");
+						expt.printStackTrace();
+						
+					}	
+			}
+		});
 		button_pfleger_aendern.setBounds(366, 215, 89, 23);
 		panel_pfleger.add(button_pfleger_aendern);
 		
 		JButton button_pfleger_loeschen = new JButton("L\u00F6schen");
+		button_pfleger_loeschen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					 String temp1 =textField_pfleger_pnummer.getText();
+					 if(temp1.isBlank()) {
+						 textPane_tiere_listausgabe.setText("Bitte Gebe eine PflegerID ein");
+					 }else {
+						 if(s.deletTier(temp1)) {
+							 textPane_tiere_listausgabe.setText("Pfleger erfolgreich gel�scht"); 
+							 refreshComboBoxes();
+						 }else {
+							 textPane_tiere_listausgabe.setText("es ist ein Fehler aufgetreten"); 
+						 }
+					 }
+					} catch (NumberFormatException expt) {
+						textPane_tiere_listausgabe.setText("wrong format");
+						expt.printStackTrace();
+					}
+					
+			}
+		});
 		button_pfleger_loeschen.setBounds(366, 250, 89, 23);
 		panel_pfleger.add(button_pfleger_loeschen);
 		
 		JButton button_pfleger_anlegen = new JButton("Anlegen");
+		button_pfleger_anlegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 try {
+					 String temp1 =textField_pfleger_pnummer.getText();
+					 String temp2 =textField_pfleger_nachname.getText();
+					 String temp3 =textField_pfleger_vorname.getText();
+					 String temp4 =textField_pfleger_gbdatum.getText();
+					 String temp5 =textField_pfleger_plz.getText();
+					 String temp6 =textField_pfleger_ort.getText();
+					 String temp7 =textField_pfleger_strasse.getText();
+					 String temp8 =textField_pfleger_tnummer.getText();
+					 String temp9 =textField_pfleger_etdatum.getText();
+					 String temp10 =textField_pfleger_gehalt.getText();
+
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&!temp4.isBlank()&&!temp5.isBlank()&&!temp6.isBlank()&&!temp7.isBlank()&&!temp8.isBlank()&&!temp9.isBlank()&&!temp10.isBlank()&&temp_Tier_ArtAuswahl!=null) {
+						 s.insertPfleger(temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10);
+						 textPane_tiere_listausgabe.setText("successfully added DATA");
+						 refreshComboBoxes();
+					 }else {
+						 textPane_tiere_listausgabe.setText("wrong format -pls fill every textField");
+					 }
+					
+					} catch (NumberFormatException expt) {
+						textPane_tiere_listausgabe.setText("wrong format");
+						expt.printStackTrace();
+						
+					}	
+			}
+		});
 		button_pfleger_anlegen.setBounds(366, 180, 89, 23);
 		panel_pfleger.add(button_pfleger_anlegen);
 		
 		JButton button_pfleger_beenden = new JButton("Beenden");
+		button_pfleger_beenden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmDatenbankDesFrankfurter.dispose();
+			}
+		});
 		button_pfleger_beenden.setBounds(688, 390, 89, 23);
 		panel_pfleger.add(button_pfleger_beenden);
 		
 		JButton button_pfleger_listenausgabe = new JButton("Zeige Pflegerliste");
+		button_pfleger_listenausgabe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					textPane_pfleger_listenausgabe.setText(s.selectPfleger());
+				}catch(Exception exp){
+					textPane_tiere_listausgabe.setText("Fehler bei der Ausgabe");
+					System.err.println(exp);
+				}
+			}
+		});
 		button_pfleger_listenausgabe.setBounds(484, 390, 146, 23);
 		panel_pfleger.add(button_pfleger_listenausgabe);
 		
@@ -605,18 +718,23 @@ public class GUI_FrankfurterZoo {
 		
 		JLabel label_gehege_gehegename = new JLabel("Gehegename:");
 		label_gehege_gehegename.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		label_gehege_gehegename.setBounds(64, 86, 84, 26);
+		label_gehege_gehegename.setBounds(64, 90, 84, 26);
 		panel_gehege.add(label_gehege_gehegename);
 		
 		JLabel label_gehege_baujahr = new JLabel("Baujahr:");
 		label_gehege_baujahr.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_gehege_baujahr.setBounds(64, 123, 84, 26);
+		label_gehege_baujahr.setBounds(64, 170, 84, 26);
 		panel_gehege.add(label_gehege_baujahr);
 		
 		JLabel label_gehege_flaeche = new JLabel("Fl\u00E4che:");
 		label_gehege_flaeche.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_gehege_flaeche.setBounds(64, 160, 84, 26);
+		label_gehege_flaeche.setBounds(64, 130, 84, 26);
 		panel_gehege.add(label_gehege_flaeche);
+		
+		JLabel label_gehege_pnummer = new JLabel("Personal Nummer:");
+		label_gehege_pnummer.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_gehege_pnummer.setBounds(64, 210, 84, 26);
+		panel_gehege.add(label_gehege_pnummer);
 		
 				//TextFields--------------------------------------------
 		
@@ -627,13 +745,23 @@ public class GUI_FrankfurterZoo {
 		
 		textField_gehege_baujahr = new JTextField();
 		textField_gehege_baujahr.setColumns(10);
-		textField_gehege_baujahr.setBounds(191, 127, 127, 20);
+		textField_gehege_baujahr.setBounds(191, 170, 127, 20);
 		panel_gehege.add(textField_gehege_baujahr);
 		
 		textField_gehege_flaeche = new JTextField();
 		textField_gehege_flaeche.setColumns(10);
-		textField_gehege_flaeche.setBounds(191, 164, 127, 20);
+		textField_gehege_flaeche.setBounds(191, 130, 127, 20);
 		panel_gehege.add(textField_gehege_flaeche);
+		
+		comboBox_gehege_PNummerAuswahl = new JComboBox();
+		comboBox_gehege_PNummerAuswahl.setBounds(191, 210, 127, 20);
+		comboBox_gehege_PNummerAuswahl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(comboBox_gehege_PNummerAuswahl.getSelectedItem());
+				temp_gehege_PNummerAuswhal=(String) comboBox_gehege_PNummerAuswahl.getSelectedItem();
+			}
+		});
+		panel_gehege.add(comboBox_gehege_PNummerAuswahl);
 		
 		textPane_gehege_listenausgabe = new JTextPane();
 		textPane_gehege_listenausgabe.setBounds(469, 44, 309, 341);
@@ -642,10 +770,22 @@ public class GUI_FrankfurterZoo {
 				//Buttons-----------------------------------
 		
 		JButton button_gehege_clear = new JButton("Clear");
+		button_gehege_clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField_gehege_gehegename.setText("");
+				textField_gehege_baujahr.setText("");
+				textField_gehege_flaeche.setText("");
+				textPane_pfleger_listenausgabe.setText("");
+			}
+		});
 		button_gehege_clear.setBounds(354, 43, 89, 23);
 		panel_gehege.add(button_gehege_clear);
 		
 		JButton button_gehege_anlegen = new JButton("Anlegen");
+		button_gehege_anlegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button_gehege_anlegen.setBounds(354, 126, 89, 23);
 		panel_gehege.add(button_gehege_anlegen);
 		
@@ -658,11 +798,19 @@ public class GUI_FrankfurterZoo {
 		panel_gehege.add(button_gehege_aendern);
 		
 		JButton button_gehege_loeschen = new JButton("L\u00F6schen");
+		button_gehege_loeschen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button_gehege_loeschen.setBounds(354, 197, 89, 23);
 		panel_gehege.add(button_gehege_loeschen);
 
 		
 		JButton button_gehege_beenden = new JButton("Beenden");
+		button_gehege_beenden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		button_gehege_beenden.setBounds(689, 396, 89, 23);
 		panel_gehege.add(button_gehege_beenden);
 		
