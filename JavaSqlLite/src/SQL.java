@@ -8,6 +8,8 @@ public class SQL {
 		Dbmanipulation.create("drop table if exists Tier");
 		Dbmanipulation.create("drop table if exists Art");
 		Dbmanipulation.create("drop table if exists Futter");
+		Dbmanipulation.create("drop table if exists pflegt");
+		Dbmanipulation.create("drop table if wird_gefüttert_mit Futter");
 		
 	}
 	public void createDatabases() {
@@ -16,13 +18,10 @@ public class SQL {
 		Dbmanipulation.create("create table Gehege (GName string PRIMARY KEY, Fläche integer, Baujahr integer,PNummer integer, FOREIGN KEY(PNummer) REFERENCES Pfleger(PNummer))");
 		Dbmanipulation.create("create table Art (ABezeichnung string PRIMARY KEY, LatBezeichnung string, Lebensraum string)");
 		Dbmanipulation.create("create table Tier (TName string PRIMARY KEY, GebDatum integer, Geschlecht char, Zugangsdatum integer, Abgangsdatum integer,GName string, ABezeichnung string, FOREIGN KEY(ABezeichnung) REFERENCES Art(ABezeichnung), FOREIGN KEY(GName) REFERENCES Gehege(GName))");
-		Dbmanipulation.create("create table Futter (Bezeichnung string PRIMARY KEY)");
+		Dbmanipulation.create("create table Futter (FBezeichnung string PRIMARY KEY)");
 		
 		Dbmanipulation.create("create table pflegt (PNummer string, TName string)");
-		//TODO 
-		//
-		// need to implement PRIMARY and FOREIGN keys 
-		//Dbmanipulation.create("create table wird_gefüttert_mit ()");
+		Dbmanipulation.create("create table wird_gefüttert_mit (TName string, FBezeichnung string, Menge integer, Uhrzeit integer)");
 		// need to implement PRIMARY and FOREIGN keys 
 		
 	}
