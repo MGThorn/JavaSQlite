@@ -18,8 +18,9 @@ public class SQL {
 		Dbmanipulation.create("create table Tier (TName string PRIMARY KEY, GebDatum integer, Geschlecht char, Zugangsdatum integer, Abgangsdatum integer,GName string, ABezeichnung string, FOREIGN KEY(ABezeichnung) REFERENCES Art(ABezeichnung), FOREIGN KEY(GName) REFERENCES Gehege(GName))");
 		Dbmanipulation.create("create table Futter (Bezeichnung string PRIMARY KEY)");
 		
+		Dbmanipulation.create("create table pflegt (PNummer string, TName string)");
 		//TODO 
-		//Dbmanipulation.create("create table pflegt ()");
+		//
 		// need to implement PRIMARY and FOREIGN keys 
 		//Dbmanipulation.create("create table wird_gefüttert_mit ()");
 		// need to implement PRIMARY and FOREIGN keys 
