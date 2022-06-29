@@ -153,7 +153,7 @@ public class SQL {
 		    	int maxColumns = rs.getMetaData().getColumnCount();
 				while(rs.next()){
 					ret += " \n ";
-				 		for(int i = 1;i<maxColumns;i++) {
+				 		for(int i = 1;i<=maxColumns;i++) {
 				 			ret += rs.getString(i);
 				 			ret +=", ";
 				 		}
@@ -174,7 +174,7 @@ public class SQL {
 		    	int maxColumns = rs.getMetaData().getColumnCount();
 				while(rs.next()){
 					ret += " \n ";
-				 		for(int i = 1;i<maxColumns;i++) {
+				 		for(int i = 1;i<=maxColumns;i++) {
 				 			ret += rs.getString(i);
 				 			ret +=", ";
 				 		}
@@ -195,7 +195,7 @@ public class SQL {
 		    	int maxColumns = rs.getMetaData().getColumnCount();
 				while(rs.next()){
 					ret += " \n ";
-				 		for(int i = 1;i<maxColumns;i++) {
+				 		for(int i = 1;i<=maxColumns;i++) {
 				 			ret += rs.getString(i);
 				 			ret +=", ";
 				 		}
@@ -322,6 +322,15 @@ public class SQL {
 			return false;
 		}
 	}
+	public boolean deletFutter(String FBezeichnung) {
+		try{
+			Dbmanipulation.delete("DELETE FROM Futter WHERE FBezeichnung ='"+FBezeichnung+"'");
+			return true;
+		}catch(Exception ex) {
+			System.err.println(ex);
+			return false;
+		}
+	}
 	
 	public void changeTier(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
 		
@@ -352,23 +361,12 @@ public class SQL {
 		int baujahr = Integer.parseInt(Baujahr);
 		int pnummer = Integer.parseInt(PNummer);
 		
-		Dbmanipulation.insert("UPDATE Gehege SET GName='"+GName+"', Fläche="+fläche+", Baujahr="+baujahr+",PNummer='"+pnummer+"'");
+		Dbmanipulation.insert("UPDATE Gehege SET Fläche="+fläche+", Baujahr="+baujahr+",PNummer='"+pnummer+"' WHERE GName='"+GName+"'");
 		
 	}
 	public void changeArt(String ABezeichnung, String LatBezeichnung, String Lebensraum) {
 		
-		Dbmanipulation.insert("UPDATE Gehege SET ABezeichnung='"+ABezeichnung+"', LatBezeichnung='"+LatBezeichnung+"', Lebensraum='"+Lebensraum+"'");
-		
-	}
-	public void changeFutter(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
-		//TODO auf Futter anpassen
-		int GDatum = Integer.parseInt(GebDatum);
-		int ZDatum = Integer.parseInt(Zugangsdatum);
-		int ADatum = Integer.parseInt(Abgangsdatum);
-		
-		char g = Geschlecht.charAt(0);
-		
-		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		Dbmanipulation.insert("UPDATE Gehege SET LatBezeichnung='"+LatBezeichnung+"', Lebensraum='"+Lebensraum+"' WHERE ABezeichnung='"+ABezeichnung+"'");
 		
 	}
 }

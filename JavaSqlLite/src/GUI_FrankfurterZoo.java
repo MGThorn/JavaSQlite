@@ -1039,7 +1039,7 @@ public class GUI_FrankfurterZoo {
 		panel_art.add(button_arten_beenden);
 		
 		JButton button_arten_listenausgabe = new JButton("Artenliste ausgeben");
-		button_gehege_listenausgabe.addActionListener(new ActionListener() {
+		button_arten_listenausgabe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				try{
@@ -1087,22 +1087,34 @@ public class GUI_FrankfurterZoo {
 				//Buttons-----------------------------------------
 		
 		JButton button_futter_clear = new JButton("Clear");
+		button_futter_clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField_futter_bezeichnung.setText("");
+				textPane_futter_listenausgabe.setText("");
+			}
+		});
 		button_futter_clear.setBounds(354, 59, 89, 23);
 		panel_futter.add(button_futter_clear);
 		
 		JButton button_futter_anlegen = new JButton("Anlegen");
 		button_futter_anlegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 try {
-					 String temp1 =textField_futter_bezeichnung.getText();
+				try {
+					 String temp1 =textField_futter_bezeichnung.getText();			 
+
+					 if(!temp1.isBlank()) {
+						 s.insertFutter(temp1);
+						 textPane_futter_listenausgabe.setText("successfully added DATA");
+						 refreshComboBoxes();
+					 }else {
+						 textPane_futter_listenausgabe.setText("wrong format -pls fill every textField");
+					 }
 					 
-					 s.insertFutter(temp1);
 					
 					} catch (NumberFormatException expt) {
 						textPane_futter_listenausgabe.setText("wrong format");
 						expt.printStackTrace();
-					}	
-				
+					}
 					
 					
 			}
@@ -1110,22 +1122,59 @@ public class GUI_FrankfurterZoo {
 		button_futter_anlegen.setBounds(354, 114, 89, 23);
 		panel_futter.add(button_futter_anlegen);
 		
-		JButton button_futter_aendern = new JButton("\u00C4ndern");
-		button_futter_aendern.setBounds(354, 148, 89, 23);
-		panel_futter.add(button_futter_aendern);
-		
 		JButton button_futter_loeschen = new JButton("L\u00F6schen");
+		button_futter_loeschen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					 String temp1 =textField_futter_bezeichnung.getText();
+					 if(temp1.isBlank()) {
+						 textPane_futter_listenausgabe.setText("Bitte Gebe einen Tier Namen ein");
+					 }else {
+						 if(s.deletFutter(temp1)) {
+							 textPane_futter_listenausgabe.setText("Tier erfolgreich gelï¿½scht"); 
+							 refreshComboBoxes();
+						 }else {
+							 textPane_futter_listenausgabe.setText("es ist ein Fehler aufgetreten"); 
+						 }
+					 }
+					} catch (NumberFormatException expt) {
+						textPane_futter_listenausgabe.setText("wrong format");
+						expt.printStackTrace();
+					}
+				
+			}
+		});
 		button_futter_loeschen.setBounds(354, 182, 89, 23);
 		panel_futter.add(button_futter_loeschen);
 		
 		
 		JButton button_futter_beenden = new JButton("Beenden");
+		button_futter_beenden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmDatenbankDesFrankfurter.dispose();
+			}
+		});
 		button_futter_beenden.setBounds(686, 389, 89, 23);
 		panel_futter.add(button_futter_beenden);
 		
 		JButton button_futter_listenausgabe = new JButton("Futterliste ausgeben");
+		button_futter_listenausgabe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					textPane_futter_listenausgabe.setText(s.selectFutter());
+				}catch(Exception exp){
+					textPane_futter_listenausgabe.setText("Fehler bei der Ausgabe");
+					System.err.println(exp);
+				}
+			}
+		});
 		button_futter_listenausgabe.setBounds(485, 389, 154, 23);
 		panel_futter.add(button_futter_listenausgabe);
+		
+		JLabel lbl_futter_ändern = new JLabel("   \u00C4ndern");
+		lbl_futter_ändern.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lbl_futter_ändern.setBounds(354, 148, 89, 23);
+		panel_futter.add(lbl_futter_ändern);
 		
 			//*Futter--------------------------------
 		
