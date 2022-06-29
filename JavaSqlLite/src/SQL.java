@@ -258,14 +258,14 @@ public class SQL {
 	    		return null;
 			}
 	}
-	public String[] selectPersonal_PNummer() {
+	public String[] selectPfleger_PNummer() {
 
 		ResultSet rs = null;
 		String ret [];
 		    try {
-		    	rs =Dbquery.select("select PNummer from Personal");
+		    	rs =Dbquery.select("select PNummer from Pfleger");
 		    	
-		    	ResultSet length = Dbquery.select("select COUNT(*) from Personal");
+		    	ResultSet length = Dbquery.select("select COUNT(*) from Pfleger");
 		    	
 		    	ret = new String[length.getInt(1)];
 		    	

@@ -1133,23 +1133,23 @@ public class GUI_FrankfurterZoo {
 			Art_Bezeichnung = s.selectArt_Bezeichnung();	
 			comboBox_Tier_ArtAuswahl.setModel(new DefaultComboBoxModel(Art_Bezeichnung));					
 			comboBox_Tier_ArtAuswahl.setSelectedIndex(0);	
-			
+		}catch(Exception ex) {
+			System.err.println("ERROR OCCURRED [GUI_FrankfurterZOO](line 1137) \n as refreshComboBoxes() tried to pull Date for Comboxes \n Art Table had no entries");
+		}
+		try{
 			Gehege_Name = s.selectGehege_Name();	
 			comboBox_Tier_GehegeAuswahl.setModel(new DefaultComboBoxModel(Gehege_Name));					
 			comboBox_Tier_GehegeAuswahl.setSelectedIndex(0);	
-			
-			
-			Personal_PNummer = s.selectPersonal_PNummer();
-			System.out.println("Perrsnal_Pnummer inhalt: -----------");
-			for(String each:Personal_PNummer) {
-				System.out.println(each);
-			}
-			System.out.println("Perrsnal_Pnummer ende: -----------");
-			
+		}catch(Exception ex) {
+			System.err.println("ERROR OCCURRED [GUI_FrankfurterZOO](line 1144) \n as refreshComboBoxes() tried to pull Date for Comboxes \n Gehege Table had no entries");
+		}
+		
+		try {	
+			Personal_PNummer = s.selectPfleger_PNummer();
 			comboBox_gehege_PNummerAuswahl.setModel(new DefaultComboBoxModel(Personal_PNummer));					
 			comboBox_gehege_PNummerAuswahl.setSelectedIndex(0);
 		}catch(Exception ex) {
-			System.err.println("ERROR OCCURRED [GUI_FrankfurterZOO](line 921) \n as refreshComboBoxes() tried to pull Date for Comboxes \n Tables where empty");
+			System.err.println("ERROR OCCURRED [GUI_FrankfurterZOO](line 1152) \n as refreshComboBoxes() tried to pull Date for Comboxes \n Pfleger Table had no entries");
 		}
 		
 	}
