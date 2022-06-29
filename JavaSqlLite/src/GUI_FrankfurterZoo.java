@@ -903,34 +903,34 @@ public class GUI_FrankfurterZoo {
 		
 		JLabel label_arten_bezeichnung = new JLabel("Bezeichnung:");
 		label_arten_bezeichnung.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		label_arten_bezeichnung.setBounds(71, 103, 100, 25);
+		label_arten_bezeichnung.setBounds(71, 100, 100, 25);
 		panel_art.add(label_arten_bezeichnung);
 		
 		JLabel label_arten_lebensraum = new JLabel("Lebensraum:");
 		label_arten_lebensraum.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_arten_lebensraum.setBounds(71, 139, 100, 25);
+		label_arten_lebensraum.setBounds(71, 180, 100, 25);
 		panel_art.add(label_arten_lebensraum);
 		
 		JLabel label_arten_latbezeichnung = new JLabel("lat. Bezeichnung:");
 		label_arten_latbezeichnung.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_arten_latbezeichnung.setBounds(71, 175, 100, 25);
+		label_arten_latbezeichnung.setBounds(71, 140, 100, 25);
 		panel_art.add(label_arten_latbezeichnung);
 		
 				//Textfields-------------------------------------------
 		
 		textField_arten_bezeichnung = new JTextField();
-		textField_arten_bezeichnung.setBounds(200, 106, 125, 20);
+		textField_arten_bezeichnung.setBounds(200, 100, 125, 20);
 		panel_art.add(textField_arten_bezeichnung);
 		textField_arten_bezeichnung.setColumns(10);
 		
 		textField_arten_lebensraum = new JTextField();
 		textField_arten_lebensraum.setColumns(10);
-		textField_arten_lebensraum.setBounds(200, 142, 125, 20);
+		textField_arten_lebensraum.setBounds(200, 180, 125, 20);
 		panel_art.add(textField_arten_lebensraum);
 		
 		textField_arten_latbezeichnung = new JTextField();
 		textField_arten_latbezeichnung.setColumns(10);
-		textField_arten_latbezeichnung.setBounds(200, 178, 125, 20);
+		textField_arten_latbezeichnung.setBounds(200, 140, 125, 20);
 		panel_art.add(textField_arten_latbezeichnung);
 		
 		textPane_arten_listenausgabe = new JTextPane();
@@ -940,32 +940,68 @@ public class GUI_FrankfurterZoo {
 				//Buttons---------------------------------------------------
 		
 		JButton button_arten_clear = new JButton("Clear");
+		button_arten_clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField_arten_bezeichnung.setText("");
+				textField_arten_latbezeichnung.setText("");
+				textField_arten_lebensraum.setText("");
+				textPane_arten_listenausgabe.setText("");
+			}
+		});
 		button_arten_clear.setBounds(351, 49, 89, 23);
 		panel_art.add(button_arten_clear);
 		
 		JButton button_arten_anlegen = new JButton("Anlegen");
 		button_arten_anlegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 try {
+				try {
 					 String temp1 =textField_arten_bezeichnung.getText();
 					 String temp2 =textField_arten_latbezeichnung.getText();
 					 String temp3 =textField_arten_lebensraum.getText();
 					 
-					 s.insertArt(temp1,temp2,temp3);
-					 refreshComboBoxes();
+
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()) {
+						 s.insertArt(temp1,temp2,temp3);
+						 textPane_gehege_listenausgabe.setText("successfully added DATA");
+						 refreshComboBoxes();
+					 }else {
+						 textPane_gehege_listenausgabe.setText("wrong format -pls fill every textField");
+					 }
+					 
+					
 					} catch (NumberFormatException expt) {
-						textPane_futter_listenausgabe.setText("wrong format");
+						textPane_gehege_listenausgabe.setText("wrong format");
 						expt.printStackTrace();
-					}	
-				
-					
-					
+					}
 			}
 		});
 		button_arten_anlegen.setBounds(351, 141, 89, 23);
 		panel_art.add(button_arten_anlegen);
 		
 		JButton button_arten_aendern = new JButton("\u00C4ndern");
+		button_arten_aendern.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 try {
+					 String temp1 =textField_gehege_gehegename.getText();
+					 String temp2 =textField_gehege_baujahr.getText();
+					 String temp3 =textField_gehege_flaeche.getText();
+					 
+
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()) {
+						 s.changeArt(temp1,temp2,temp3);
+						 textPane_gehege_listenausgabe.setText("successfully added DATA");
+						 refreshComboBoxes();
+					 }else {
+						 textPane_gehege_listenausgabe.setText("wrong format -pls fill every textField");
+					 }
+					 
+					
+					} catch (NumberFormatException expt) {
+						textPane_gehege_listenausgabe.setText("wrong format");
+						expt.printStackTrace();
+					}
+			}
+		});
 		button_arten_aendern.setBounds(351, 177, 89, 23);
 		panel_art.add(button_arten_aendern);
 		

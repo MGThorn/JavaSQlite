@@ -347,22 +347,17 @@ public class SQL {
 		Dbmanipulation.insert("UPDATE Pfleger SET Nachname ='"+Nachname+"', Vorname='"+Vorname+"',Geburtsdatum="+GDatum+",PLZ="+plz+",Ort='"+Ort+"',StraﬂeNr='"+StraﬂeNr+"',Tel="+tel+",Eintrittsdatum="+EDatum+",Gehalt="+gehalt+" WHERE PNummer = '"+pNummer+"'" );
 		
 	}
-	public void changeGehege(String GName, String Fl‰che, String Baujahr, String Lebensraum) {
+	public void changeGehege(String GName, String Fl‰che, String Baujahr, String PNummer) {
 		int fl‰che = Integer.parseInt(Fl‰che);
 		int baujahr = Integer.parseInt(Baujahr);
+		int pnummer = Integer.parseInt(PNummer);
 		
-		Dbmanipulation.insert("UPDATE Gehege SET GName='"+GName+"', Fl‰che="+fl‰che+", Baujahr="+baujahr+",Lebensraum='"+Lebensraum+"'");
+		Dbmanipulation.insert("UPDATE Gehege SET GName='"+GName+"', Fl‰che="+fl‰che+", Baujahr="+baujahr+",PNummer='"+pnummer+"'");
 		
 	}
-	public void changeArt(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
-		//TODO auf Art anpassen
-		int GDatum = Integer.parseInt(GebDatum);
-		int ZDatum = Integer.parseInt(Zugangsdatum);
-		int ADatum = Integer.parseInt(Abgangsdatum);
+	public void changeArt(String ABezeichnung, String LatBezeichnung, String Lebensraum) {
 		
-		char g = Geschlecht.charAt(0);
-		
-		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
+		Dbmanipulation.insert("UPDATE Gehege SET ABezeichnung='"+ABezeichnung+"', LatBezeichnung='"+LatBezeichnung+"', Lebensraum='"+Lebensraum+"'");
 		
 	}
 	public void changeFutter(String TName, String GebDatum, String Geschlecht, String Zugangsdatum, String Abgangsdatum, String GName, String ABezeichnung) {
