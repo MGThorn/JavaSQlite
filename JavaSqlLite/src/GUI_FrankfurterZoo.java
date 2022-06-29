@@ -962,15 +962,15 @@ public class GUI_FrankfurterZoo {
 
 					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()) {
 						 s.insertArt(temp1,temp2,temp3);
-						 textPane_gehege_listenausgabe.setText("successfully added DATA");
+						 textPane_arten_listenausgabe.setText("successfully added DATA");
 						 refreshComboBoxes();
 					 }else {
-						 textPane_gehege_listenausgabe.setText("wrong format -pls fill every textField");
+						 textPane_arten_listenausgabe.setText("wrong format -pls fill every textField");
 					 }
 					 
 					
 					} catch (NumberFormatException expt) {
-						textPane_gehege_listenausgabe.setText("wrong format");
+						textPane_arten_listenausgabe.setText("wrong format");
 						expt.printStackTrace();
 					}
 			}
@@ -982,22 +982,22 @@ public class GUI_FrankfurterZoo {
 		button_arten_aendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 try {
-					 String temp1 =textField_gehege_gehegename.getText();
-					 String temp2 =textField_gehege_baujahr.getText();
-					 String temp3 =textField_gehege_flaeche.getText();
+					 String temp1 =textField_arten_bezeichnung.getText();
+					 String temp2 =textField_arten_latbezeichnung.getText();
+					 String temp3 =textField_arten_lebensraum.getText();
 					 
 
 					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()) {
 						 s.changeArt(temp1,temp2,temp3);
-						 textPane_gehege_listenausgabe.setText("successfully added DATA");
+						 textPane_arten_listenausgabe.setText("successfully added DATA");
 						 refreshComboBoxes();
 					 }else {
-						 textPane_gehege_listenausgabe.setText("wrong format -pls fill every textField");
+						 textPane_arten_listenausgabe.setText("wrong format -pls fill every textField");
 					 }
 					 
 					
 					} catch (NumberFormatException expt) {
-						textPane_gehege_listenausgabe.setText("wrong format");
+						textPane_arten_listenausgabe.setText("wrong format");
 						expt.printStackTrace();
 					}
 			}
@@ -1006,14 +1006,50 @@ public class GUI_FrankfurterZoo {
 		panel_art.add(button_arten_aendern);
 		
 		JButton button_arten_loeschen = new JButton("L\u00F6schen");
+		button_arten_loeschen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					 String temp1 =textField_arten_bezeichnung.getText();
+					 if(temp1.isBlank()) {
+						 textPane_arten_listenausgabe.setText("Bitte Gebe einen Tier Namen ein");
+					 }else {
+						 if(s.deletGehege(temp1)) {
+							 textPane_arten_listenausgabe.setText("Tier erfolgreich gel�scht"); 
+							 refreshComboBoxes();
+						 }else {
+							 textPane_arten_listenausgabe.setText("es ist ein Fehler aufgetreten"); 
+						 }
+					 }
+					} catch (NumberFormatException expt) {
+						textPane_arten_listenausgabe.setText("wrong format");
+						expt.printStackTrace();
+					}
+			}
+		});
 		button_arten_loeschen.setBounds(351, 211, 89, 23);
 		panel_art.add(button_arten_loeschen);
 		
 		JButton button_arten_beenden = new JButton("Beenden");
+		button_arten_beenden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmDatenbankDesFrankfurter.dispose();
+			}
+		});
 		button_arten_beenden.setBounds(684, 390, 89, 23);
 		panel_art.add(button_arten_beenden);
 		
 		JButton button_arten_listenausgabe = new JButton("Artenliste ausgeben");
+		button_gehege_listenausgabe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				try{
+					textPane_arten_listenausgabe.setText(s.selectArt());
+				}catch(Exception exp){
+					textPane_arten_listenausgabe.setText("Fehler bei der Ausgabe");
+					System.err.println(exp);
+				}
+			}
+		});
 		button_arten_listenausgabe.setBounds(466, 390, 148, 23);
 		panel_art.add(button_arten_listenausgabe);
 		
