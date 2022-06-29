@@ -202,6 +202,70 @@ public class GUI_FrankfurterZoo {
 		lblResetAllData.setBounds(128, 395, 222, 39);
 		panel_haupt.add(lblResetAllData);
 		
+		//*Futterdetails------------------------------------------------------------------------------------------------------
+		
+		JPanel panel_pflegt = new JPanel();
+		tabbedPane.addTab("Pfleger Tier Zuordnung", null, panel_pflegt, null);
+		panel_pflegt.setLayout(null);
+		
+		JLabel lblPflegerTierZuordnung = new JLabel("Pfleger Tier Zuordnung");
+		lblPflegerTierZuordnung.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblPflegerTierZuordnung.setBounds(64, 37, 243, 26);
+		panel_pflegt.add(lblPflegerTierZuordnung);
+		
+		JLabel label_gehege_gehegename_1 = new JLabel("");
+		label_gehege_gehegename_1.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		label_gehege_gehegename_1.setBounds(64, 90, 84, 26);
+		panel_pflegt.add(label_gehege_gehegename_1);
+		
+		JLabel lblTierName = new JLabel("Tier Name:");
+		lblTierName.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblTierName.setBounds(64, 170, 84, 26);
+		panel_pflegt.add(lblTierName);
+		
+		JLabel lblPflegerNummer = new JLabel("Pfleger Nummer:");
+		lblPflegerNummer.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblPflegerNummer.setBounds(64, 210, 117, 26);
+		panel_pflegt.add(lblPflegerNummer);
+		
+		JComboBox comboBox_pflegt_PNummerAuswahl = new JComboBox();
+		comboBox_pflegt_PNummerAuswahl.setSelectedIndex(0);
+		comboBox_pflegt_PNummerAuswahl.setBounds(191, 210, 127, 20);
+		panel_pflegt.add(comboBox_pflegt_PNummerAuswahl);
+		
+		JTextPane textPane_pflegt_listenausgabe = new JTextPane();
+		textPane_pflegt_listenausgabe.setBounds(469, 44, 309, 341);
+		panel_pflegt.add(textPane_pflegt_listenausgabe);
+		
+		JButton button_pflegt_clear = new JButton("Clear");
+		button_pflegt_clear.setBounds(354, 43, 89, 23);
+		panel_pflegt.add(button_pflegt_clear);
+		
+		JButton button_pflegt_anlegen = new JButton("Anlegen");
+		button_pflegt_anlegen.setBounds(354, 126, 89, 23);
+		panel_pflegt.add(button_pflegt_anlegen);
+		
+		JButton button_pflegt_aendern = new JButton("\u00C4ndern");
+		button_pflegt_aendern.setBounds(354, 163, 89, 23);
+		panel_pflegt.add(button_pflegt_aendern);
+		
+		JButton button_pflegt_loeschen = new JButton("L\u00F6schen");
+		button_pflegt_loeschen.setBounds(354, 197, 89, 23);
+		panel_pflegt.add(button_pflegt_loeschen);
+		
+		JButton button_pflegt_beenden = new JButton("Beenden");
+		button_pflegt_beenden.setBounds(689, 396, 89, 23);
+		panel_pflegt.add(button_pflegt_beenden);
+		
+		JButton button_pflegt_listenausgabe = new JButton("Gehegeliste ausgeben");
+		button_pflegt_listenausgabe.setBounds(469, 396, 164, 23);
+		panel_pflegt.add(button_pflegt_listenausgabe);
+		
+		JComboBox comboBox_pflegt_TierNameAuswahl = new JComboBox();
+		comboBox_pflegt_TierNameAuswahl.setSelectedIndex(0);
+		comboBox_pflegt_TierNameAuswahl.setBounds(191, 170, 127, 20);
+		panel_pflegt.add(comboBox_pflegt_TierNameAuswahl);
+		
 			
 //*Hauptmen�------------------------------------------------------------------------------------------------------------------------
 		
@@ -1245,7 +1309,6 @@ public class GUI_FrankfurterZoo {
 		button_futterdetails_listenausgabe.setBounds(446, 389, 166, 23);
 		panel_futterdetails.add(button_futterdetails_listenausgabe);
 		
-		//*Futterdetails------------------------------------------------------------------------------------------------------
 		refreshComboBoxes();
 		
 	}
