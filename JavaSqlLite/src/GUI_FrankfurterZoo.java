@@ -1139,7 +1139,13 @@ public class GUI_FrankfurterZoo {
 			comboBox_Tier_GehegeAuswahl.setSelectedIndex(0);	
 			
 			
-			Personal_PNummer = s.selectPersonal_PNummer();	
+			Personal_PNummer = s.selectPersonal_PNummer();
+			System.out.println("Perrsnal_Pnummer inhalt: -----------");
+			for(String each:Personal_PNummer) {
+				System.out.println(each);
+			}
+			System.out.println("Perrsnal_Pnummer ende: -----------");
+			
 			comboBox_gehege_PNummerAuswahl.setModel(new DefaultComboBoxModel(Personal_PNummer));					
 			comboBox_gehege_PNummerAuswahl.setSelectedIndex(0);
 		}catch(Exception ex) {

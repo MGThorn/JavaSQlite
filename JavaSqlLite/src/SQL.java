@@ -344,7 +344,7 @@ public class SQL {
 		
 		
 		
-		Dbmanipulation.insert("UPDATE Pfleger SET PNummer ='"+pNummer+"', Nachname ='"+Nachname+"', Vorname='"+Vorname+"',Geburtsdatum="+GDatum+",PLZ="+plz+",Ort='"+Ort+"',StraﬂeNr='"+StraﬂeNr+"',Tel="+tel+",Eintrittsdatum="+EDatum+",Gehalt="+gehalt);
+		Dbmanipulation.insert("UPDATE Pfleger SET Nachname ='"+Nachname+"', Vorname='"+Vorname+"',Geburtsdatum="+GDatum+",PLZ="+plz+",Ort='"+Ort+"',StraﬂeNr='"+StraﬂeNr+"',Tel="+tel+",Eintrittsdatum="+EDatum+",Gehalt="+gehalt+" WHERE PNummer = '"+pNummer+"'" );
 		
 	}
 	public void changeGehege(String GName, String Fl‰che, String Baujahr, String Lebensraum) {
