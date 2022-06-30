@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.Color;
 
 
 public class GUI_FrankfurterZoo {
@@ -44,7 +45,7 @@ public class GUI_FrankfurterZoo {
 	private JTextField textField_gehege_gehegename;
 	private JTextField textField_gehege_baujahr;
 	private JTextField textField_gehege_flaeche;
-	private JComboBox comboBox_gehege_PNummerAuswahl;
+	
 	
 	
 	private JTextField textField_arten_bezeichnung;
@@ -65,19 +66,25 @@ public class GUI_FrankfurterZoo {
 	
 	private String[] Art_Bezeichnung;
 	private String[] Gehege_Name;
-	private String[] Personal_PNummer;
+	private String[] Pfleger_Nummer;
 	private String[] Tier_Name;
+	private String[] Futter_Bezeichnung;
 	
+	private JComboBox comboBox_gehege_PNummerAuswahl;
 	private JComboBox comboBox_Tier_ArtAuswahl;
 	private JComboBox comboBox_Tier_GehegeAuswahl;
 	private JComboBox comboBox_pflegt_PNummerAuswahl;
 	private JComboBox comboBox_pflegt_TierNameAuswahl;
+	private JComboBox comboBox_futterdetails_TierNameAuswahl;
+	private JComboBox comboBox_futterdetails_FutterBezeichnungAuswahl;
 	
 	private String temp_gehege_PNummerAuswahl;
 	private String temp_pflegt_PNummerAuswahl;
 	private String temp_Tier_ArtAuswahl;
 	private String temp_Tier_GehegeAuswahl;
 	private String temp_pflegt_TierNameAuswahl;
+	private String temp_futterdetails_TierNameAuswahl;
+	private String temp_futterdetails_FutterBezeichnungAuswahl;
 	/**
 	 * Launch the application.
 	 */
@@ -141,6 +148,7 @@ public class GUI_FrankfurterZoo {
 		});
 		
 		JPanel panel_haupt = new JPanel();
+		panel_haupt.setBackground(Color.PINK);
 		tabbedPane.addTab("Hauptmen�", null, panel_haupt, null);
 		panel_haupt.setLayout(null);
 		
@@ -193,6 +201,8 @@ public class GUI_FrankfurterZoo {
 		panel_haupt.add(label_hauptmenue_hilfe_4);
 		
 		JButton btn_Reset= new JButton("RESET ");
+		btn_Reset.setToolTipText("WARNING");
+		btn_Reset.setForeground(Color.BLACK);
 		btn_Reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				s.deletDatabases();
@@ -891,7 +901,7 @@ public class GUI_FrankfurterZoo {
 		comboBox_gehege_PNummerAuswahl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(comboBox_gehege_PNummerAuswahl.getSelectedItem());
-				temp_gehege_PNummerAuswahl=(String) comboBox_gehege_PNummerAuswahl.getSelectedItem();
+				temp_futterdetails_FutterBezeichnungAuswahl=(String) comboBox_gehege_PNummerAuswahl.getSelectedItem();
 			}
 		});
 		panel_gehege.add(comboBox_gehege_PNummerAuswahl);
@@ -1325,23 +1335,23 @@ public class GUI_FrankfurterZoo {
 		
 		JLabel label_futterdetails_menge = new JLabel("Menge:");
 		label_futterdetails_menge.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		label_futterdetails_menge.setBounds(64, 113, 75, 25);
+		label_futterdetails_menge.setBounds(40, 120, 75, 25);
 		panel_futterdetails.add(label_futterdetails_menge);
 		
 		JLabel label_futterdetails_uhrzeit = new JLabel("Uhrzeit:");
 		label_futterdetails_uhrzeit.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		label_futterdetails_uhrzeit.setBounds(64, 149, 75, 25);
+		label_futterdetails_uhrzeit.setBounds(40, 160, 75, 25);
 		panel_futterdetails.add(label_futterdetails_uhrzeit);
 	
 				//Textfields-------------------------------------------
 				
 		textField_futterdetails_menge = new JTextField();
-		textField_futterdetails_menge.setBounds(149, 116, 134, 20);
+		textField_futterdetails_menge.setBounds(150, 120, 140, 20);
 		panel_futterdetails.add(textField_futterdetails_menge);
 		textField_futterdetails_menge.setColumns(10);
 		
 		textField_futterdetails_uhrzeit = new JTextField();
-		textField_futterdetails_uhrzeit.setBounds(149, 152, 134, 20);
+		textField_futterdetails_uhrzeit.setBounds(150, 160, 140, 20);
 		panel_futterdetails.add(textField_futterdetails_uhrzeit);
 		textField_futterdetails_uhrzeit.setColumns(10);
 		
@@ -1352,10 +1362,40 @@ public class GUI_FrankfurterZoo {
 				//Buttons-----------------------------------------------
 		
 		JButton button_futterdetails_clear = new JButton("Clear");
+		button_futterdetails_clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField_futterdetails_menge.setText("");
+				textField_futterdetails_uhrzeit.setText("");
+				textPane_futterdetails_listenausgabe.setText("");
+				}
+		});
 		button_futterdetails_clear.setBounds(321, 61, 89, 23);
 		panel_futterdetails.add(button_futterdetails_clear);
 		
 		JButton button_futterdetails_anlegen = new JButton("Anlegen");
+		button_futterdetails_anlegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 try {
+					 String temp1 =textField_futterdetails_menge.getText();
+					 String temp2 =textField_futterdetails_uhrzeit.getText();
+					 
+					 
+
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&temp_gehege_PNummerAuswahl!=null) {
+						 
+						 textPane_gehege_listenausgabe.setText("successfully added DATA");
+						 refreshComboBoxes();
+					 }else {
+						 textPane_gehege_listenausgabe.setText("wrong format -pls fill every textField");
+					 }
+					 
+					
+					} catch (NumberFormatException expt) {
+						textPane_gehege_listenausgabe.setText("wrong format");
+						expt.printStackTrace();
+					}
+			}
+		});
 		button_futterdetails_anlegen.setBounds(321, 149, 89, 23);
 		panel_futterdetails.add(button_futterdetails_anlegen);
 		
@@ -1375,6 +1415,36 @@ public class GUI_FrankfurterZoo {
 		JButton button_futterdetails_listenausgabe = new JButton("Futterdetails ausgeben");
 		button_futterdetails_listenausgabe.setBounds(446, 389, 166, 23);
 		panel_futterdetails.add(button_futterdetails_listenausgabe);
+		
+		JLabel label_futterdetails_TierName = new JLabel("Name des Tieres:");
+		label_futterdetails_TierName.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_futterdetails_TierName.setBounds(40, 200, 95, 25);
+		panel_futterdetails.add(label_futterdetails_TierName);
+		
+		comboBox_futterdetails_TierNameAuswahl = new JComboBox();
+		comboBox_futterdetails_TierNameAuswahl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(comboBox_futterdetails_TierNameAuswahl.getSelectedItem());
+				temp_futterdetails_TierNameAuswahl=(String) comboBox_futterdetails_TierNameAuswahl.getSelectedItem();
+			}
+		});
+		comboBox_futterdetails_TierNameAuswahl.setBounds(150, 200, 140, 20);
+		panel_futterdetails.add(comboBox_futterdetails_TierNameAuswahl);
+		
+		JLabel label_futterdetails_NameDesFutters = new JLabel("Name des Futters:");
+		label_futterdetails_NameDesFutters.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		label_futterdetails_NameDesFutters.setBounds(40, 240, 101, 25);
+		panel_futterdetails.add(label_futterdetails_NameDesFutters);
+		
+		comboBox_futterdetails_FutterBezeichnungAuswahl = new JComboBox();
+		comboBox_futterdetails_FutterBezeichnungAuswahl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(comboBox_futterdetails_FutterBezeichnungAuswahl.getSelectedItem());
+				temp_gehege_PNummerAuswahl=(String) comboBox_futterdetails_FutterBezeichnungAuswahl.getSelectedItem();
+			}
+		});
+		comboBox_futterdetails_FutterBezeichnungAuswahl.setBounds(150, 240, 140, 20);
+		panel_futterdetails.add(comboBox_futterdetails_FutterBezeichnungAuswahl);
 		
 		refreshComboBoxes();
 		
@@ -1396,10 +1466,10 @@ public class GUI_FrankfurterZoo {
 		}
 		
 		try {	
-			Personal_PNummer = s.selectPfleger_PNummer();
-			comboBox_gehege_PNummerAuswahl.setModel(new DefaultComboBoxModel(Personal_PNummer));					
+			Pfleger_Nummer = s.selectPfleger_PNummer();
+			comboBox_gehege_PNummerAuswahl.setModel(new DefaultComboBoxModel(Pfleger_Nummer));					
 			comboBox_gehege_PNummerAuswahl.setSelectedIndex(0);
-			comboBox_pflegt_PNummerAuswahl.setModel(new DefaultComboBoxModel(Personal_PNummer));					
+			comboBox_pflegt_PNummerAuswahl.setModel(new DefaultComboBoxModel(Pfleger_Nummer));					
 			comboBox_pflegt_PNummerAuswahl.setSelectedIndex(0);
 		}catch(Exception ex) {
 			System.err.println("ERROR OCCURRED [GUI_FrankfurterZOO](line 1152) \n as refreshComboBoxes() tried to pull Date for Comboxes \n Pfleger Table had no entries");
@@ -1408,6 +1478,15 @@ public class GUI_FrankfurterZoo {
 			Tier_Name = s.selectTier_TName();
 			comboBox_pflegt_TierNameAuswahl.setModel(new DefaultComboBoxModel(Tier_Name));					
 			comboBox_pflegt_TierNameAuswahl.setSelectedIndex(0);
+			comboBox_futterdetails_TierNameAuswahl.setModel(new DefaultComboBoxModel(Tier_Name));					
+			comboBox_futterdetails_TierNameAuswahl.setSelectedIndex(0);
+		}catch(Exception ex) {
+			System.err.println("ERROR OCCURRED [GUI_FrankfurterZOO](line 1152) \n as refreshComboBoxes() tried to pull Date for Comboxes \n Pfleger Table had no entries");
+		}
+		try {	
+			Futter_Bezeichnung = s.selectFutter_Bezeichnung();
+			comboBox_futterdetails_FutterBezeichnungAuswahl.setModel(new DefaultComboBoxModel(Futter_Bezeichnung));					
+			comboBox_futterdetails_FutterBezeichnungAuswahl.setSelectedIndex(0);
 		}catch(Exception ex) {
 			System.err.println("ERROR OCCURRED [GUI_FrankfurterZOO](line 1152) \n as refreshComboBoxes() tried to pull Date for Comboxes \n Pfleger Table had no entries");
 		}

@@ -335,6 +335,31 @@ public class SQL {
 	    		return null;
 			}
 	}
+	public String[] selectFutter_Bezeichnung() {
+
+		ResultSet rs = null;
+		String ret [];
+		    try {
+		    	rs =Dbquery.select("select FBezeichnung from Futter");
+		    	
+		    	ResultSet length = Dbquery.select("select COUNT(*) from Futter");
+		    	
+		    	ret = new String[length.getInt(1)];
+		    	
+		    	int i =0;
+				while(rs.next()){
+					ret[i] = rs.getString(1);
+					i++;
+				 		
+				  }
+				rs.close();
+				length.close();
+				return ret;
+			} catch (SQLException e) {
+				e.printStackTrace();
+	    		return null;
+			}
+	}
 	
 	public boolean deletTier(String TName) {
 		
