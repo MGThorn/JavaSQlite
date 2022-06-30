@@ -219,11 +219,6 @@ public class GUI_FrankfurterZoo {
 		lblPflegerTierZuordnung.setBounds(64, 37, 243, 26);
 		panel_pflegt.add(lblPflegerTierZuordnung);
 		
-		JLabel label_gehege_gehegename_1 = new JLabel("");
-		label_gehege_gehegename_1.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		label_gehege_gehegename_1.setBounds(64, 90, 84, 26);
-		panel_pflegt.add(label_gehege_gehegename_1);
-		
 		JLabel lblTierName = new JLabel("Tier Name:");
 		lblTierName.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblTierName.setBounds(64, 170, 84, 26);
@@ -241,7 +236,6 @@ public class GUI_FrankfurterZoo {
 				temp_pflegt_PNummerAuswahl=(String) comboBox_pflegt_PNummerAuswahl.getSelectedItem();
 			}
 		});
-		//comboBox_pflegt_PNummerAuswahl.setSelectedIndex(0);
 		comboBox_pflegt_PNummerAuswahl.setBounds(191, 210, 127, 20);
 		panel_pflegt.add(comboBox_pflegt_PNummerAuswahl);
 		
@@ -279,10 +273,29 @@ public class GUI_FrankfurterZoo {
 					}	
 			}
 		});
-		button_pflegt_anlegen.setBounds(354, 126, 89, 23);
+		button_pflegt_anlegen.setBounds(354, 163, 89, 23);
 		panel_pflegt.add(button_pflegt_anlegen);
 		
 		JButton button_pflegt_loeschen = new JButton("L\u00F6schen");
+		button_pflegt_loeschen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					 if(temp_pflegt_TierNameAuswahl==null&&temp_pflegt_PNummerAuswahl==null) {
+						 textPane_pflegt_listenausgabe.setText("Bitte Gebe eine PflegerID ein");
+					 }else {
+						 if(s.deletPflegt(temp_pflegt_PNummerAuswahl,temp_pflegt_TierNameAuswahl)) {
+							 textPane_pflegt_listenausgabe.setText("Pfleger erfolgreich gel�scht"); 
+							 refreshComboBoxes();
+						 }else {
+							 textPane_pflegt_listenausgabe.setText("es ist ein Fehler aufgetreten"); 
+						 }
+					 }
+					} catch (NumberFormatException expt) {
+						textPane_pfleger_listenausgabe.setText("wrong format");
+						expt.printStackTrace();
+					}
+			}
+		});
 		button_pflegt_loeschen.setBounds(354, 197, 89, 23);
 		panel_pflegt.add(button_pflegt_loeschen);
 		
@@ -292,11 +305,21 @@ public class GUI_FrankfurterZoo {
 				frmDatenbankDesFrankfurter.dispose();
 			}
 		});
-		button_pflegt_beenden.setBounds(689, 396, 89, 23);
+		button_pflegt_beenden.setBounds(700, 396, 89, 23);
 		panel_pflegt.add(button_pflegt_beenden);
 		
 		JButton button_pflegt_listenausgabe = new JButton("TierPflegerZuordnung ausgeben");
-		button_pflegt_listenausgabe.setBounds(469, 396, 240 , 23);
+		button_pflegt_listenausgabe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					try{
+						textPane_pflegt_listenausgabe.setText(s.selectPflegt());
+					}catch(Exception exp){
+						textPane_pflegt_listenausgabe.setText("Fehler bei der Ausgabe");
+						System.err.println(exp);
+					}
+			}
+		});
+		button_pflegt_listenausgabe.setBounds(469, 396, 220 , 23);
 		panel_pflegt.add(button_pflegt_listenausgabe);
 		
 		comboBox_pflegt_TierNameAuswahl = new JComboBox();
