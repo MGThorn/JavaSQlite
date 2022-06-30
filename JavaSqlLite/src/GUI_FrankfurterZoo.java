@@ -237,8 +237,8 @@ public class GUI_FrankfurterZoo {
 		comboBox_pflegt_PNummerAuswahl = new JComboBox();
 		comboBox_pflegt_PNummerAuswahl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(comboBox_Tier_ArtAuswahl.getSelectedItem());
-				temp_pflegt_PNummerAuswahl=(String) comboBox_Tier_ArtAuswahl.getSelectedItem();
+				System.out.println(comboBox_pflegt_PNummerAuswahl.getSelectedItem());
+				temp_pflegt_PNummerAuswahl=(String) comboBox_pflegt_PNummerAuswahl.getSelectedItem();
 			}
 		});
 		//comboBox_pflegt_PNummerAuswahl.setSelectedIndex(0);
@@ -263,7 +263,7 @@ public class GUI_FrankfurterZoo {
 		button_pflegt_anlegen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 try {
-					 if(!temp_pflegt_TierNameAuswahl.isBlank()&&!temp_pflegt_PNummerAuswahl.isBlank()) {
+					 if(temp_pflegt_TierNameAuswahl!=null&&temp_pflegt_PNummerAuswahl!=null) {
 						 
 						 s.insertPflegt(temp_pflegt_PNummerAuswahl, temp_pflegt_TierNameAuswahl);
 						 textPane_pflegt_listenausgabe.setText("successfully added DATA");
@@ -295,10 +295,10 @@ public class GUI_FrankfurterZoo {
 		panel_pflegt.add(button_pflegt_listenausgabe);
 		
 		comboBox_pflegt_TierNameAuswahl = new JComboBox();
-		comboBox_pflegt_PNummerAuswahl.addActionListener(new ActionListener() {
+		comboBox_pflegt_TierNameAuswahl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(comboBox_Tier_ArtAuswahl.getSelectedItem());
-				temp_pflegt_PNummerAuswahl=(String) comboBox_Tier_ArtAuswahl.getSelectedItem();
+				System.out.println(comboBox_pflegt_TierNameAuswahl.getSelectedItem());
+				temp_pflegt_TierNameAuswahl=(String) comboBox_pflegt_TierNameAuswahl.getSelectedItem();
 			}
 		});
 		//comboBox_pflegt_TierNameAuswahl.setSelectedIndex(0);
