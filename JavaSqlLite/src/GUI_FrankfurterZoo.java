@@ -296,7 +296,7 @@ public class GUI_FrankfurterZoo {
 		panel_pflegt.add(button_pflegt_beenden);
 		
 		JButton button_pflegt_listenausgabe = new JButton("TierPflegerZuordnung ausgeben");
-		button_pflegt_listenausgabe.setBounds(469, 396, 164, 23);
+		button_pflegt_listenausgabe.setBounds(469, 396, 240 , 23);
 		panel_pflegt.add(button_pflegt_listenausgabe);
 		
 		comboBox_pflegt_TierNameAuswahl = new JComboBox();
