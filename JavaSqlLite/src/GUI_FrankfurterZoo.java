@@ -265,15 +265,15 @@ public class GUI_FrankfurterZoo {
 				 try {
 					 if(!temp_pflegt_TierNameAuswahl.isBlank()&&!temp_pflegt_PNummerAuswahl.isBlank()) {
 						 
-						 //TODO s.insertPfleger(temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10);
-						 textPane_pfleger_listenausgabe.setText("successfully added DATA");
+						 s.insertPflegt(temp_pflegt_PNummerAuswahl, temp_pflegt_TierNameAuswahl);
+						 textPane_pflegt_listenausgabe.setText("successfully added DATA");
 						 refreshComboBoxes();
 					 }else {
-						 textPane_pfleger_listenausgabe.setText("wrong format -pls fill every textField");
+						 textPane_pflegt_listenausgabe.setText("wrong format -pls fill every textField");
 					 }
 					
 					} catch (NumberFormatException expt) {
-						textPane_pfleger_listenausgabe.setText("wrong format");
+						textPane_pflegt_listenausgabe.setText("wrong format");
 						expt.printStackTrace();
 						
 					}	
@@ -281,10 +281,6 @@ public class GUI_FrankfurterZoo {
 		});
 		button_pflegt_anlegen.setBounds(354, 126, 89, 23);
 		panel_pflegt.add(button_pflegt_anlegen);
-		
-		JButton button_pflegt_aendern = new JButton("\u00C4ndern");
-		button_pflegt_aendern.setBounds(354, 163, 89, 23);
-		panel_pflegt.add(button_pflegt_aendern);
 		
 		JButton button_pflegt_loeschen = new JButton("L\u00F6schen");
 		button_pflegt_loeschen.setBounds(354, 197, 89, 23);

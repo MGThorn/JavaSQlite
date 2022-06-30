@@ -91,6 +91,12 @@ public class SQL {
 		Dbmanipulation.insert("insert into Futter values('"+Bezeichnung+"')");
 		
 	}
+	public void insertPflegt(String PNummer, String TName) {
+		int pnummer = Integer.parseInt(PNummer);
+		
+		Dbmanipulation.insert("insert into pflegt values("+pnummer+",'"+TName+"')");
+		
+	}
 	
 	//select for all Tables
 	public String selectTiere() {
@@ -192,6 +198,27 @@ public class SQL {
 		String ret = "";
 		    try {
 		    	rs =Dbquery.select("select * from Futter");
+		    	int maxColumns = rs.getMetaData().getColumnCount();
+				while(rs.next()){
+					ret += " \n ";
+				 		for(int i = 1;i<=maxColumns;i++) {
+				 			ret += rs.getString(i);
+				 			ret +=", ";
+				 		}
+				 		
+				  }
+				return ret;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return "";
+			}
+	}
+	public String selectPflegt() {
+
+		ResultSet rs = null;
+		String ret = "";
+		    try {
+		    	rs =Dbquery.select("select * from pflegt");
 		    	int maxColumns = rs.getMetaData().getColumnCount();
 				while(rs.next()){
 					ret += " \n ";
@@ -350,6 +377,16 @@ public class SQL {
 	public boolean deletFutter(String FBezeichnung) {
 		try{
 			Dbmanipulation.delete("DELETE FROM Futter WHERE FBezeichnung ='"+FBezeichnung+"'");
+			return true;
+		}catch(Exception ex) {
+			System.err.println(ex);
+			return false;
+		}
+	}
+	public boolean deletPflegt(String PNummer,String TName) {
+		int pnummer = Integer.parseInt(PNummer); 
+		try{;
+			Dbmanipulation.delete("DELETE FROM pflegt WHERE PNummer ="+pnummer+" and TName='"+TName+"'");
 			return true;
 		}catch(Exception ex) {
 			System.err.println(ex);
