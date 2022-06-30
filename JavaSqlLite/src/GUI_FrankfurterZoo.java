@@ -45,7 +45,7 @@ public class GUI_FrankfurterZoo {
 	private JTextField textField_gehege_baujahr;
 	private JTextField textField_gehege_flaeche;
 	private JComboBox comboBox_gehege_PNummerAuswahl;
-	private String temp_gehege_PNummerAuswhal;
+	
 	
 	private JTextField textField_arten_bezeichnung;
 	private JTextField textField_arten_lebensraum;
@@ -66,12 +66,18 @@ public class GUI_FrankfurterZoo {
 	private String[] Art_Bezeichnung;
 	private String[] Gehege_Name;
 	private String[] Personal_PNummer;
+	private String[] Tier_Name;
 	
 	private JComboBox comboBox_Tier_ArtAuswahl;
 	private JComboBox comboBox_Tier_GehegeAuswahl;
+	private JComboBox comboBox_pflegt_PNummerAuswahl;
+	private JComboBox comboBox_pflegt_TierNameAuswahl;
 	
+	private String temp_gehege_PNummerAuswahl;
+	private String temp_pflegt_PNummerAuswahl;
 	private String temp_Tier_ArtAuswahl;
 	private String temp_Tier_GehegeAuswahl;
+	private String temp_pflegt_TierNameAuswahl;
 	/**
 	 * Launch the application.
 	 */
@@ -228,8 +234,14 @@ public class GUI_FrankfurterZoo {
 		lblPflegerNummer.setBounds(64, 210, 117, 26);
 		panel_pflegt.add(lblPflegerNummer);
 		
-		JComboBox comboBox_pflegt_PNummerAuswahl = new JComboBox();
-		comboBox_pflegt_PNummerAuswahl.setSelectedIndex(0);
+		comboBox_pflegt_PNummerAuswahl = new JComboBox();
+		comboBox_pflegt_PNummerAuswahl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(comboBox_Tier_ArtAuswahl.getSelectedItem());
+				temp_pflegt_PNummerAuswahl=(String) comboBox_Tier_ArtAuswahl.getSelectedItem();
+			}
+		});
+		//comboBox_pflegt_PNummerAuswahl.setSelectedIndex(0);
 		comboBox_pflegt_PNummerAuswahl.setBounds(191, 210, 127, 20);
 		panel_pflegt.add(comboBox_pflegt_PNummerAuswahl);
 		
@@ -238,10 +250,35 @@ public class GUI_FrankfurterZoo {
 		panel_pflegt.add(textPane_pflegt_listenausgabe);
 		
 		JButton button_pflegt_clear = new JButton("Clear");
+		button_pflegt_clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 textPane_pflegt_listenausgabe.setText("");
+				
+			}
+		}); 
 		button_pflegt_clear.setBounds(354, 43, 89, 23);
 		panel_pflegt.add(button_pflegt_clear);
 		
 		JButton button_pflegt_anlegen = new JButton("Anlegen");
+		button_pflegt_anlegen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 try {
+					 if(!temp_pflegt_TierNameAuswahl.isBlank()&&!temp_pflegt_PNummerAuswahl.isBlank()) {
+						 
+						 //TODO s.insertPfleger(temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10);
+						 textPane_pfleger_listenausgabe.setText("successfully added DATA");
+						 refreshComboBoxes();
+					 }else {
+						 textPane_pfleger_listenausgabe.setText("wrong format -pls fill every textField");
+					 }
+					
+					} catch (NumberFormatException expt) {
+						textPane_pfleger_listenausgabe.setText("wrong format");
+						expt.printStackTrace();
+						
+					}	
+			}
+		});
 		button_pflegt_anlegen.setBounds(354, 126, 89, 23);
 		panel_pflegt.add(button_pflegt_anlegen);
 		
@@ -261,8 +298,14 @@ public class GUI_FrankfurterZoo {
 		button_pflegt_listenausgabe.setBounds(469, 396, 164, 23);
 		panel_pflegt.add(button_pflegt_listenausgabe);
 		
-		JComboBox comboBox_pflegt_TierNameAuswahl = new JComboBox();
-		comboBox_pflegt_TierNameAuswahl.setSelectedIndex(0);
+		comboBox_pflegt_TierNameAuswahl = new JComboBox();
+		comboBox_pflegt_PNummerAuswahl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println(comboBox_Tier_ArtAuswahl.getSelectedItem());
+				temp_pflegt_PNummerAuswahl=(String) comboBox_Tier_ArtAuswahl.getSelectedItem();
+			}
+		});
+		//comboBox_pflegt_TierNameAuswahl.setSelectedIndex(0);
 		comboBox_pflegt_TierNameAuswahl.setBounds(191, 170, 127, 20);
 		panel_pflegt.add(comboBox_pflegt_TierNameAuswahl);
 		
@@ -824,7 +867,7 @@ public class GUI_FrankfurterZoo {
 		comboBox_gehege_PNummerAuswahl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(comboBox_gehege_PNummerAuswahl.getSelectedItem());
-				temp_gehege_PNummerAuswhal=(String) comboBox_gehege_PNummerAuswahl.getSelectedItem();
+				temp_gehege_PNummerAuswahl=(String) comboBox_gehege_PNummerAuswahl.getSelectedItem();
 			}
 		});
 		panel_gehege.add(comboBox_gehege_PNummerAuswahl);
@@ -856,8 +899,8 @@ public class GUI_FrankfurterZoo {
 					 String temp3 =textField_gehege_flaeche.getText();
 					 
 
-					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&temp_gehege_PNummerAuswhal!=null) {
-						 s.insertGehege(temp1,temp2,temp3,temp_gehege_PNummerAuswhal);
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&temp_gehege_PNummerAuswahl!=null) {
+						 s.insertGehege(temp1,temp2,temp3,temp_gehege_PNummerAuswahl);
 						 textPane_gehege_listenausgabe.setText("successfully added DATA");
 						 refreshComboBoxes();
 					 }else {
@@ -883,8 +926,8 @@ public class GUI_FrankfurterZoo {
 					 String temp3 =textField_gehege_flaeche.getText();
 					 
 
-					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&temp_gehege_PNummerAuswhal!=null) {
-						 s.changeGehege(temp1,temp2,temp3,temp_gehege_PNummerAuswhal);
+					 if(!temp1.isBlank()&&!temp2.isBlank()&&!temp3.isBlank()&&temp_gehege_PNummerAuswahl!=null) {
+						 s.changeGehege(temp1,temp2,temp3,temp_gehege_PNummerAuswahl);
 						 textPane_gehege_listenausgabe.setText("successfully merged DATA");
 						 refreshComboBoxes();
 					 }else {
@@ -1332,6 +1375,15 @@ public class GUI_FrankfurterZoo {
 			Personal_PNummer = s.selectPfleger_PNummer();
 			comboBox_gehege_PNummerAuswahl.setModel(new DefaultComboBoxModel(Personal_PNummer));					
 			comboBox_gehege_PNummerAuswahl.setSelectedIndex(0);
+			comboBox_pflegt_PNummerAuswahl.setModel(new DefaultComboBoxModel(Personal_PNummer));					
+			comboBox_pflegt_PNummerAuswahl.setSelectedIndex(0);
+		}catch(Exception ex) {
+			System.err.println("ERROR OCCURRED [GUI_FrankfurterZOO](line 1152) \n as refreshComboBoxes() tried to pull Date for Comboxes \n Pfleger Table had no entries");
+		}
+		try {	
+			Tier_Name = s.selectTier_TName();
+			comboBox_pflegt_TierNameAuswahl.setModel(new DefaultComboBoxModel(Tier_Name));					
+			comboBox_pflegt_TierNameAuswahl.setSelectedIndex(0);
 		}catch(Exception ex) {
 			System.err.println("ERROR OCCURRED [GUI_FrankfurterZOO](line 1152) \n as refreshComboBoxes() tried to pull Date for Comboxes \n Pfleger Table had no entries");
 		}
