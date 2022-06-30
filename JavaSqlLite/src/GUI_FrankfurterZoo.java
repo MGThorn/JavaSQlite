@@ -287,10 +287,15 @@ public class GUI_FrankfurterZoo {
 		panel_pflegt.add(button_pflegt_loeschen);
 		
 		JButton button_pflegt_beenden = new JButton("Beenden");
+		button_pflegt_beenden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmDatenbankDesFrankfurter.dispose();
+			}
+		});
 		button_pflegt_beenden.setBounds(689, 396, 89, 23);
 		panel_pflegt.add(button_pflegt_beenden);
 		
-		JButton button_pflegt_listenausgabe = new JButton("Gehegeliste ausgeben");
+		JButton button_pflegt_listenausgabe = new JButton("TierPflegerZuordnung ausgeben");
 		button_pflegt_listenausgabe.setBounds(469, 396, 164, 23);
 		panel_pflegt.add(button_pflegt_listenausgabe);
 		
