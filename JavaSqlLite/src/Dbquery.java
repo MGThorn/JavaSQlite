@@ -14,18 +14,6 @@ public class Dbquery {
 			  if(sql.substring(0, 6).equalsIgnoreCase("select")) {
 				st=con.createStatement();
 			    rs= st.executeQuery(sql);
-			    
-			    /*
-			     *  for reading the complete ResultSet use:
-			     *   while(rs.next()){
-		         *		int maxColumns = rs.getMetaData().getColumnCount();
-		         *		for(int i = 1;i<maxColumns;i++) {
-		         *			
-		         *				YOUR ACTION
-		         *	
-		         *	}
-		         * }
-		         */
 			  }else {
 				  System.out.println("!!! only for select");
 			  }
