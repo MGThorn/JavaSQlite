@@ -114,7 +114,7 @@ public class GUI_FrankfurterZoo {
 	private void initialize() {
 	
 		
-//Hauptmen�-------------------------------------------------------------------------------------------------------------
+//Hauptmenü------------------------------------------------------------------------------------------------------------
 		
 		
 		frmDatenbankDesFrankfurter = new JFrame();
@@ -149,7 +149,7 @@ public class GUI_FrankfurterZoo {
 		
 		JPanel panel_haupt = new JPanel();
 		panel_haupt.setBackground(Color.PINK);
-		tabbedPane.addTab("Hauptmen�", null, panel_haupt, null);
+		tabbedPane.addTab("Hauptmenü", null, panel_haupt, null);
 		panel_haupt.setLayout(null);
 		
 		JLabel label_hauptmenue_ueberschrift_1 = new JLabel("Datenbank des Frankfurter Zoos\r\n");
@@ -158,7 +158,7 @@ public class GUI_FrankfurterZoo {
 		label_hauptmenue_ueberschrift_1.setBounds(165, 25, 505, 94);
 		panel_haupt.add(label_hauptmenue_ueberschrift_1);
 		
-		JLabel label_hauptmenue_ueberschrift_2 = new JLabel("Benutzeroberfl\u00E4che");
+		JLabel label_hauptmenue_ueberschrift_2 = new JLabel("Benutzeroberfläche");
 		label_hauptmenue_ueberschrift_2.setHorizontalAlignment(SwingConstants.CENTER);
 		label_hauptmenue_ueberschrift_2.setFont(new Font("Tahoma", Font.BOLD, 30));
 		label_hauptmenue_ueberschrift_2.setBounds(175, 72, 505, 94);
