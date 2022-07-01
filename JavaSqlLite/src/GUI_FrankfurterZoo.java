@@ -114,7 +114,7 @@ public class GUI_FrankfurterZoo {
 	private void initialize() {
 	
 		
-//Hauptmenü-------------------------------------------------------------------------------------------------------------
+//Hauptmenï¿½-------------------------------------------------------------------------------------------------------------
 		
 		
 		frmDatenbankDesFrankfurter = new JFrame();
@@ -901,7 +901,7 @@ public class GUI_FrankfurterZoo {
 		comboBox_gehege_PNummerAuswahl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(comboBox_gehege_PNummerAuswahl.getSelectedItem());
-				temp_futterdetails_FutterBezeichnungAuswahl=(String) comboBox_gehege_PNummerAuswahl.getSelectedItem();
+				temp_gehege_PNummerAuswahl=(String) comboBox_gehege_PNummerAuswahl.getSelectedItem();
 			}
 		});
 		panel_gehege.add(comboBox_gehege_PNummerAuswahl);
@@ -1312,10 +1312,10 @@ public class GUI_FrankfurterZoo {
 		button_futter_listenausgabe.setBounds(485, 389, 154, 23);
 		panel_futter.add(button_futter_listenausgabe);
 		
-		JLabel lbl_futter_ändern = new JLabel("   \u00C4ndern");
-		lbl_futter_ändern.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lbl_futter_ändern.setBounds(354, 148, 89, 23);
-		panel_futter.add(lbl_futter_ändern);
+		JLabel lbl_futter_Ã¤ndern = new JLabel("   \u00C4ndern");
+		lbl_futter_Ã¤ndern.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lbl_futter_Ã¤ndern.setBounds(354, 148, 89, 23);
+		panel_futter.add(lbl_futter_Ã¤ndern);
 		
 			//*Futter--------------------------------
 		

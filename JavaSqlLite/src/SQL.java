@@ -14,8 +14,8 @@ public class SQL {
 	}
 	public void createDatabases() {
 
-		Dbmanipulation.create("create table Pfleger (PNummer integer PRIMARY KEY, Nachname string, Vorname string, Geburtsdatum integer, PLZ integer, Ort string, StraﬂeNr string, Tel integer, Eintrittsdatum integer, Gehalt integer)");
-		Dbmanipulation.create("create table Gehege (GName string PRIMARY KEY, Fl‰che integer, Baujahr integer,PNummer integer, FOREIGN KEY(PNummer) REFERENCES Pfleger(PNummer))");
+		Dbmanipulation.create("create table Pfleger (PNummer integer PRIMARY KEY, Nachname string, Vorname string, Geburtsdatum integer, PLZ integer, Ort string, StraÔøΩeNr string, Tel integer, Eintrittsdatum integer, Gehalt integer)");
+		Dbmanipulation.create("create table Gehege (GName string PRIMARY KEY, FlÔøΩche integer, Baujahr integer,PNummer integer, FOREIGN KEY(PNummer) REFERENCES Pfleger(PNummer))");
 		Dbmanipulation.create("create table Art (ABezeichnung string PRIMARY KEY, LatBezeichnung string, Lebensraum string)");
 		Dbmanipulation.create("create table Tier (TName string PRIMARY KEY, GebDatum integer, Geschlecht char, Zugangsdatum integer, Abgangsdatum integer,GName string, ABezeichnung string, FOREIGN KEY(ABezeichnung) REFERENCES Art(ABezeichnung), FOREIGN KEY(GName) REFERENCES Gehege(GName))");
 		Dbmanipulation.create("create table Futter (FBezeichnung string PRIMARY KEY)");
@@ -27,7 +27,7 @@ public class SQL {
 	}
 	//This is an example
 	public void insert/*name*/() {
-		Dbmanipulation.insert("insert into Pfleger values(1, 'leo der Lˆw', 'luis der Pfleger',205025,'Anschriftjiwqjd',74565464564,11042000,4500)");
+		Dbmanipulation.insert("insert into Pfleger values(1, 'leo der LÔøΩw', 'luis der Pfleger',205025,'Anschriftjiwqjd',74565464564,11042000,4500)");
 		Dbmanipulation.insert("insert into Pfleger values(2, 'peper der Pinguin', 'Paul der Pfleger',205025,'Anschriftjiwqjd',74565464564,11042000,4500)");
 		
 	}
@@ -62,7 +62,7 @@ public class SQL {
 		Dbmanipulation.insert("insert into Tier values('"+TName+"', "+GDatum+", '"+g+"',"+ZDatum+","+ADatum+",'"+GName+"','"+ABezeichnung+"')");
 		
 	}
-	public void insertPfleger(String PNummer, String Nachname, String Vorname, String Geburtsdatum, String PLZ, String Ort, String StraﬂeNr, String Tel, String Eintrittsdatum, String Gehalt) {
+	public void insertPfleger(String PNummer, String Nachname, String Vorname, String Geburtsdatum, String PLZ, String Ort, String Stra√üeNr, String Tel, String Eintrittsdatum, String Gehalt) {
 		int pNummer = Integer.parseInt(PNummer);
 		int GDatum = Integer.parseInt(Geburtsdatum);
 		int plz = Integer.parseInt(PLZ);
@@ -72,15 +72,15 @@ public class SQL {
 		
 		
 		
-		Dbmanipulation.insert("insert into Pfleger values('"+pNummer+"', '"+Nachname+"', '"+Vorname+"',"+GDatum+","+plz+",'"+Ort+"','"+StraﬂeNr+"',"+tel+","+EDatum+","+gehalt+")");
+		Dbmanipulation.insert("insert into Pfleger values('"+pNummer+"', '"+Nachname+"', '"+Vorname+"',"+GDatum+","+plz+",'"+Ort+"','"+Stra√üeNr+"',"+tel+","+EDatum+","+gehalt+")");
 		
 	}
-	public void insertGehege(String GName, String Fl‰che, String Baujahr, String PNummer) {
+	public void insertGehege(String GName, String Fl√§che, String Baujahr, String PNummer) {
 
-		int fl‰che = Integer.parseInt(Fl‰che);
+		int fl√§che = Integer.parseInt(Fl√§che);
 		int baujahr = Integer.parseInt(Baujahr);
 
-		Dbmanipulation.insert("insert into Gehege values('"+GName+"', "+fl‰che+", '"+baujahr+"', '"+PNummer+"')");
+		Dbmanipulation.insert("insert into Gehege values('"+GName+"', "+fl√§che+", '"+baujahr+"', '"+PNummer+"')");
 		
 	}
 	public void insertArt(String Bezeichnung, String LatBezeichnung, String Lebensraum) {		
@@ -430,7 +430,7 @@ public class SQL {
 		Dbmanipulation.insert("UPDATE Tier SET GebDatum = "+GDatum+", Geschlecht = '"+g+"', Zugangsdatum = "+ZDatum+", Abgangsdatum = "+ADatum+", GName = '"+GName+"', ABezeichnung = '"+ABezeichnung+"' WHERE TName = '"+TName+"'" );
 		
 	}
-	public void changePfleger(String PNummer, String Nachname, String Vorname, String Geburtsdatum, String PLZ, String Ort, String StraﬂeNr, String Tel, String Eintrittsdatum, String Gehalt) {
+	public void changePfleger(String PNummer, String Nachname, String Vorname, String Geburtsdatum, String PLZ, String Ort, String Stra√üeNr, String Tel, String Eintrittsdatum, String Gehalt) {
 		int pNummer = Integer.parseInt(PNummer);
 		int GDatum = Integer.parseInt(Geburtsdatum);
 		int plz = Integer.parseInt(PLZ);
@@ -440,15 +440,15 @@ public class SQL {
 		
 		
 		
-		Dbmanipulation.insert("UPDATE Pfleger SET Nachname ='"+Nachname+"', Vorname='"+Vorname+"',Geburtsdatum="+GDatum+",PLZ="+plz+",Ort='"+Ort+"',StraﬂeNr='"+StraﬂeNr+"',Tel="+tel+",Eintrittsdatum="+EDatum+",Gehalt="+gehalt+" WHERE PNummer = '"+pNummer+"'" );
+		Dbmanipulation.insert("UPDATE Pfleger SET Nachname ='"+Nachname+"', Vorname='"+Vorname+"',Geburtsdatum="+GDatum+",PLZ="+plz+",Ort='"+Ort+"',StraÔøΩeNr='"+Stra√üeNr+"',Tel="+tel+",Eintrittsdatum="+EDatum+",Gehalt="+gehalt+" WHERE PNummer = '"+pNummer+"'" );
 		
 	}
-	public void changeGehege(String GName, String Fl‰che, String Baujahr, String PNummer) {
-		int fl‰che = Integer.parseInt(Fl‰che);
+	public void changeGehege(String GName, String Fl√§che, String Baujahr, String PNummer) {
+		int fl√§che = Integer.parseInt(Fl√§che);
 		int baujahr = Integer.parseInt(Baujahr);
 		int pnummer = Integer.parseInt(PNummer);
 		
-		Dbmanipulation.insert("UPDATE Gehege SET Fl‰che="+fl‰che+", Baujahr="+baujahr+",PNummer='"+pnummer+"' WHERE GName='"+GName+"'");
+		Dbmanipulation.insert("UPDATE Gehege SET FlÔøΩche="+fl√§che+", Baujahr="+baujahr+",PNummer='"+pnummer+"' WHERE GName='"+GName+"'");
 		
 	}
 	public void changeArt(String ABezeichnung, String LatBezeichnung, String Lebensraum) {
