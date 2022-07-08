@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
 import java.awt.Font;
+import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -96,6 +98,7 @@ public class GUI_FrankfurterZoo {
 				try {
 					GUI_FrankfurterZoo window = new GUI_FrankfurterZoo();
 					window.frmDatenbankDesFrankfurter.setVisible(true);
+					//window.frmDatenbankDesFrankfurter.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -121,7 +124,7 @@ public class GUI_FrankfurterZoo {
 		
 		frmDatenbankDesFrankfurter = new JFrame();
 		frmDatenbankDesFrankfurter.setTitle("Datenbank des Frankfurter Zoos");
-		frmDatenbankDesFrankfurter.setBounds(100, 100, 836, 536);
+		frmDatenbankDesFrankfurter.setBounds(0, 0, 836, 536);
 		frmDatenbankDesFrankfurter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmDatenbankDesFrankfurter.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -243,6 +246,10 @@ public class GUI_FrankfurterZoo {
 				pwPanel.add(pwButton);
 		 
 				pwFrame.add(pwPanel);
+				pwFrame.setAlwaysOnTop(true);
+				pwFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+				pwFrame.setResizable(false);
+				pwFrame.setUndecorated(true);
 				pwFrame.setVisible(true);
 			}
 		});
