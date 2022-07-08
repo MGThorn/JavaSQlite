@@ -207,22 +207,31 @@ public class GUI_FrankfurterZoo {
 		btn_Reset.setForeground(Color.BLACK);
 		btn_Reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame meinJFrame = new JFrame();
-				meinJFrame.setBounds(500, 300, 300, 100);
-				meinJFrame.setTitle("Passwort");
+				JFrame pwFrame = new JFrame();
+				pwFrame.setBounds(500, 300, 300, 100);
+				pwFrame.setTitle("Passwort");
 		 
-				JPanel meinPanel = new JPanel();
-				JLabel pwLabel = new JLabel("Admin Passwort");
+				JPanel pwPanel = new JPanel();
+				JLabel pwLabel = new JLabel("Admin Passwort");				
+				JPasswordField pwField = new JPasswordField(8);
+				JButton pwButton = new JButton("RESET");
+				char [] Passwort = {'P','a','s','s','w','o','r','t'};
+				// String EingegbenesPW = pwField.getPassword().toString();
+				
+				pwButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(pwField.getPassword().equals(Passwort)) {
+							
+						}
+					}
+				});
 		 
-				//Passwortfeld wird erzeugt 
-				JPasswordField pwField = new 
-		                        JPasswordField("meinsupersicherespasswort");
+				pwPanel.add(pwLabel);
+				pwPanel.add(pwField);
+				pwPanel.add(pwButton);
 		 
-				meinPanel.add(pwLabel);
-				meinPanel.add(pwField);
-		 
-				meinJFrame.add(meinPanel);
-				meinJFrame.setVisible(true);
+				pwFrame.add(pwPanel);
+				pwFrame.setVisible(true);
 				//s.deletDatabases();
 				//s.createDatabases();
 				//refreshComboBoxes();
