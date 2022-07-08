@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -205,9 +207,25 @@ public class GUI_FrankfurterZoo {
 		btn_Reset.setForeground(Color.BLACK);
 		btn_Reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				s.deletDatabases();
-				s.createDatabases();
-				refreshComboBoxes();
+				JFrame meinJFrame = new JFrame();
+				meinJFrame.setBounds(500, 300, 300, 100);
+				meinJFrame.setTitle("Passwort");
+		 
+				JPanel meinPanel = new JPanel();
+				JLabel pwLabel = new JLabel("Admin Passwort");
+		 
+				//Passwortfeld wird erzeugt 
+				JPasswordField pwField = new 
+		                        JPasswordField("meinsupersicherespasswort");
+		 
+				meinPanel.add(pwLabel);
+				meinPanel.add(pwField);
+		 
+				meinJFrame.add(meinPanel);
+				meinJFrame.setVisible(true);
+				//s.deletDatabases();
+				//s.createDatabases();
+				//refreshComboBoxes();
 			}
 		});
 		btn_Reset.setBounds(360, 395, 297, 39);
