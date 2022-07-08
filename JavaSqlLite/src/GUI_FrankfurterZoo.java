@@ -222,7 +222,11 @@ public class GUI_FrankfurterZoo {
 				//pwField.getPassword().equals(Passwort)
 				pwButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(pwField.getPassword().toString()==PW) {
+						char [] Pass = pwField.getPassword();
+						for(char Element:Pass) {
+							System.out.println(Element);
+						}
+						if(pwField.getPassword().toString().equals(PW)) {
 							System.out.println("pw richtig");
 							s.deletDatabases();
 							s.createDatabases();
