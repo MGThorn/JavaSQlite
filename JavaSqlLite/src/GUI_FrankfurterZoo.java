@@ -215,22 +215,23 @@ public class GUI_FrankfurterZoo {
 				JLabel pwLabel = new JLabel("Admin Passwort");				
 				JPasswordField pwField = new JPasswordField(8);
 				JButton pwButton = new JButton("RESET");
-				String PW = "P";
 				
+				String Passwort = "Admin";
 				//char [] Passwort = {'P','a','s','s','w','o','r','t'};
-				
-				//pwField.getPassword().equals(Passwort)
+
 				pwButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						char [] Pass = pwField.getPassword();
+						String pw="";
 						for(char Element:Pass) {
-							System.out.println(Element);
+							pw+=Element;
 						}
-						if(pwField.getPassword().toString().equals(PW)) {
+						if(pw.equalsIgnoreCase(Passwort)) {
 							System.out.println("pw richtig");
 							s.deletDatabases();
 							s.createDatabases();
 							refreshComboBoxes();
+							pwFrame.dispose();
 						}else {
 							pwField.setText("");
 						}
