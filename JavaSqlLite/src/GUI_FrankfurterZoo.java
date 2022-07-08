@@ -215,13 +215,20 @@ public class GUI_FrankfurterZoo {
 				JLabel pwLabel = new JLabel("Admin Passwort");				
 				JPasswordField pwField = new JPasswordField(8);
 				JButton pwButton = new JButton("RESET");
-				char [] Passwort = {'P','a','s','s','w','o','r','t'};
-				// String EingegbenesPW = pwField.getPassword().toString();
+				String PW = "P";
 				
+				//char [] Passwort = {'P','a','s','s','w','o','r','t'};
+				
+				//pwField.getPassword().equals(Passwort)
 				pwButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						if(pwField.getPassword().equals(Passwort)) {
-							
+						if(pwField.getPassword().toString()==PW) {
+							System.out.println("pw richtig");
+							s.deletDatabases();
+							s.createDatabases();
+							refreshComboBoxes();
+						}else {
+							pwField.setText("");
 						}
 					}
 				});
@@ -232,9 +239,6 @@ public class GUI_FrankfurterZoo {
 		 
 				pwFrame.add(pwPanel);
 				pwFrame.setVisible(true);
-				//s.deletDatabases();
-				//s.createDatabases();
-				//refreshComboBoxes();
 			}
 		});
 		btn_Reset.setBounds(360, 395, 297, 39);
