@@ -178,12 +178,19 @@ public class Telefonbuch_GUI {
 				pwFrame.setTitle("Passwort");
 		 
 				JPanel pwPanel = new JPanel();
-				JLabel pwLabel = new JLabel("Admin Passwort");				
+				JLabel pwLabel = new JLabel("Admin Passwort");
+				JLabel pwALabel = new JLabel("");
 				JPasswordField pwField = new JPasswordField(8);
 				JButton pwButton = new JButton("RESET");
+				JButton exitButton = new JButton("close");
 				
 				String Passwort = "Admin";
 				//char [] Passwort = {'P','a','s','s','w','o','r','t'};
+				exitButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						pwFrame.dispose();
+					}
+				});
 
 				pwButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -200,6 +207,7 @@ public class Telefonbuch_GUI {
 							pwFrame.dispose();
 						}else {
 							pwField.setText("");
+							pwALabel.setText("pw falsch");
 						}
 					}
 				});
@@ -207,6 +215,8 @@ public class Telefonbuch_GUI {
 				pwPanel.add(pwLabel);
 				pwPanel.add(pwField);
 				pwPanel.add(pwButton);
+				pwPanel.add(pwALabel);
+				pwPanel.add(exitButton);
 		 
 				pwFrame.getContentPane().add(pwPanel);
 				pwFrame.setAlwaysOnTop(true);
